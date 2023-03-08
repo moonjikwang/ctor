@@ -31,6 +31,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
 }
 
 tasks.named('test') {
