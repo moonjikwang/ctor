@@ -13,6 +13,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ctor.dto.MemberDTO;
+import com.ctor.entity.Member;
 import com.ctor.repository.KakaoRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -144,6 +146,16 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 			e.printStackTrace();
 		}
 		return userInfo;
+	}
+
+	@Override
+	public MemberDTO findByEmail(String email) {
+		Member member = kakaoRepository.getMemberWithEmail(email);
+		if(member != null) {
+		return entityToDto(member);
+		}else {
+			return null;
+		}
 	}
 
 }
