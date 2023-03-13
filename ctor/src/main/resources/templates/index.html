@@ -738,7 +738,7 @@
 											th:text="${regiInfo['nickname']}+'님은..'"></h5>
 
 										<div class="d-grid gap-2 col-6 mx-auto">
-											<form>
+											<form action="register" method="POST">
 												<button class="btn btn-primary" id="isStudent"
 													value="student" type="button"
 													onClick="checkValue(this.form.isStudent.value)">학생입니다.</button>
@@ -750,15 +750,35 @@
 									<fieldset id="page2" style="display: none;">
 										<h3 id="page2title"></h3>
 										<select class="form-select form-select-lg mb-3" id="subject"
-											aria-label=".form-select-lg example">
-											<option selected>선택해주세요~</option>
-											<option value="javaFullStack">Open API를 활용한 JAVA 풀스택 과정</option>
+											name="subject" aria-label=".form-select-lg example">
+											<option value="javaFullStack">Open API를 활용한 JAVA 풀스택
+												과정</option>
 											<option value="uiUx">UI/UX 과정</option>
 											<option value="webDesigner">웹디자이너 과정</option>
 										</select>
 										<button class="btn btn-primary" id="page2submit"
-													value="teacher" type="button"
-													onClick="checkpage2Value(this.form.subject.value)">다음</button>
+											value="teacher" type="button"
+											onClick="checkpage2Value(this.form.subject.value)">다음</button>
+									</fieldset>
+									<fieldset id="page3" style="display: none;">
+										<h3>
+											마지막입니다.🎉
+											<h3>
+												<h5>사용할 닉네임을 입력해주세요</h5>
+												<div class="input-group input-group-lg">
+													<span class="input-group-text" id="inputGroup-sizing-lg">@</span>
+													<input type="text" class="form-control" name="nickName"
+														aria-label="Sizing example input"
+														aria-describedby="inputGroup-sizing-lg">
+												</div>
+												<input type="hidden" id="submitGrade" name="grade">
+												<input th:if="${regiInfo != null}" type="hidden"
+													name="profileImg" th:value="${regiInfo['profileImg']}">
+												<input th:if="${regiInfo != null}" type="hidden" name="name"
+													th:value="${regiInfo['nickname']}"> <input
+													th:if="${regiInfo != null}" type="hidden" name="email"
+													th:value="${regiInfo['email']}">
+												<button class="btn btn-primary" type="submit">회원가입!</button>
 									</fieldset>
 									</form>
 								</div>
@@ -771,6 +791,7 @@
 		</main>
 
 		<footer class="pt-4 my-md-5 pt-md-5 border-top" style="padding: 0px;">
+
 			<div class="row"
 				style="padding: 0px; margin-right: 0px; padding-left: 10px;">
 				<div class="col-10 col-md">
@@ -814,17 +835,21 @@
 	<script>
 		var type;
 		var subject;
-		
+
 		function checkValue(memberType) {
 
 			type = memberType;
 			document.getElementById("page1").style.display = 'none';
 			document.getElementById("page2").style.display = 'block';
-			document.getElementById("page2title").innerText = (type=="student"?"학생":"강사님")+'이시군요! <br> 지금 진행중인 or 관심있는 과정을 선택해주세요.';
+			document.getElementById("page2title").innerHTML = (type == "student" ? "학생"
+					: "강사님")
+					+ '이시군요! <br> 지금 진행중인 or 관심있는 과정을 선택해주세요.';
 		}
-		function checkpage2Value(subjectType){
+		function checkpage2Value(subjectType) {
 			subject = subjectType;
-			alert("학생유무 : "+type+",과정 : "+subject);
+			document.getElementById("submitGrade").setAttribute("value", type);
+			document.getElementById("page2").style.display = 'none';
+			document.getElementById("page3").style.display = 'block';
 		}
 	</script>
 	<script th:inline="javascript">
