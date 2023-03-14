@@ -9,4 +9,9 @@ public class BlindController {
 	@GetMapping("blind")
 	public void blind() {
 	}
+	
+	@GetMapping("blindWrite")
+	public void blindWrite() {
+		
+	}
 }

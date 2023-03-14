@@ -74,11 +74,11 @@
 					</div>
 				</nav>
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto mobilenav"
-					style="position: absolute; width: 90%; margin-right: 0px;">
+					style="position: absolute; width: 90%; margin-top: 0px !important; margin-right: 0px;">
 					<a th:if="${session.userInfo == null}" data-bs-toggle="modal"
 						data-bs-target="#login"
 						class="py-2 text-white text-decoration-none" href="#"
-						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"><b>로그인</b></a>
+						style="float: right; width: 100%; text-align: right; vertical-align: bottom;"><b>로그인</b></a>
 					<a th:if="${session.userInfo != null}"
 						class="py-2 text-white text-decoration-none" href="#"
 						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"
