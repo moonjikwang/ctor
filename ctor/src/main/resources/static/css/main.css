@@ -93,6 +93,24 @@
     font-family: 'Raleway', sans-serif;
   }
 }
+
+/* PConly */
+@media (max-width: 576px){
+	.pconly{
+	display: none;
+	}
+	.mobileonly{
+	display: block;
+	}
+}
+@media (min-width: 576px){
+	.mobileonly{
+	display: none;
+	}
+	.pconly{
+	display:block;
+	}
+}
 @media(max-width: 768px){
         .nav {
             display: none !important;

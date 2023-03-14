@@ -41,7 +41,7 @@
 				style="padding-bottom: 0px; margin-bottom: 0px; position: static;">
 				<a href="index"
 					class="d-flex align-items-center text-white text-decoration-none"
-					style="display: inline-block;"> <svg
+					style="z-index: 1; display: inline-block; width: 250px;"> <svg
 						xmlns="http://www.w3.org/2000/svg" width="30" height="24"
 						fill="currentColor" class="bi bi-file-earmark-code"
 						viewBox="0 0 16 16">
@@ -54,9 +54,9 @@
 				</a>
 
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav"
-					style="padding-left: 10px; font-family: 'Noto Sans KR', sans-serif;">
+					style="padding-left: 10px; margin-top: 0px !important; font-family: 'Noto Sans KR', sans-serif;">
 					<a class="me-3 py-2 text-white text-decoration-none" href="#">새
-						글 쓰기</a> <a class="me-3 py-2 text-white text-decoration-none" href="#">익명게시판</a>
+						글 쓰기</a> <a class="me-3 py-2 text-white text-decoration-none" href="blind">익명게시판</a>
 					<a th:if="${session.userInfo == null}"
 						class="me-3 py-2 text-white text-decoration-none" href="#"
 						data-bs-toggle="modal" data-bs-target="#login">로그인</a> <a
@@ -69,8 +69,8 @@
 						th:text='${session.userInfo.getName()}'></a>
 					<div style="margin-top: auto; margin-bottom: auto;">
 						<img th:if="${session.userInfo != null}"
-							th:src='${session.userInfo.getProfileImg()}' width="35"
-							height="35" class="rounded-circle me-2">
+							th:src='${session.userInfo.getProfileImg()}' width="45"
+							height="45" class="rounded-circle me-2">
 					</div>
 				</nav>
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto mobilenav"
@@ -82,11 +82,11 @@
 					<a th:if="${session.userInfo != null}"
 						class="py-2 text-white text-decoration-none" href="#"
 						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"
-						th:text='${session.userInfo.getName()}'></a>
+						></a>
 					<div style="margin-top: auto; margin-bottom: auto;">
 						<img th:if="${session.userInfo != null}"
-							th:src='${session.userInfo.getProfileImg()}' width="35"
-							height="35" class="rounded-circle me-2">
+							th:src='${session.userInfo.getProfileImg()}' width="45"
+							height="45" class="rounded-circle me-2">
 					</div>
 				</nav>
 			</div>
@@ -737,8 +737,8 @@
 										<h5 th:if="${regiInfo != null}"
 											th:text="${regiInfo['nickname']}+'님은..'"></h5>
 
-										<div class="d-grid gap-2 col-6 mx-auto">
 											<form action="register" method="POST">
+											<div class="d-grid gap-3 col-6 mx-auto">
 												<button class="btn btn-primary" id="isStudent"
 													value="student" type="button"
 													onClick="checkValue(this.form.isStudent.value)">학생입니다.</button>
@@ -778,6 +778,7 @@
 													th:value="${regiInfo['nickname']}"> <input
 													th:if="${regiInfo != null}" type="hidden" name="email"
 													th:value="${regiInfo['email']}">
+													<br>
 												<button class="btn btn-primary" type="submit">회원가입!</button>
 									</fieldset>
 									</form>
