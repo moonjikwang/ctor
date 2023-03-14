@@ -158,4 +158,11 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 		}
 	}
 
+	@Override
+	public String register(MemberDTO dto) {
+		Member member = dtoToEntity(dto);
+		kakaoRepository.save(member);
+		return member.getEmail();
+	}
+
 }
