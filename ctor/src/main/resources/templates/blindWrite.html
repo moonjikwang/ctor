@@ -100,10 +100,10 @@
 <hr>
 			</div>
 			
-			<fieldset  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
+			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="blindWrite" method="post">
 			<input th:if="${session.userInfo != null}" type="hidden" name="writer" th:value="${session.userInfo.getNickName()}">
-	<input type="text" name="title" class="form-control mt-4 mb-2"
+	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
 		placeholder="제목을 입력해주세요." required
 	>
 	<div class="form-group">
@@ -115,6 +115,7 @@
 </form>
 
 </fieldset>
+			
 
 			
 			<div class="modal fade" id="login" tabindex="-1"
