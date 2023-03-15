@@ -7,10 +7,15 @@ import com.ctor.dto.BoardDTO;
 import com.ctor.entity.Board;
 import com.ctor.repository.BoardRepository;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import org.aspectj.weaver.NewConstructorTypeMunger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,29 +59,50 @@ public class BoardTests {
 //	public void find() {
 //		Optional<Board> result = boardRepository.findById(25l);
 //		System.out.println(result.get());
+//		
+//	
 //	}
 	
+//	@Test
+//	public void writeTest() {
+//	
+//		BoardDTO dto =  BoardDTO.builder()
+//				.title("3번째 모집")
+//				.text("새로 작성한 내용")
+//				.closingDate(new Date())
+//				.projStartDate(new Date())
+//				.projEndDate(new Date())
+//				.duration("미정")
+//				.groupMember(10)
+//				.position("백엔드,프론트엔드,디자이너")
+//				.techStack("자바,스프링,타임리프")
+//				.hasTutor(false)
+//				.memEmail("aaa1@naver.com")
+//				.build();
+//		
+//		Long bno = boardService.write(dto);
+//		
+//		System.out.println(dto);
+//		System.out.println(bno);
+//				
+//	}
+	
+//	@Test
+//	public void delTest() {
+//		boardService.delete(3l);
+//	}
 	@Test
-	public void writeTest() {
-		String[] position = {"백엔드", "프론트엔드","디자이너"};
-		String[] tech = {"자바", "스프링","오라클"};
-		BoardDTO dto =  BoardDTO.builder()
-				.title("새로 모집")
-				.text("새로 작성한 내용")
-				.closingDate(new Date())
-				.projStartDate(new Date())
-				.projEndDate(new Date())
-				.duration("1개월")
-				.groupMember(10)
-				.position(position)
-				.techStack(tech)
-				.hasTutor(false)
-				.memEmail("aaa1@naver.com")
-				.build();
-		
-		Long bno = boardService.write(dto);
-		
-		System.out.println(bno);
-				
+	public void findTest() {
+		List<BoardDTO> dtoList =
+		boardService.findByEmail("aaa1@green.com");
+		System.out.println(dtoList);
 	}
+//	@Test
+//	public void findTest() {
+//		BoardDTO dto =
+//		boardService.findByBoardno(2l);
+//		System.out.println(dto);
+//	}
+	
+	
 }

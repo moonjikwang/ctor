@@ -3,6 +3,8 @@ package com.ctor.dto;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import org.json.simple.JSONObject;
+
 import com.ctor.entity.Member;
 
 import lombok.AllArgsConstructor;
@@ -29,8 +31,8 @@ public class BoardDTO {
 	private int groupMember;	//모집인원수
 	private int viewCount;		//조회수
 	private int replyCount;		//댓글수
-	private String[] position;	//직군
-	private String[] techStack;	//기술스택
+	private String position;	//직군
+	private String techStack;	//기술스택
 	private boolean hasTutor;	//멘토링 있는지 여부
 	
 	private String memEmail;	//멤버 대신 멤버 이메일
