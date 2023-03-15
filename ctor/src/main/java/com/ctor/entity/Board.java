@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.json.simple.JSONObject;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,8 +39,8 @@ public class Board extends BaseEntity{
 	private int groupMember;	//모집인원수
 	private int viewCount;		//조회수
 	private int replyCount;		//댓글수
-	private String[] position;	//직군
-	private String[] techStack;	//기술스택
+	private String position;	//직군
+	private String techStack;	//기술스택
 	
 	private boolean hasTutor;	//멘토링 있는지 여부
 	
