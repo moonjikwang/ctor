@@ -63,46 +63,55 @@ public class BoardTests {
 //	
 //	}
 	
-//	@Test
-//	public void writeTest() {
-//	
-//		BoardDTO dto =  BoardDTO.builder()
-//				.title("3번째 모집")
-//				.text("새로 작성한 내용")
-//				.closingDate(new Date())
-//				.projStartDate(new Date())
-//				.projEndDate(new Date())
-//				.duration("미정")
-//				.groupMember(10)
-//				.position("백엔드,프론트엔드,디자이너")
-//				.techStack("자바,스프링,타임리프")
-//				.hasTutor(false)
-//				.memEmail("aaa1@naver.com")
-//				.build();
-//		
-//		Long bno = boardService.write(dto);
-//		
-//		System.out.println(dto);
-//		System.out.println(bno);
-//				
-//	}
+	@Test
+	public void writeTest() {
 	
+		BoardDTO dto =  BoardDTO.builder()
+				.boardno(4l)
+				.title("수정한 모집")
+				.text("수정한 내용")
+				.closingDate(new Date())
+				.projStartDate(new Date())
+				.projEndDate(new Date())
+				.duration("미정")
+				.groupMember(10)
+				.position("백엔드,프론트엔드,디자이너")
+				.techStack("자바,스프링,타임리프")
+				.hasTutor(false)
+				.memEmail("aaa1@naver.com")
+				.build();
+		
+		Long bno = boardService.modify(dto);
+		
+		System.out.println(dto);
+		System.out.println(bno);
+				
+	}
+//	
 //	@Test
 //	public void delTest() {
 //		boardService.delete(3l);
 //	}
-	@Test
-	public void findTest() {
-		List<BoardDTO> dtoList =
-		boardService.findByEmail("aaa1@green.com");
-		System.out.println(dtoList);
-	}
+//	@Test
+//	@Transactional
+//	public void findTest() {
+//		List<BoardDTO> dtoList =
+//		boardService.findByEmail("aaa@naver.com");
+//		System.out.println(dtoList);
+//	}
 //	@Test
 //	public void findTest() {
-//		BoardDTO dto =
-//		boardService.findByBoardno(2l);
-//		System.out.println(dto);
+//		List<BoardDTO> dtoList =
+//		boardService.findByPosition("디자이너");
+//		dtoList.forEach(dto->System.out.println(dto));
 //	}
-	
+//	@Test
+//	@Transactional
+//	public void findTest() {
+//		List<BoardDTO> dtoList =
+//		boardService.findAllBoards();
+//		dtoList.forEach(dto->System.out.println(dto));
+//	}
+//	
 	
 }
