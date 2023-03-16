@@ -29,9 +29,9 @@ public class Blind extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long blind_no;		 //익명게시글넘버
+	private Long blind_no;		  //익명게시글넘버
 	
-	private String blind_title; 	 //게시글 제목
+	private String blind_title;   //게시글 제목
 	
 	private String blind_content; //게시글 내용
 
