@@ -7,18 +7,20 @@ import com.ctor.dto.BoardDTO;
 import com.ctor.entity.Board;
 import com.ctor.repository.BoardRepository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import org.apache.naming.java.javaURLContextFactory;
 import org.aspectj.weaver.NewConstructorTypeMunger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 
 import com.ctor.entity.Member;
 import com.ctor.repository.KakaoRepository;
@@ -34,25 +36,44 @@ public class BoardTests {
 	@Autowired
 	private BoardService boardService;
 	
-//	@Test
-//	public void BoardTests() {
-//
-//		IntStream.rangeClosed(1, 5).forEach(i->{
-//			Board board = Board.builder()
-//					.title("그냥 수동으로 넣음"+i)
-//					.text("날짜는 알수가 없음")
-//					.projStartDate(new Date())
-//					.duration("미정")
-//					.closingDate(new Date())
-//					.groupMember(5)
-//					.hasTutor(false)
-//					.member(Member.builder().email("aaa1@naver.com").build())
-//					.build();
-//			boardRepository.save(board);
-//		});
-//		
-//		
-//	}
+	@Test
+	@Transactional
+	@Commit
+	public void BoardTests() {
+
+		IntStream.rangeClosed(11, 20).forEach(i->{
+//			Member member = Member.builder().email("aaa"+i+"@green.com").name("테스터"+i).build();
+//			kakaoRepository.save(member);
+			
+			String myString = "20230331";
+			SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+			Date mydate = null;
+			try {
+				mydate = dtFormat.parse(myString);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			BoardDTO boardDTO = BoardDTO.builder()
+					.boardno((long) i)
+					.title("스터디 모집 "+i)
+					.text("프로젝트 상세내용")
+					.category("스터디")
+					.closingDate(mydate)
+					.duration("미정")
+					.groupMember(5)
+					.position("백엔드,프론트엔드,디자이너")
+					.techStack("자바,스프링,HTML")
+					.hasTutor(false)
+					.closed(false)
+					.memEmail("aaa"+(i-10)+"@green.com")
+					.build();
+			boardService.modify(boardDTO);
+		});
+		
+		
+	}
 
 //	@Test
 //	@Transactional
@@ -63,30 +84,30 @@ public class BoardTests {
 //	
 //	}
 	
-	@Test
-	public void writeTest() {
-	
-		BoardDTO dto =  BoardDTO.builder()
-				.boardno(4l)
-				.title("수정한 모집")
-				.text("수정한 내용")
-				.closingDate(new Date())
-				.projStartDate(new Date())
-				.projEndDate(new Date())
-				.duration("미정")
-				.groupMember(10)
-				.position("백엔드,프론트엔드,디자이너")
-				.techStack("자바,스프링,타임리프")
-				.hasTutor(false)
-				.memEmail("aaa1@naver.com")
-				.build();
-		
-		Long bno = boardService.modify(dto);
-		
-		System.out.println(dto);
-		System.out.println(bno);
-				
-	}
+//	@Test
+//	public void writeTest() {
+//	
+//		BoardDTO dto =  BoardDTO.builder()
+//				.boardno(4l)
+//				.title("수정한 모집")
+//				.text("수정한 내용")
+//				.closingDate(new Date())
+//				.projStartDate(new Date())
+//				.projEndDate(new Date())
+//				.duration("미정")
+//				.groupMember(10)
+//				.position("백엔드,프론트엔드,디자이너")
+//				.techStack("자바,스프링,타임리프")
+//				.hasTutor(false)
+//				.memEmail("aaa1@naver.com")
+//				.build();
+//		
+//		Long bno = boardService.modify(dto);
+//		
+//		System.out.println(dto);
+//		System.out.println(bno);
+//				
+//	}
 //	
 //	@Test
 //	public void delTest() {

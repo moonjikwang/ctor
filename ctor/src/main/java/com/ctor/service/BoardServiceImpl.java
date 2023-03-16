@@ -34,14 +34,14 @@ public class BoardServiceImpl implements BoardService {
 				.boardno(dto.getBoardno())
 				.title(dto.getTitle())
 				.text(dto.getText())
+				.category(dto.getCategory())
 				.closingDate(dto.getClosingDate())
-				.projStartDate(dto.getProjStartDate())
-				.projEndDate(dto.getProjEndDate())
 				.duration(dto.getDuration())
 				.groupMember(dto.getGroupMember())
 				.position(dto.getPosition())
 				.techStack(dto.getTechStack())
 				.hasTutor(dto.isHasTutor())
+				.closed(dto.isClosed())
 				.member(new Member().builder().email(dto.getMemEmail()).build())
 				.build();
 				
