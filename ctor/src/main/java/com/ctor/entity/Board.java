@@ -1,5 +1,7 @@
 package com.ctor.entity;
 
+
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -30,10 +32,9 @@ public class Board extends BaseEntity{
 	
 	private String title;	//글제목
 	private String text;	//글내용
+	private String category;	//카테고리
 	
 	private Date closingDate;	//모집 마감일
-	private Date projStartDate;	//프로젝트 시작일
-	private Date projEndDate;	//프로젝트 마감일
 	private String duration;	//프로젝트 기간 (미정, 1개월, 3개월, 6개월, 장기)
 	
 	private int groupMember;	//모집인원수
@@ -43,6 +44,7 @@ public class Board extends BaseEntity{
 	private String techStack;	//기술스택
 	
 	private boolean hasTutor;	//멘토링 있는지 여부
+	private boolean closed;		//마감여부
 	
 	
 	
