@@ -1,12 +1,9 @@
 package com.ctor.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ctor.dto.BlindDTO;
 
@@ -19,6 +16,10 @@ public class BlindController {
 	
 	@GetMapping("blindWrite")
 	public void blindWrite() {
+	}
+	@GetMapping("blindRead")
+	public void blindRead() {
+		
 	}
 	
 	@PostMapping("blindWrite")
