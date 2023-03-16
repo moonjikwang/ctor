@@ -111,20 +111,20 @@
 	<br>
 	<b>모집 포지션</b><br>
 	<th:block th:each="job : ${job}">
-	<input type="checkbox" class="btn-check" th:id="${job.name}" autocomplete="off">
+	<input type="checkbox" name="position" class="btn-check" th:id="${job.name}" autocomplete="off">
 <label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>
 <b>기술 스택</b><br>
 <th:block th:each="skill : ${skill}">
-	<input type="checkbox" class="btn-check" th:id="${skill.skill}" autocomplete="off">
+	<input type="checkbox" name="skill" class="btn-check" th:id="${skill.skill}" autocomplete="off">
 <label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>
  <div class="row">
     <div class="col-sm-6 col-md-6">
       <b>모집 인원</b><br>
-      <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px!important;">
+      <select class="form-select" name="count" aria-label="Default select example" style="margin-bottom: 5px!important;">
   <option value="0">인원 미정</option>
   <option value="1">1명</option>
   <option value="2">2명</option>
@@ -136,7 +136,7 @@
     </div>
     <div class="col-sm-6 col-md-6">
       <b>진행 기간</b><br>
-      <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px!important;">
+      <select class="form-select" name="period" aria-label="Default select example" style="margin-bottom: 5px!important;">
   <option value="0">기간 미정</option>
   <option value="1w">1주</option>
   <option value="2w">2주</option>
@@ -144,6 +144,18 @@
   <option value="4w">4주</option>
   <option value="more">장기</option>
 </select>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-6 col-md-6">
+      <b>연락 방법</b><br>
+      <select class="form-select" name="contactType" aria-label="Default select example" style="margin-bottom: 5px!important;">
+  <option value="kakao">카카오톡 오픈채팅</option>
+</select>
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <b></b><br>
+      <input type="text" name="contactURL" class="form-control" id="exampleFormControlInput1" placeholder="카카오톡 오픈채팅 링크">
     </div>
     </div>
 
