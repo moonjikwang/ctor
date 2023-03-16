@@ -101,21 +101,23 @@
 			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="blindWrite" method="post">
 			<input th:if="${session.userInfo != null}" type="hidden" name="writer" th:value="${session.userInfo.getNickName()}">
+	모집 구분<br>
+	<input type="radio" class="btn-check" name="type" id="project" autocomplete="off">
+	<label class="btn btn-outline-secondary" for="project" style="margin-bottom: 5px!important;">프로젝트</label>
+		<input type="radio" class="btn-check" name="type" id="study" autocomplete="off">
+	<label class="btn btn-outline-secondary" for="study" style="margin-bottom: 5px!important;">스터디</label>
+	<br>
 	모집 포지션<br>
-	<input type="checkbox" class="btn-check" id="frontend" autocomplete="off">
-<label class="btn btn-outline-secondary" for="frontend">프론트엔드</label>
-<input type="checkbox" class="btn-check" id="backend" autocomplete="off">
-<label class="btn btn-outline-secondary" for="backend">백엔드</label>
-<input type="checkbox" class="btn-check" id="designer" autocomplete="off">
-<label class="btn btn-outline-secondary" for="designer">디자이너</label><br><br>
+	<th:block th:each="job : ${job}">
+	<input type="checkbox" class="btn-check" th:id="${job.name}" autocomplete="off">
+<label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 5px!important;"></label>
+</th:block>
+<br>
 기술 스택<br>
-
-	<input type="checkbox" class="btn-check" id="Spring" autocomplete="off">
-<label class="btn btn-outline-secondary" for="Spring">Spring</label>
-<input type="checkbox" class="btn-check" id="Javascript" autocomplete="off">
-<label class="btn btn-outline-secondary" for="Javascript">Javascript</label>
-<input type="checkbox" class="btn-check" id="JAVA" autocomplete="off">
-<label class="btn btn-outline-secondary" for="JAVA">JAVA</label>
+<th:block th:each="skill : ${skill}">
+	<input type="checkbox" class="btn-check" th:id="${skill.skill}" autocomplete="off">
+<label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 5px!important;"></label>
+</th:block>
 	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
 		placeholder="제목을 입력해주세요." required
 	>
