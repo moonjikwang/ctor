@@ -9,9 +9,13 @@ import com.ctor.entity.Member;
 public interface BoardService {
 
 	Long write(BoardDTO dto);
+	Long modify(BoardDTO dto);
 	Long delete(Long boardno);
+	
+	List<BoardDTO> findAllBoards();
 	List<BoardDTO> findByEmail(String email);
-	BoardDTO findByBoardno(Long boardno);
+	List<BoardDTO> findByTech(String tech);
+	List<BoardDTO> findByPosition(String position);
 	
 	default Board boardDTOtoEntity(BoardDTO dto) {
 		
@@ -55,7 +59,8 @@ public interface BoardService {
 				
 		return dto;
 		
-	};
+	}
+	
 	
 	
 	

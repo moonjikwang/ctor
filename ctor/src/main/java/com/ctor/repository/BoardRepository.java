@@ -12,15 +12,20 @@ import com.ctor.entity.Board;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-	@Query("SELECT a FROM Board a WHERE a.member =:email")
-	Object[] getBoardByEmail(@Param("email")String email);
+	//모든 행 조회
+	@Query(value = "SELECT * FROM Board b ORDER BY mod_date DESC", nativeQuery = true)
+	List<Board> getAll();
 	
-//	@Query("select b, w from Board b left join b.writer w Where b.bno =:bno") 
+	//작성자Id(email)로 조회
+	@Query(value = "SELECT * FROM Board b WHERE b.member_email =:email ORDER BY mod_date DESC", nativeQuery = true)
+	List<Board> getBoardByEmail(@Param("email")String email);
+	
+	//기술스택으로 조회
+	@Query(value = "SELECT * FROM Board b WHERE b.tech_stack like %:tech% ORDER BY mod_date DESC", nativeQuery = true)
+	List<Board> getBoardByTech(@Param("tech")String tech);
+	
+	//직군으로 조회
+	@Query(value = "SELECT * FROM Board b WHERE b.position like %:position% ORDER BY mod_date DESC", nativeQuery = true)
+	List<Board> getBoardByPosition(@Param("position")String position);
 
-	
-//	@Query("select b, m from Board AS b left join b.member_email m Where b.member_email =:email")
-//	Object[] getBoardByEmail(@Param("email")String email);
-//	
-//	@Query("select b, w from Board AS b left join b.member w Where b.bno =:bno") 
-//	Object getBoardWithWriter(@Param("bno") Long bno); 
 }
