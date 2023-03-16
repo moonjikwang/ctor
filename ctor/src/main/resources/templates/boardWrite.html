@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Raleway:wght@900&family=Ubuntu:wght@500&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Righteous&family=Noto+Sans+KR:wght@500&family=Raleway:wght@900&family=Ubuntu:wght@500&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
@@ -32,7 +32,7 @@
 			<div class="inner three"></div>
 		</div>
 		<div class="loading-text ">
-			<small style="font-family: 'Ubuntu', sans-serif;">new
+			<small style="font-family: 'Righteous', cursive;">new
 				Project();</small>
 		</div>
 	</div>
@@ -96,28 +96,60 @@
 		
 		<main class="container">
 			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-				<h1 class="display-4 fw-normal">프로젝트 & 스터디 모집</h1>
+				<h1 class="display-4 fw-normal">프로젝트&스터디 모집</h1>
 				<p class="fs-5 text-muted">프로젝트멤버, 스터디멤버를 구해보세요🙋‍♂️</p></div>
 			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="blindWrite" method="post">
 			<input th:if="${session.userInfo != null}" type="hidden" name="writer" th:value="${session.userInfo.getNickName()}">
-	모집 구분<br>
-	<input type="radio" class="btn-check" name="type" id="project" autocomplete="off">
+	<h5>👆기본정보를 입력해주세요.</h5>
+	<hr>
+	<b>모집 구분</b><br>
+	<input type="radio" class="btn-check" name="type" id="project" autocomplete="off" checked="checked">
 	<label class="btn btn-outline-secondary" for="project" style="margin-bottom: 5px!important;">프로젝트</label>
 		<input type="radio" class="btn-check" name="type" id="study" autocomplete="off">
 	<label class="btn btn-outline-secondary" for="study" style="margin-bottom: 5px!important;">스터디</label>
 	<br>
-	모집 포지션<br>
+	<b>모집 포지션</b><br>
 	<th:block th:each="job : ${job}">
 	<input type="checkbox" class="btn-check" th:id="${job.name}" autocomplete="off">
 <label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>
-기술 스택<br>
+<b>기술 스택</b><br>
 <th:block th:each="skill : ${skill}">
 	<input type="checkbox" class="btn-check" th:id="${skill.skill}" autocomplete="off">
 <label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 5px!important;"></label>
 </th:block>
+<br>
+ <div class="row">
+    <div class="col-sm-6 col-md-6">
+      <b>모집 인원</b><br>
+      <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px!important;">
+  <option value="0">인원 미정</option>
+  <option value="1">1명</option>
+  <option value="2">2명</option>
+  <option value="3">3명</option>
+  <option value="4">4명</option>
+  <option value="5">5명</option>
+  <option value="more">5명이상</option>
+</select>
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <b>진행 기간</b><br>
+      <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px!important;">
+  <option value="0">기간 미정</option>
+  <option value="1w">1주</option>
+  <option value="2w">2주</option>
+  <option value="3w">3주</option>
+  <option value="4w">4주</option>
+  <option value="more">장기</option>
+</select>
+    </div>
+    </div>
+
+<br><br>
+	<h5>✌소개글을 작성해주세요.</h5>
+	<hr>
 	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
 		placeholder="제목을 입력해주세요." required
 	>
@@ -126,7 +158,7 @@
 			placeholder="내용을 입력해주세요" required
 		></textarea>
 	</div>
-	<button type="submit" class="btn btn-secondary mb-3" onclick="saveGallery();" style="margin-top: 15px; float: right;">제출하기</button>
+	<button type="submit" class="btn btn-primary mb-3" onclick="saveGallery();" style="margin-top: 15px; float: right;">제출하기</button>
 </form>
 
 </fieldset>
