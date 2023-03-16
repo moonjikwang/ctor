@@ -53,6 +53,7 @@ public class BlindCommentsRepositoryTests {
 	
 	/* BlindCommentRead1()
 	 * DB에 있는 blc_no의 특정 번호 조회
+	 * 특정 번호의 블라인드코멘츠 & 블라인드 내용 조회
 	 */
 	@Transactional
 	@Test
