@@ -26,7 +26,7 @@ import lombok.ToString;
 public class BlindDTO {
 
 	private Long blind_no;
-	private String writer; 	 //작성자 nickName
+	private String writer; 	 //작성자 이메일 or nickName
 	private String title;
 	private String content;
 	private int reply_count; //해당 게시글 댓글 수
