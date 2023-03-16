@@ -15,7 +15,7 @@ import com.ctor.repository.BlindCommentsRepository;
 
 /**
  * @백승연
- * 연관관계 테스트
+ * BlindCommentsRepository 연관관계 테스트
  */
 
 @SpringBootTest
@@ -67,5 +67,4 @@ public class BlindCommentsRepositoryTests {
 		System.out.println(blindComments);
 		System.out.println(blindComments.getBlind());
 	}
-	
 }
