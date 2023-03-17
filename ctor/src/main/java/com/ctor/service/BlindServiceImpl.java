@@ -28,7 +28,7 @@ import lombok.extern.log4j.Log4j2;
  * 	  BlindService에서 생성한 dtoToEntity()메소드를 이용
  * 	  dto를 entity로 바꾼 객체를 blindRepository에 저장
  * 	  dto에서 entity로 바꾼 객체(blind)를 Blind_no로 리턴
- *
+ * 
  * 2. 게시물 목록 : getList()
  * 	  BlindService에서 생성한 entityToDTO()메소드를 이용하여
  * 	  PageResultDTO 객체를 구성
@@ -82,7 +82,7 @@ public class BlindServiceImpl implements BlindService{
 		return entityToDTO((Blind)arr[0], (Member)arr[1], (Long)arr[2]);
 	}
 	
-	//댓글 삭제
+	//글 삭제
 	@Transactional
 	@Override
 	public void removeWithComments(Long blind_no) {
@@ -102,6 +102,5 @@ public class BlindServiceImpl implements BlindService{
 		blind.changeContent(blindDTO.getContent());
 		blindRepository.save(blind);
 	}
-
 	
 }
