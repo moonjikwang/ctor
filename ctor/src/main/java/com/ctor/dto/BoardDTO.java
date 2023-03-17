@@ -36,5 +36,7 @@ public class BoardDTO {
 	private boolean closed;		//마감여부
 	
 	private String memEmail;	//멤버 대신 멤버 이메일
+	private String nickName;
+	private String profileImg;
 	
 }

@@ -67,7 +67,7 @@ public class BoardTests {
 					.techStack("자바,스프링,HTML")
 					.hasTutor(false)
 					.closed(false)
-					.memEmail("aaa"+(i-10)+"@green.com")
+					.memEmail("moonjikwang@naver.com")
 					.build();
 			boardService.modify(boardDTO);
 		});
