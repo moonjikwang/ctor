@@ -1,5 +1,7 @@
 package com.ctor.repository;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -13,27 +15,28 @@ import com.ctor.entity.Blind;
  * 
  * @백승연
  * BlindRepository : JPQL 작성
- * 필요한 쿼리 기능 : 목록화면 / 조회화면
- * 목록화면 : 글번호, 제목, 댓글수, 작성자
- * 조회화면 : 글번호, 제목, 내용, 댓글수, 작성자
+ *   필요한 쿼리 기능 : 목록화면 / 조회화면
+ *   목록화면 : 글번호, 제목, 댓글수, 작성자
+ *   조회화면 : 글번호, 제목, 내용, 댓글수, 작성자
  * 
  * 목록화면에 필요한 데이터
- * Blind : 익명게시글넘버, 제목, 작성시간
- * Member : 닉네임(nickName)
- * BlindComments : 해당익명글의 댓글수
+ *   Blind : 익명게시글넘버, 제목, 작성시간
+ *   Member : 닉네임(nickName)
+ *   BlindComments : 해당익명글의 댓글수
  * 
  * 조회화면에 필요한 데이터
- * Blind & Member
+ *   Blind & Member
  */
 public interface BlindRepository extends JpaRepository<Blind, Long>{
 
-	//1. 블라인드&멤버 조인 : Blind의 writer변수를 이용해서 조인(연관관계O)
-	//	 -> 특정 게시물과 해당 게시물을 작성한 회원을 조회
+	//1. 특정 게시물과 해당 게시물을 작성한 회원을 조회 
+	//	 -> 블라인드&멤버 조인 : Blind의 writer변수를 이용해서 조인(연관관계O)
 	@Query("SELECT b, w FROM Blind b LEFT JOIN b.writer w WHERE b.blind_no =:blind_no")
 	Object getBlindWithWriter(@Param("blind_no") Long blind_no);
 	
-	//2. 블라인드&코멘츠 조인 : ON키워드를 이용한 직접조인(연관관계X) -> 블라인드는 코멘츠의 객체들을 참조하지 않음
-	//	 -> 특정 게시물과 해당 게시물에 속한 댓글들을 조회
+	//2. 특정 게시물과 해당 게시물에 속한 댓글들을 조회
+	//	 -> 블라인드는 코멘츠의 객체들을 참조하지 않음
+	//	 -> 블라인드&코멘츠 조인 : ON키워드를 이용한 직접조인(연관관계X)  
 	@Query("SELECT b, c FROM Blind b LEFT JOIN BlindComments c ON c.blind = b WHERE b.blind_no =:blind_no")
 	List<Object[]> getBlindWithComments(@Param("blind_no") Long blind_no);
 	
@@ -49,11 +52,17 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			countQuery = "SELECT count(b) FROM Blind b")
 	Page<Object[]> getBlindWithCommentsCount(Pageable pageable);//목록화면에 필요한 데이터
 	
-	//4. 조회화면에 필요한 블라인드&멤버&댓글수 조인
+	//4_1 게시글번호 조회(블라인드&멤버&댓글수 조인)
 	@Query("SELECT b, w, count(c) "
 			+ " FROM Blind b LEFT JOIN b.writer w "
 			+ " LEFT OUTER JOIN BlindComments c ON c.blind = b "
 			+ " WHERE b.blind_no =:blind_no")
 	Object getBlindByBlind_no(@Param("blind_no") Long blind_no);
 	
+	//4_2 닉네임으로 조회
+	@Query("SELECT b, w, count(c) "
+			+ " FROM Blind b LEFT JOIN b.writer w "
+			+ " LEFT OUTER JOIN BlindComments c ON c.blind = b "
+			+ " WHERE w.nickName =:nickName")
+	Object getBlindByNickname(@Param("nickName") String nickName);
 }
