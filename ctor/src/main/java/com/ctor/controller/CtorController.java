@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.MemberDTO;
@@ -28,7 +29,11 @@ public class CtorController {
 	private final KakaoLoginService kakaoLoginService;
 	private final BoardService boardService;
 	private final SkillService skillService;
-	@GetMapping("index")
+	@GetMapping("/")
+	public String home() {
+		return "redirect:/index";
+	}
+	@GetMapping("/index")
 	public void index(Model model) {
 		List<BoardDTO> dto = boardService.findAllBoards();
 		List<SkillDTO> skillList = skillService.getList();

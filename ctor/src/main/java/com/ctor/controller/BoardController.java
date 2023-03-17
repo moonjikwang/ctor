@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ctor.dto.BlindDTO;
+import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
 import com.ctor.dto.SkillDTO;
 import com.ctor.service.JobGroupService;
@@ -37,6 +41,14 @@ public class BoardController {
 		model.addAttribute("skill",list);
 		model.addAttribute("job",jobList);
   }
+	@PostMapping("boardWrite")
+	public String postImage(BoardDTO dto,RedirectAttributes redirectAttributes) {
+		System.out.println("=========입력받은값 :"+dto);
+		Long bno = service.write(dto);
+		redirectAttributes.addAttribute("bno",bno);
+		return "redirect:boardRead";
+	}
+	
     
 	@GetMapping("board/NewFile")
 	public String newFile(Model model) {
@@ -51,6 +63,7 @@ public class BoardController {
 				
 		return "board/board";
 	}
+	
 	
 
 }
