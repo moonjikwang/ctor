@@ -23,21 +23,18 @@ import com.ctor.entity.Member;
  * 3. 글 조회 : findByNickname()
  * 	  BlindServiceImpl의 findByNickname()를 이용해 처리
  * 
- * 4. 코멘트 삭제 : removeWithComments()
+ * 4. 글 삭제 : removeWithComments()
+ * 5. 글 수정
  */
 public interface BlindService {
 	
 	Long register(BlindDTO dto);
-	
 	BlindPageResultDTO<BlindDTO, Object[]> getList(BlindPageRequestDTO blindPageRequestDTO);
-	
 	BlindDTO findByNickname(String nickName);
-	
 	void removeWithComments(Long blind_no);
 	void modify(BlindDTO blindDTO);
 	
 	default Blind dtoToEntity(BlindDTO dto) {
-		
 		//실제 DB에 있는 email 사용 (nickName?)
 		Member member = Member.builder().email(dto.getWriter()).build();
 		
@@ -52,7 +49,6 @@ public interface BlindService {
 	}
 	
 	default BlindDTO entityToDTO(Blind blind, Member member, Long replyCount) {
-		
 		BlindDTO blindDTO = BlindDTO.builder()
 				.blind_no(blind.getBlind_no())
 				.title(blind.getBlind_title())
