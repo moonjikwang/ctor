@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>new Project();</title>
-<link rel="favicon" href="./img/green.ico">
+<link rel="icon" type="image/x-icon" href="img/green.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/green.ico">
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Raleway:wght@900&family=Ubuntu:wght@500&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Righteous&family=Noto+Sans+KR:wght@500&family=Raleway:wght@900&family=Ubuntu:wght@500&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
@@ -31,7 +32,7 @@
 			<div class="inner three"></div>
 		</div>
 		<div class="loading-text ">
-			<small style="font-family: 'Ubuntu', sans-serif;">new
+			<small style="font-family: 'Righteous', cursive;">new
 				Project();</small>
 		</div>
 	</div>
@@ -55,7 +56,7 @@
 
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav"
 					style="padding-left: 10px; font-family: 'Noto Sans KR', sans-serif;">
-					<a class="me-3 py-2 text-white text-decoration-none" href="#">새
+					<a class="me-3 py-2 text-white text-decoration-none" href="boardWrite">새
 						글 쓰기</a> <a class="me-3 py-2 text-white text-decoration-none" href="blind">익명게시판</a>
 					<a th:if="${session.userInfo == null}"
 						class="me-3 py-2 text-white text-decoration-none" href="#"
@@ -101,6 +102,7 @@
 			</div>
 			
 			<fieldset class="pconly" style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
+			<!-- 게시물 내용 출력 -->
 			<table class="table table-hover" >
 	<thead>
 		<tr>
