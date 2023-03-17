@@ -36,8 +36,8 @@ public class BlindController {
 	@PostMapping("blindWrite")
 	public String postImage(BlindDTO dto,RedirectAttributes redirectAttributes) {
 		System.out.println("=========입력받은값 :"+dto);
-		Long blind_no = blindService.register(dto);
-		redirectAttributes.addAttribute("blind_no",blind_no);
+		Long bno = blindService.register(dto);
+		redirectAttributes.addAttribute("bno",bno);
 		return "redirect:blindRead";
 	}
 }
