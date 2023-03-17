@@ -46,6 +46,10 @@ public class CtorController {
 		model.addAttribute("dto",dto);
 		model.addAttribute("skillMap",skillMap);
 	}
+	@GetMapping("/changelog")
+	public void changelog() {
+		
+	}
 	@PostMapping("/register")
 	public String register(MemberDTO dto,HttpServletRequest request) {
 		System.out.println(dto.toString());
