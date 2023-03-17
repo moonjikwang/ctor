@@ -1,5 +1,6 @@
 package com.ctor.blindComments;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -16,6 +17,11 @@ import com.ctor.repository.BlindCommentsRepository;
 /**
  * @백승연
  * BlindCommentsRepository 연관관계 테스트
+ * 
+ * 1. 댓글등록
+ * 2. 특정 번호의 익명댓글 & 익명글 내용 조회
+ * 3. 메서드 바디를 이용한 테스트
+ * 4. 특정번호가 가진 댓글 조회
  */
 
 @SpringBootTest
@@ -24,7 +30,7 @@ public class BlindCommentsRepositoryTests {
 	@Autowired
 	private BlindCommentsRepository blindCommentsRepository;
 	
-	/* addBComments()
+	/* 1. addBComments()
 	 * 더미데이터 40개 add -> rangeClosed(1, 40)
 	 * 현재 블라인드 테이블 데이터 10개 -> (Math.random() * 10) + 1;
 	 * 
@@ -51,13 +57,13 @@ public class BlindCommentsRepositoryTests {
 		});
 	}
 	
-	/* BlindCommentRead1()
-	 * DB에 있는 blc_no의 특정 번호 조회
+	/* 2. BlindCommentRead1()
+	 * DB에 있는 blindc_no 특정 번호 조회
 	 * 특정 번호의 블라인드코멘츠 & 블라인드 내용 조회
 	 */
 	@Transactional
 	@Test
-	public void readBComments1() {
+	public void BlindCommentsReadTest() {
 		
 		//데이터베이스에 존재하는 번호
 		Optional<BlindComments> result = blindCommentsRepository.findById(1L);
@@ -67,4 +73,21 @@ public class BlindCommentsRepositoryTests {
 		System.out.println(blindComments);
 		System.out.println(blindComments.getBlind());
 	}
+	
+	//3. 메서드 바디를 이용한 테스트
+	@Test
+	public void CommentByBlindTest() {
+		List<BlindComments> result = blindCommentsRepository.findByBlindBno(null);
+		System.out.println(result.get(0));
+	}
+	
+	//4. DB에 있는 blind_no의 특정 번호가 가진 댓글 조회
+	@Test
+	public void ListByBlindTest() {
+		
+		List<BlindComments> commentList = blindCommentsRepository.getCommentsByBlindOrderByCno(
+											Blind.builder().blind_no(9L).build());
+		commentList.forEach(blindComments -> System.out.println(blindComments));
+	}
+	
 }
