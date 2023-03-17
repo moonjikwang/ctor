@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>new Project();</title>
+<link rel="favicon" href="./img/green.ico">
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Raleway:wght@900&family=Ubuntu:wght@500&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<p th:each="dto : ${result}" >
+<span th:if="${dto.closed}"><b>[마감]</b></span>
+카테고리:	[[${dto.category}]]<br> 
+글번호:	[[${dto.boardno}]]<br> 
+	
+제목:		[[${dto.title}]]<br> 
+내용:		[[${dto.text}]]<br> 
+마감일:	[[${#dates.format(dto.closingDate, 'yyyy-MM-dd')}]]<br> 
+기간:		[[${dto.duration}]]<br> 
+직군: 	[[${dto.position}]]<br> 
+기술: 	[[${dto.techStack}]]<br> 
+작성자: 	[[${dto.memEmail}]]<br> 
+	
+</p>
+
+</body>
+</html>
