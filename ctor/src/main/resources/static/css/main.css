@@ -102,8 +102,16 @@
 	.mobileonly{
 	display: block;
 	}
+		.writeform{
+		max-width: 100%!important;
+		margin-left: 0px!important;
+		margin-right: 0px!important;
+	}
 }
 @media (min-width: 576px){
+	.writeform{
+		max-width: 80%;
+	}
 	.mobileonly{
 	display: none;
 	}
