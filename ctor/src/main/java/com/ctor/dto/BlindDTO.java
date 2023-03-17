@@ -14,7 +14,7 @@ import lombok.ToString;
  * entity 객체의 필요한 속성값을 하나로 만들어서 사용
  *
  * 목록화면에 필요한 데이터
- * 글번호, 제목, 작성자(닉네임), 댓글수
+ * 글번호, 제목, 작성자(이메일,닉네임), 댓글수
  * 
  * Member클래스를 참조하지 않고, 화면에서 필요한 작성자의 닉네임을 직접 처리한다.
  */
@@ -25,10 +25,11 @@ import lombok.ToString;
 @ToString
 public class BlindDTO {
 
-	private Long blind_no;
-	private String writer; 	 //작성자 이메일 or nickName
-	private String title;
-	private String content;
-	private int reply_count; //해당 게시글 댓글 수
-	private LocalDateTime regDate,modDate;
+	private Long blind_no;   				//글넘버
+	private String writer; 	 				//작성자 이메일
+	private String nickName;				//작성자 닉네임
+	private String title;    				//제목
+	private String content;  				//내용
+	private int reply_count; 				//해당 게시글 댓글 수
+	private LocalDateTime regDate,modDate;  //등록일, 수정일
 }

@@ -39,4 +39,12 @@ public class Blind extends BaseEntity{
 	//Member 클래스와 M:1 관계설정
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;
+	
+	public void changeTitle(String blind_title) {
+		this.blind_title = blind_title;
+	}
+	
+	public void changeContent(String blind_content) {
+		this.blind_content = blind_content;
+	}
 }
