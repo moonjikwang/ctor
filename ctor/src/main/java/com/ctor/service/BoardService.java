@@ -16,6 +16,7 @@ public interface BoardService {
 	List<BoardDTO> findByEmail(String email);
 	List<BoardDTO> findByTech(String tech);
 	List<BoardDTO> findByPosition(String position);
+	BoardDTO findByBno(Long boardno);
 	
 	default Board boardDTOtoEntity(BoardDTO dto) {
 		
@@ -26,9 +27,9 @@ public interface BoardService {
 				.category(dto.getCategory())
 				.closingDate(dto.getClosingDate())
 				.duration(dto.getDuration())
+				.chatLink(dto.getChatLink())
 				.groupMember(dto.getGroupMember())
 				.viewCount(dto.getViewCount())
-				.replyCount(dto.getReplyCount())
 				.position(dto.getPosition())
 				.techStack(dto.getTechStack())
 				.hasTutor(dto.isHasTutor())
@@ -49,14 +50,18 @@ public interface BoardService {
 				.category(board.getCategory())
 				.closingDate(board.getClosingDate())
 				.duration(board.getDuration())
+				.chatLink(board.getChatLink())
 				.groupMember(board.getGroupMember())
 				.viewCount(board.getViewCount())
-				.replyCount(board.getReplyCount())
 				.position(board.getPosition())
 				.techStack(board.getTechStack())
 				.hasTutor(board.isHasTutor())
 				.closed(board.isClosed())
+				.replyCount(0)
+				.memberCount(0)
 				.memEmail(board.getMember().getEmail())
+				.nickName(board.getMember().getNickName())
+				.profileImg(board.getMember().getProfileImg())
 				.build();
 				
 		return dto;

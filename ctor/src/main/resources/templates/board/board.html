@@ -56,8 +56,8 @@
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav"
 					style="padding-left: 10px; margin-top: 0px !important; font-family: 'Noto Sans KR', sans-serif;">
 					<a class="me-3 py-2 text-white text-decoration-none" href="#">새
-						글 쓰기</a> <a class="me-3 py-2 text-white text-decoration-none" href="blind">익명게시판</a>
-					<a th:if="${session.userInfo == null}"
+						글 쓰기</a> <a class="me-3 py-2 text-white text-decoration-none"
+						href="blind">익명게시판</a> <a th:if="${session.userInfo == null}"
 						class="me-3 py-2 text-white text-decoration-none" href="#"
 						data-bs-toggle="modal" data-bs-target="#login">로그인</a> <a
 						style="display: none;" id="registerBtn" href="#"
@@ -81,8 +81,7 @@
 						style="float: right; width: 100%; text-align: right; vertical-align: bottom;"><b>로그인</b></a>
 					<a th:if="${session.userInfo != null}"
 						class="py-2 text-white text-decoration-none" href="#"
-						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"
-						></a>
+						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"></a>
 					<div style="margin-top: auto; margin-bottom: auto;">
 						<img th:if="${session.userInfo != null}"
 							th:src='${session.userInfo.getProfileImg()}' width="45"
@@ -129,60 +128,68 @@
 
 			</div>
 
-
+<!-- 카드 목록 -->
 			<div th:each="dto : ${result}"
 				class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 mb-3 text-center"
 				style="padding: 0px;">
-				<div class="col">
-					<div class="card mb-4 rounded-4 shadow-sm"
-						style="margin-left: 5px; margin-right: 5px;">
-						<div class="card-header py-3">
-							<span class="badge text-bg-light"
-								style="color: dimgrey !important; float: left; margin-left: 10px; margin-top: 10px;">🗂️프로젝트</span>
+
+				<div class="card mb-4 rounded-4 shadow-sm"
+					style="margin-left: 5px; margin-right: 5px;">
+					<div class="card-header py-3">
+						<span class="badge text-bg-light" th:if="${dto.closed}"
+							style="color: lightgray !important; background-color: red !important; float: left; margin-left: 10px; margin-top: 10px;">마감</span>
+						<span class="badge text-bg-light" th:if="${#strings.contains(dto.category,'프로젝트')}"
+							style="color: dimgrey !important; float: left; margin-left: 10px; margin-top: 10px;">🗂️프로젝트</span>
+						<span class="badge text-bg-light" th:if="${#strings.contains(dto.category,'스터디')}"
+							style="color: dimgrey !important; float: left; margin-left: 10px; margin-top: 10px;">📚스터디</div>
+					<div class="card-body">
+						<small class="text-muted fw-light"> 마감일 |
+							[[${#dates.format(dto.closingDate, 'yyyy-MM-dd')}]]</small>
+						<ul class="list-unstyled mt-3 mb-4">
+							<span class="textLine"><a
+						th:href="@{boardRead(bno=${dto.boardno})}"><b>[[${dto.title}]]</b></a></span>
+							<br>
+							<span class="badge"
+								th:if="${#strings.contains(dto.position,'백엔드')}"
+								style="margin-top: 20px; color: black; background-color: lightgray">백엔드</span>
+							<span class="badge"
+								th:if="${#strings.contains(dto.position,'프론트엔드')}"
+								style="margin-top: 20px; color: black; background-color: lightgray">프론트엔드</span>
+							<span class="badge"
+								th:if="${#strings.contains(dto.position,'디자이너')}"
+								style="margin-top: 20px; color: black; background-color: lightgray">디자이너</span>
+						</ul>
+						<div style="padding-bottom: 10px; min-height: 58px;">
+							<img
+								src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"
+								height="20px;"> <img
+								src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"
+								height="20px;"> <img
+								src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"
+								height="20px;">
 						</div>
-						<div class="card-body">
-							<small class="text-muted fw-light">[[${dto.boardno}]] 마감일 | [[${dto.closingDate}]]</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<span class="textLine"><b>[[${dto.title}]]</b></span>
-								<br>
-								<span class="badge"
-									style="margin-top: 20px; color: black; background-color: lightgray">백엔드</span>
-								<span class="badge"
-									style="margin-top: 20px; color: black; background-color: lightgray">프론트엔드</span>
-								<span class="badge"
-									style="margin-top: 20px; color: black; background-color: lightgray">디자이너</span>
-							</ul>
-							<div style="padding-bottom: 10px; min-height: 58px;">
-								<img
-									src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"
-									height="20px;"> <img
-									src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"
-									height="20px;"> <img
-									src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"
-									height="20px;">
-							</div>
-							<hr>
-							<img src="./img/green.png" alt="" width="25" height="25"
-								class="rounded-circle me-2"> <span><b>[[${dto.memEmail}]]</b></span> <span
-								style="float: right"> <b></b> <svg
-									xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+						<hr>
+						<img src="./img/green.png" alt="" width="25" height="25"
+							class="rounded-circle me-2"> <span><b>[[${dto.memEmail}]]</b></span>
+						<span style="float: right"> <b></b> <svg
+								xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
   <path
-										d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+									d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
   <path
-										d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+									d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 </svg><small> 256 </small> <svg xmlns="http://www.w3.org/2000/svg" width="16"
-									height="16" fill="currentColor" class="bi bi-chat"
-									viewBox="0 0 16 16">
+								height="16" fill="currentColor" class="bi bi-chat"
+								viewBox="0 0 16 16">
   <path
-										d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
+									d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
 </svg> <small> 2</small>
-							</span>
-						</div>
+						</span>
 					</div>
 				</div>
-		</div>
-			
+
+			</div>
+
 
 		</main>
 
