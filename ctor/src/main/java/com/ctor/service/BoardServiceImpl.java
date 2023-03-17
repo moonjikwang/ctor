@@ -63,11 +63,11 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println(result);
 
 		List<BoardDTO> dtoList = new ArrayList<>();
-
+		if(result.size()!=0) {
 		for (int i = 0; i < result.size(); i++) {
 			dtoList.add(entityToDTO(result.get(i)));
 		}
-
+		}
 		return dtoList;
 	}
 

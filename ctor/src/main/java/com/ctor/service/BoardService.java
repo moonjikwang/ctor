@@ -56,6 +56,8 @@ public interface BoardService {
 				.techStack(board.getTechStack())
 				.hasTutor(board.isHasTutor())
 				.closed(board.isClosed())
+				.nickName(board.getMember().getNickName())
+				.profileImg(board.getMember().getProfileImg())
 				.memEmail(board.getMember().getEmail())
 				.build();
 				
