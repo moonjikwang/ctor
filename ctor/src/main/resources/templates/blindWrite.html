@@ -22,7 +22,13 @@
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
-
+<script th:inline="javascript">
+var isNotMember = /*[[${session.userInfo == null}]]*/"";
+if(isNotMember){
+	alert("로그인 후 이용가능합니다.");
+	window.history.back();
+}
+</script>
 </head>
 <body>
 	<div id="loading">
@@ -217,16 +223,16 @@
 			<div class="row"
 				style="padding: 0px; margin-right: 0px; padding-left: 10px;">
 				<div class="col-10 col-md">
-					new Project(); <small class="d-block mb-3 text-muted">&copy;
-						2023</small>
+					new Project(); <small class=" mb-3 text-muted">&copy;
+						2023</small><br><br>
 				</div>
 				<div class="col-5 col-md">
-					<h5>적당한</h5>
+					<h5>API</h5>
 					<ul class="list-unstyled text-small">
 						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">푸터내용을</a></li>
+							class="link-secondary text-decoration-none" href="#">Get started</a></li>
 						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">입력해보자</a></li>
+							class="link-secondary text-decoration-none" href="#">Changelog</a></li>
 
 					</ul>
 				</div>
