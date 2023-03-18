@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.MemberDTO;
 import com.ctor.dto.SkillDTO;
+import com.ctor.service.ApiService;
 import com.ctor.service.BoardService;
 import com.ctor.service.KakaoLoginService;
 import com.ctor.service.SkillService;
@@ -29,6 +30,7 @@ public class CtorController {
 	private final KakaoLoginService kakaoLoginService;
 	private final BoardService boardService;
 	private final SkillService skillService;
+	private final ApiService apiService;
 	@GetMapping("/")
 	public String home() {
 		return "redirect:/index";
@@ -47,8 +49,9 @@ public class CtorController {
 		model.addAttribute("skillMap",skillMap);
 	}
 	@GetMapping("/changelog")
-	public void changelog() {
-		
+	public void changelog(Model model) {
+		List<Map<String, String>> committer = apiService.apicall();
+		model.addAttribute("list",committer);
 	}
 	@PostMapping("/register")
 	public String register(MemberDTO dto,HttpServletRequest request) {

@@ -74,7 +74,7 @@ public class BlindServiceTests {
 	public void modifyTest() {
 		
 		BlindDTO blindDTO = BlindDTO.builder()
-				.blind_no(11L)
+				.bno(11L)
 				.title("제목 수정")
 				.content("내용 수정")
 				.build();

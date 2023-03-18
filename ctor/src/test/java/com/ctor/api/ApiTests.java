@@ -13,7 +13,7 @@ public class ApiTests {
 	@Test
 	public void ApiTests() {
 
-		apiService.apicall();
+		System.out.println(apiService.apicall().get(0));
 		
 	}
 }

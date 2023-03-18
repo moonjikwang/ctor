@@ -1,7 +1,5 @@
 package com.ctor.repository;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -31,14 +29,14 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 
 	//1. 특정 게시물과 해당 게시물을 작성한 회원을 조회 
 	//	 -> 블라인드&멤버 조인 : Blind의 writer변수를 이용해서 조인(연관관계O)
-	@Query("SELECT b, w FROM Blind b LEFT JOIN b.writer w WHERE b.blind_no =:blind_no")
-	Object getBlindWithWriter(@Param("blind_no") Long blind_no);
+	@Query("SELECT b, w FROM Blind b LEFT JOIN b.writer w WHERE b.bno =:bno")
+	Object getBlindWithWriter(@Param("bno") Long bno);
 	
 	//2. 특정 게시물과 해당 게시물에 속한 댓글들을 조회
 	//	 -> 블라인드는 코멘츠의 객체들을 참조하지 않음
 	//	 -> 블라인드&코멘츠 조인 : ON키워드를 이용한 직접조인(연관관계X)  
-	@Query("SELECT b, c FROM Blind b LEFT JOIN BlindComments c ON c.blind = b WHERE b.blind_no =:blind_no")
-	List<Object[]> getBlindWithComments(@Param("blind_no") Long blind_no);
+	@Query("SELECT b, c FROM Blind b LEFT JOIN BlindComments c ON c.blind = b WHERE b.bno =:bno")
+	List<Object[]> getBlindWithComments(@Param("bno") Long bno);
 	
 	//3. 목록화면에 필요한 블라인드&멤버&코멘츠 조인
 	//	 블라인드를 중심으로 group by -> 하나의 라인이 되도록 처리(ON키워드&countQuery)
@@ -56,8 +54,8 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 	@Query("SELECT b, w, count(c) "
 			+ " FROM Blind b LEFT JOIN b.writer w "
 			+ " LEFT OUTER JOIN BlindComments c ON c.blind = b "
-			+ " WHERE b.blind_no =:blind_no")
-	Object getBlindByBlind_no(@Param("blind_no") Long blind_no);
+			+ " WHERE b.bno =:bno")
+	Object getBlindByBlind_no(@Param("bno") Long bno);
 	
 	//4_2 닉네임으로 조회
 	@Query("SELECT b, w, count(c) "

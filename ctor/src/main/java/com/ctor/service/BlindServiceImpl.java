@@ -1,7 +1,5 @@
 package com.ctor.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 
 import javax.transaction.Transactional;
@@ -54,7 +52,7 @@ public class BlindServiceImpl implements BlindService{
 		Blind blind = dtoToEntity(dto);
 		blindRepository.save(blind);
 		
-		return blind.getBlind_no();
+		return blind.getBno();
 	}
 
 	//글 목록
@@ -96,7 +94,7 @@ public class BlindServiceImpl implements BlindService{
 	@Override
 	public void modify(BlindDTO blindDTO) {
 		
-		Blind blind = blindRepository.getOne(blindDTO.getBlind_no());
+		Blind blind = blindRepository.getOne(blindDTO.getBno());
 		
 		blind.changeTitle(blindDTO.getTitle());
 		blind.changeContent(blindDTO.getContent());

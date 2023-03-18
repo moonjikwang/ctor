@@ -25,7 +25,7 @@ import lombok.ToString;
 @ToString
 public class BlindDTO {
 
-	private Long blind_no;   				//글넘버
+	private Long bno;   				//글넘버
 	private String writer; 	 				//작성자 이메일
 	private String nickName;				//작성자 닉네임
 	private String title;    				//제목
