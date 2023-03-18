@@ -44,7 +44,7 @@ public class BlindCommentsRepositoryTests {
 			
 			long blindc_no = (long)(Math.random() * 10) + 1;
 			
-			Blind blind = Blind.builder().blind_no(blindc_no).build();
+			Blind blind = Blind.builder().bno(blindc_no).build();
 			
 			//blindc_no값을 가진 블라인드객체를 블라인드코멘츠객체에 주입
 			//공통키를 기준으로 블라인드에 존재하는 blind_no인 경우 데이터 Add
@@ -75,19 +75,19 @@ public class BlindCommentsRepositoryTests {
 	}
 	
 	//3. 메서드 바디를 이용한 테스트
-	@Test
-	public void CommentByBlindTest() {
-		List<BlindComments> result = blindCommentsRepository.findByBlindBno(null);
-		System.out.println(result.get(0));
-	}
-	
+//	@Test
+//	public void CommentByBlindTest() {
+//		List<BlindComments> result = blindCommentsRepository.findByBlindBno(null);
+//		System.out.println(result.get(0));
+//	}
+//	
 	//4. DB에 있는 blind_no의 특정 번호가 가진 댓글 조회
-	@Test
-	public void ListByBlindTest() {
-		
-		List<BlindComments> commentList = blindCommentsRepository.getCommentsByBlindOrderByCno(
-											Blind.builder().blind_no(9L).build());
-		commentList.forEach(blindComments -> System.out.println(blindComments));
-	}
+//	@Test
+//	public void ListByBlindTest() {
+//		
+//		List<BlindComments> commentList = blindCommentsRepository.getCommentsByBlindOrderByCno(
+//											Blind.builder().blind_no(9L).build());
+//		commentList.forEach(blindComments -> System.out.println(blindComments));
+//	}
 	
 }

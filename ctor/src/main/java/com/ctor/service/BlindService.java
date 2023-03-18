@@ -1,7 +1,5 @@
 package com.ctor.service;
 
-import java.util.List;
-
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.dto.BlindPageResultDTO;
@@ -39,7 +37,7 @@ public interface BlindService {
 		Member member = Member.builder().email(dto.getWriter()).build();
 		
 		Blind blind = Blind.builder()
-				.blind_no(dto.getBlind_no())
+				.bno(dto.getBno())
 				.blind_title(dto.getTitle())
 				.blind_content(dto.getContent())
 				.writer(member)
@@ -50,7 +48,7 @@ public interface BlindService {
 	
 	default BlindDTO entityToDTO(Blind blind, Member member, Long replyCount) {
 		BlindDTO blindDTO = BlindDTO.builder()
-				.blind_no(blind.getBlind_no())
+				.bno(blind.getBno())
 				.title(blind.getBlind_title())
 				.content(blind.getBlind_content())
 				.regDate(blind.getRegDate())

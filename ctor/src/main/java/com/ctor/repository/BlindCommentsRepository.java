@@ -12,12 +12,13 @@ import com.ctor.entity.BlindComments;
 
 public interface BlindCommentsRepository extends JpaRepository<BlindComments, Long>{
 	@Modifying
-	@Query("delete from BlindComments c where c.blind.blind_no =:blind_no ")
-	void deleteBybno(@Param("blind_no")Long blind_no);
+	@Query("delete from BlindComments c where c.blind.bno =:bno ")
+	void deleteBybno(@Param("bno")Long bno);
+	
 	
 	//게시물로 댓글 가져오기
-	List<BlindComments> findByBlindBno(Long blind_no);
+	//List<BlindComments> findByBlind(Long blind_no);
 	
 	//댓글목록
-	List<BlindComments> getCommentsByBlindOrderByCno(Blind blind);
+	List<BlindComments> getCommentsByBlind(Blind blind);
 }

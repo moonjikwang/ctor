@@ -30,7 +30,7 @@ public class BlindComments extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long blindc_no;		   //익명댓글넘버
+	private Long cno;		   //익명댓글넘버
 	
 	private String blindc_text;	   //익명댓글내용
 	
