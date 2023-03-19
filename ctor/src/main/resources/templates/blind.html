@@ -37,62 +37,7 @@
 		</div>
 	</div>
 	<div class="py-3" style="padding-left: 0px; padding-right: 0px;">
-		<header class="container">
-			<div class="d-flex flex-column flex-md-row align-items-left mb-4"
-				style="padding-bottom: 0px; margin-bottom: 0px; position: static;">
-				<a href="index"
-					class="d-flex align-items-center text-white text-decoration-none"
-					style="z-index: 1; display: inline-block; width: 250px;"> <svg
-						xmlns="http://www.w3.org/2000/svg" width="30" height="24"
-						fill="currentColor" class="bi bi-file-earmark-code"
-						viewBox="0 0 16 16">
-                    <path
-							d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
-                    <path
-							d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-                  </svg> <span class="fs-4"
-					style="font-family: 'Ubuntu', sans-serif;">new Project();</span>
-				</a>
-
-				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav"
-					style="padding-left: 10px; font-family: 'Noto Sans KR', sans-serif;">
-					<a class="me-3 py-2 text-white text-decoration-none" href="boardWrite">새
-						글 쓰기</a> <a class="me-3 py-2 text-white text-decoration-none" href="blind">익명게시판</a>
-					<a th:if="${session.userInfo == null}"
-						class="me-3 py-2 text-white text-decoration-none" href="#"
-						data-bs-toggle="modal" data-bs-target="#login">로그인</a> <a
-						style="display: none;" id="registerBtn" href="#"
-						data-bs-toggle="modal" data-bs-target="#test">회원가입</a>
-					<!--회원이 아닐경우 닉네임출력 <p th:if="${regiInfo != null}" th:text="${regiInfo['nickname']}"></p> -->
-
-					<a th:if="${session.userInfo != null}"
-						class="me-3 py-2 text-white text-decoration-none" href="#"
-						th:text='${session.userInfo.getName()}'></a>
-					<div style="margin-top: auto; margin-bottom: auto;">
-						<img th:if="${session.userInfo != null}"
-							th:src='${session.userInfo.getProfileImg()}' width="45"
-							height="45" class="rounded-circle me-2">
-					</div>
-				</nav>
-				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto mobilenav"
-					style="position: absolute; width: 90%; margin-top: 0px !important; margin-right: 0px;">
-					
-					<a th:if="${session.userInfo == null}" data-bs-toggle="modal"
-						data-bs-target="#login"
-						class="py-2 text-white text-decoration-none" href="#"
-						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"><b>로그인</b></a>
-					<a th:if="${session.userInfo != null}"
-						class="py-2 text-white text-decoration-none" href="#"
-						style="float: right; width: 100%; text-align: right; vertical-align: bottom; padding-top: 0px !important;"
-						></a>
-					<div style="margin-top: auto; margin-bottom: auto;">
-						<img th:if="${session.userInfo != null}"
-							th:src='${session.userInfo.getProfileImg()}' width="45"
-							height="45" class="rounded-circle me-2">
-					</div>
-				</nav>
-			</div>
-		</header>
+		<th:block th:replace="fragments/header :: headerFragment"></th:block>
 		
 		<main class="container">
 			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
@@ -179,132 +124,11 @@
 </form>
 </fieldset>
 			
-			<div class="modal fade" id="login" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" style="margin-top: 20%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">new
-								Project();</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div style="text-align: center;">
-								<a
-									href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=3ed402e0c9996c2d84bd716afed91789&redirect_uri=https://tomcat.jikwang.net/ctor/oauth">
-									<img alt="" src="./img/kakao.png">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal fade" id="test" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" style="margin-top: 20%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">new
-								Project();</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<th:block>
-								<div style="text-align: center;">
-									<fieldset id="page1">
-										<h3>안녕하세요 처음오셨군요!</h3>
-										<h5 th:if="${regiInfo != null}"
-											th:text="${regiInfo['nickname']}+'님은..'"></h5>
-
-											<form action="register" method="POST">
-											<div class="d-grid gap-3 col-6 mx-auto">
-												<button class="btn btn-primary" id="isStudent"
-													value="student" type="button"
-													onClick="checkValue(this.form.isStudent.value)">학생입니다.</button>
-												<button class="btn btn-primary" id="isTeacher"
-													value="teacher" type="button"
-													onClick="checkValue(this.form.isTeacher.value)">강사입니다.</button>
-										</div>
-									</fieldset>
-									<fieldset id="page2" style="display: none;">
-										<h3 id="page2title"></h3>
-										<select class="form-select form-select-lg mb-3" id="subject"
-											name="subject" aria-label=".form-select-lg example">
-											<option value="javaFullStack">Open API를 활용한 JAVA 풀스택
-												과정</option>
-											<option value="uiUx">UI/UX 과정</option>
-											<option value="webDesigner">웹디자이너 과정</option>
-										</select>
-										<button class="btn btn-primary" id="page2submit"
-											value="teacher" type="button"
-											onClick="checkpage2Value(this.form.subject.value)">다음</button>
-									</fieldset>
-									<fieldset id="page3" style="display: none;">
-										<h3>
-											마지막입니다.🎉
-											</h3>
-												<h5>사용할 닉네임을 입력해주세요</h5>
-												<div class="input-group input-group-lg">
-													<span class="input-group-text" id="inputGroup-sizing-lg">@</span>
-													<input type="text" class="form-control" name="nickName"
-														aria-label="Sizing example input"
-														aria-describedby="inputGroup-sizing-lg">
-												</div>
-												<input type="hidden" id="submitGrade" name="grade">
-												<input th:if="${regiInfo != null}" type="hidden"
-													name="profileImg" th:value="${regiInfo['profileImg']}">
-												<input th:if="${regiInfo != null}" type="hidden" name="name"
-													th:value="${regiInfo['nickname']}"> <input
-													th:if="${regiInfo != null}" type="hidden" name="email"
-													th:value="${regiInfo['email']}">
-													<br>
-												<button class="btn btn-primary" type="submit">회원가입!</button>
-									</fieldset>
-									</form>
-								</div>
-							</th:block>
-						</div>
-					</div>
-				</div>
-			</div>
+			<th:block th:replace="fragments/modal :: modalFragment"></th:block>
 
 		</main>
-
-		<footer class="pt-4 my-md-5 pt-md-5 border-top" style="padding: 0px;">
-
-			<div class="row"
-				style="padding: 0px; margin-right: 0px; padding-left: 10px;">
-				<div class="col-10 col-md">
-					new Project(); <small class=" mb-3 text-muted">&copy;
-						2023</small><br><br>
-				</div>
-								<div class="col-5 col-md">
-					<h5>API</h5>
-					<ul class="list-unstyled text-small">
-						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">Get started</a></li>
-						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="changelog">Changelog</a></li>
-
-					</ul>
-				</div>
-				<div class="col-5 col-md">
-					<h5>About</h5>
-					<ul class="list-unstyled text-small">
-						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">여기도</a></li>
-						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">적당한것을</a></li>
-						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">입력</a></li>
-						<li class="mb-1"><a
-							class="link-secondary text-decoration-none" href="#">해보자</a></li>
-					</ul>
-				</div>
-			</div>
-		</footer>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+		
 		<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top"
 			role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16"
 				height="16" fill="currentColor" class="bi bi-arrow-up"

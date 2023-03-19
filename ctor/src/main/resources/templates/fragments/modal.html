@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<div th:fragment="modalFragment">
+    <div class="modal fade" id="login" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" style="margin-top: 20%;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">new
+								Project();</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div style="text-align: center;">
+								<a
+									href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=3ed402e0c9996c2d84bd716afed91789&redirect_uri=https://tomcat.jikwang.net/ctor/oauth">
+									<img alt="" src="./img/kakao.png">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="test" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" style="margin-top: 20%;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">new
+								Project();</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<th:block>
+								<div style="text-align: center;">
+									<fieldset id="page1">
+										<h3>안녕하세요 처음오셨군요!</h3>
+										<h5 th:if="${regiInfo != null}"
+											th:text="${regiInfo['nickname']}+'님은..'"></h5>
+
+											<form action="register" method="POST">
+											<div class="d-grid gap-3 col-6 mx-auto">
+												<button class="btn btn-primary" id="isStudent"
+													value="student" type="button"
+													onClick="checkValue(this.form.isStudent.value)">학생입니다.</button>
+												<button class="btn btn-primary" id="isTeacher"
+													value="teacher" type="button"
+													onClick="checkValue(this.form.isTeacher.value)">강사입니다.</button>
+										</div>
+									</fieldset>
+									<fieldset id="page2" style="display: none;">
+										<h3 id="page2title"></h3>
+										<select class="form-select form-select-lg mb-3" id="subject"
+											name="subject" aria-label=".form-select-lg example">
+											<option value="javaFullStack">Open API를 활용한 JAVA 풀스택
+												과정</option>
+											<option value="uiUx">UI/UX 과정</option>
+											<option value="webDesigner">웹디자이너 과정</option>
+										</select>
+										<button class="btn btn-primary" id="page2submit"
+											value="teacher" type="button"
+											onClick="checkpage2Value(this.form.subject.value)">다음</button>
+									</fieldset>
+									<fieldset id="page3" style="display: none;">
+										<h3>
+											마지막입니다.🎉
+											<h3>
+												<h5>사용할 닉네임을 입력해주세요</h5>
+												<div class="input-group input-group-lg">
+													<span class="input-group-text" id="inputGroup-sizing-lg">@</span>
+													<input type="text" class="form-control" name="nickName"
+														aria-label="Sizing example input"
+														aria-describedby="inputGroup-sizing-lg">
+												</div>
+												<input type="hidden" id="submitGrade" name="grade">
+												<input th:if="${regiInfo != null}" type="hidden"
+													name="profileImg" th:value="${regiInfo['profileImg']}">
+												<input th:if="${regiInfo != null}" type="hidden" name="name"
+													th:value="${regiInfo['nickname']}"> <input
+													th:if="${regiInfo != null}" type="hidden" name="email"
+													th:value="${regiInfo['email']}">
+													<br>
+												<button class="btn btn-primary" type="submit">회원가입!</button>
+									</fieldset>
+									</form>
+								</div>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+</div>
+</html>
