@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
 import com.ctor.dto.SkillDTO;
@@ -19,7 +18,6 @@ import com.ctor.service.JobGroupService;
 import com.ctor.service.SkillService;
 
 import com.ctor.service.BoardService;
-import com.ctor.service.KakaoLoginService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -5,8 +5,6 @@ package com.ctor.dto;
 
 import java.util.Date;
 
-import com.ctor.entity.Member;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
