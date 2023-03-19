@@ -32,7 +32,7 @@ public class Board extends BaseEntity{
 	private String text;	//글내용
 	private String category;	//카테고리
 	
-	private Date closingDate;	//모집 마감일
+	private String closingDate;	//모집 마감일
 	private String duration;	//프로젝트 기간 (미정, 1개월, 3개월, 6개월, 장기)
 	
 	private int groupMember;	//모집인원수

@@ -54,7 +54,8 @@ if(isNotMember){
 			
 			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="blindWrite" method="post">
-			<input th:if="${session.userInfo != null}" type="hidden" name="writer" th:value="${session.userInfo.getNickName()}">
+			<input th:if="${session.userInfo != null}" type="hidden" name="nickName" th:value="${session.userInfo.getNickName()}">
+			<input type="hidden" name="writer" th:value="${session.userInfo.getEmail}">
 	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
 		placeholder="제목을 입력해주세요." required
 	>
@@ -127,7 +128,7 @@ function saveGallery() {
     $.ajax({
         type : "POST",
         enctype : "multipart/form-data",
-        url : "/gallery",
+        url : "/blindWrite",
         data : formData,
         dataType:"json",
         processData : false,

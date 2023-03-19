@@ -52,7 +52,7 @@ if(isNotMember){
 				<p class="fs-5 text-muted">프로젝트멤버, 스터디멤버를 구해보세요🙋‍♂️</p></div>
 			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="boardWrite" method="post">
-			
+			<input type="hidden" name="groupMember" value="0">
 			<input th:if="${session.userInfo != null}" type="hidden" name="memEmail" th:value="${session.userInfo.getEmail()}">
 	<h5>👆기본정보를 입력해주세요.</h5>
 	<hr>
