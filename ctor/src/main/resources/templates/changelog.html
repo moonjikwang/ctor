@@ -51,11 +51,11 @@
   <a th:each="map : ${list}" href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
     <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
-      <div>
-        <h6 class="mb-0" th:text="${map.name}">List group item heading</h6>
-        <p class="mb-0 opacity-75" th:text="${map.message}">Some placeholder content in a paragraph.</p>
+      <div style="width: 100%">
+        <h6 class="mb-0">[[${map.name}]]<small style="float: right;" class="opacity-50 text-nowrap" th:text="${map.date}"></small></h6>
+        <p class="mb-0 opacity-75" th:text="${map.message}"></p>
       </div>
-      <small class="opacity-50 text-nowrap" th:text="${map.date}">now</small>
+      
     </div>
   </a>
 </div>
