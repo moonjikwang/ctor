@@ -60,7 +60,7 @@ public class BoardTests {
 					.title("스터디 모집 "+i)
 					.text("프로젝트 상세내용")
 					.category("스터디")
-					.closingDate(mydate)
+					.closingDate(mydate.toString())
 					.duration("미정")
 					.groupMember(5)
 					.position("백엔드,프론트엔드,디자이너")

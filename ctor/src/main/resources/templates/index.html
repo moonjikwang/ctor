@@ -90,7 +90,7 @@
 							 th:text="${dto.category=='스터디'?'✏️스터디':'🗂️프로젝트'}">🗂️프로젝트</span>
 						</div>
 						<div class="card-body">
-							<small class="text-muted fw-light">마감일 | [[${#dates.format(dto.closingDate, 'yyyy.MM.dd')}]]</small>
+							<small class="text-muted fw-light">마감일 | [[${dto.closingDate}]]</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<span class="textLine"><b>[[${dto.title}]]</b></span>
 								<br>

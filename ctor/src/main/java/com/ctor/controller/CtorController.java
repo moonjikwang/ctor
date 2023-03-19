@@ -43,7 +43,6 @@ public class CtorController {
 		for(SkillDTO skill : skillList) {
 			skillMap.put(skill.getSkill(), skill.getColor());
 		}
-		System.out.println(skillMap);
 		model.addAttribute("dto",dto);
 		model.addAttribute("skillMap",skillMap);
 	}
@@ -54,7 +53,6 @@ public class CtorController {
 	}
 	@PostMapping("/register")
 	public String register(MemberDTO dto,HttpServletRequest request) {
-		System.out.println(dto.toString());
 		String email = kakaoLoginService.register(dto);
 		if(email!= null) {
 			System.out.println(email + "회원 가입완료");

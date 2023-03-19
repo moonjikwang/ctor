@@ -2,7 +2,6 @@ package com.ctor.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +29,7 @@ public class BoardServiceImpl implements BoardService {
 	//글수정
 	@Override
 	public Long modify(BoardDTO dto) {
+		
 		Board board = Board.builder()
 				.boardno(dto.getBoardno())
 				.title(dto.getTitle())
