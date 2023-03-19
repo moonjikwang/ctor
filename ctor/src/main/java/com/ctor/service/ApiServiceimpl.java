@@ -22,7 +22,7 @@ public class ApiServiceimpl implements ApiService{
 
 	@Override
 	public List<Map<String, String>> apicall() {
-		String reqURL = "https://api.github.com/repos/moonjikwang/ctor/commits";
+		String reqURL = "https://api.github.com/repos/moonjikwang/ctor/commits?per_page=100";
 		URL url;
 		List<Map<String, String>> resultList =  new ArrayList<>();
 		try {
