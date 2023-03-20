@@ -31,9 +31,7 @@ public class BlindComments extends BaseEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cno;		   	   //익명댓글넘버
-	
 	private String blindCtext;	   //익명댓글내용
-	
 	private String blindCreplyer;  //익명댓글작성자
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -34,7 +34,7 @@ public interface BlindService {
 	void modify(BlindDTO blindDTO);
 	
 	default Blind dtoToEntity(BlindDTO dto) {
-		//실제 DB에 있는 email 사용 (nickName?)
+		//실제 DB에 있는 email 사용
 		Member memberEmail = Member.builder().email(dto.getWriter()).build();
 		
 		Blind blind = Blind.builder()
