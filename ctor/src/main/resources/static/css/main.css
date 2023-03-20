@@ -134,6 +134,9 @@
 	.pconly{
 	display:block;
 	}
+	.pc100{
+	width:100%;
+	}
 }
 @media(max-width: 768px){
         .nav {
