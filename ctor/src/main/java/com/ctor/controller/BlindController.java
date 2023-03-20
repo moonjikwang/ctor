@@ -20,7 +20,8 @@ public class BlindController {
 	BlindService blindService;
 	
 	@GetMapping("blind")
-	public void blind() {
+	public void blind(BlindPageRequestDTO pageRequestDTO,Model model) {
+		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
 	}
 	
 	@GetMapping("blindWrite")
@@ -31,6 +32,7 @@ public class BlindController {
 		/* BlindDTO dto = blindService.read(bno); */
 		/* model.addAttribute("dto",dto); */
 		model.addAttribute("requestDTO",pageRequestDTO);
+		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
 	}
 	
 	@PostMapping("blindWrite")

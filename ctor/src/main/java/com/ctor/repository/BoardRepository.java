@@ -14,16 +14,20 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	@Query(value = "SELECT * FROM board b ORDER BY mod_date DESC", nativeQuery = true)
 	List<Board> getAll();
 	
+	//선택한 글 조회
+		@Query(value = "SELECT b.* FROM board b WHERE b.boardno =:bno", nativeQuery = true)
+		Board getBoardByBoardno(@Param("bno")Long bno);
+	
 	//작성자Id(email)로 조회
-	@Query(value = "SELECT * FROM board b WHERE b.member_email =:email ORDER BY mod_date DESC", nativeQuery = true)
-	List<Board> getBoardByEmail(@Param("email")String email);
+		@Query(value = "SELECT b.* FROM board b WHERE b.member_email =:email ORDER BY closed, mod_date DESC", nativeQuery = true)
+		List<Board> getBoardByEmail(@Param("email")String email);
 	
 	//기술스택으로 조회
-	@Query(value = "SELECT * FROM board b WHERE b.tech_stack like %:tech% ORDER BY mod_date DESC", nativeQuery = true)
-	List<Board> getBoardByTech(@Param("tech")String tech);
+		@Query(value = "SELECT b.* FROM board b WHERE b.tech_stack like %:tech% ORDER BY closed, mod_date DESC", nativeQuery = true)
+		List<Board> getBoardByTech(@Param("tech")String tech);
 	
 	//직군으로 조회
-	@Query(value = "SELECT * FROM board b WHERE b.position like %:position% ORDER BY mod_date DESC", nativeQuery = true)
-	List<Board> getBoardByPosition(@Param("position")String position);
+		@Query(value = "SELECT b.* FROM board b WHERE b.position like %:position% ORDER BY closed, mod_date DESC", nativeQuery = true)
+		List<Board> getBoardByPosition(@Param("position")String position);
 
 }
