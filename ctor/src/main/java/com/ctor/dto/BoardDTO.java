@@ -18,6 +18,8 @@ import lombok.NoArgsConstructor;
 public class BoardDTO {
 
 	private Long boardno;	//글번호
+	private LocalDateTime regDate;	//작성일
+	private LocalDateTime modDate;	//수정일
 	
 	private String title;	//글제목
 	private String text;	//글내용
