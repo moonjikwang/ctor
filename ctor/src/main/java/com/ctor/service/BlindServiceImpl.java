@@ -64,7 +64,7 @@ public class BlindServiceImpl implements BlindService{
 		Function<Object[], BlindDTO> fn
 			= (en -> entityToDTO((Blind)en[0], (Member)en[1], (Long)en[2]));
 		
-		Pageable pageable = blindPageRequestDTO.getPageable(Sort.by("blind_no").descending());
+		Pageable pageable = blindPageRequestDTO.getPageable(Sort.by("bno").descending());
 		Page<Object[]> result = blindRepository.getBlindWithCommentsCount(pageable);
 		
 		return new BlindPageResultDTO<>(result, fn);

@@ -140,4 +140,8 @@ public class BlindRepositoryTests {
 //		
 //		System.out.println(Arrays.toString(arr));
 //	}
+<<<<<<< HEAD
 //}
+=======
+//}
+>>>>>>> branch 'main' of https://github.com/moonjikwang/ctor.git
