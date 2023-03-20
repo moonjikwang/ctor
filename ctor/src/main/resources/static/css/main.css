@@ -119,6 +119,10 @@
 		margin-left: 0px!important;
 		margin-right: 0px!important;
 	}
+	.carousel-caption {
+	bottom: 8rem!important;
+	left: 0%;
+	}
 }
 @media (min-width: 576px){
 	.writeform{
