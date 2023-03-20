@@ -7,6 +7,9 @@
    background: #000;
    color: #fff;
 }
+:root{
+	--bs-body-bg: #111111;
+}
      .container{
         max-width: 1320px;
         font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -148,7 +151,7 @@ left: 0;
 position: fixed;
 display: block;
 opacity: 1;
-background: #212529;
+background: #111111;
 z-index: 99;
 text-align: center;
 
