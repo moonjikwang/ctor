@@ -59,8 +59,8 @@ public class BlindRepositoryTests {
 			kakaoRepository.save(member);
 			
 			Blind blind = Blind.builder()
-					.blind_title("제목" + i)
-					.blind_content("내용"+ i)
+					.blindTitle("제목" + i)
+					.blindContent("내용"+ i)
 					.writer(member)
 					.build();
 			blindRepository.save(blind);
@@ -140,8 +140,4 @@ public class BlindRepositoryTests {
 //		
 //		System.out.println(Arrays.toString(arr));
 //	}
-<<<<<<< HEAD
 //}
-=======
-//}
->>>>>>> branch 'main' of https://github.com/moonjikwang/ctor.git
