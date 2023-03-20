@@ -100,5 +100,16 @@ public class BlindServiceImpl implements BlindService{
 		blind.changeContent(blindDTO.getContent());
 		blindRepository.save(blind);
 	}
+
+	@Override
+	public BlindDTO findById(Long bno) {
+		Blind entity = blindRepository.findById(bno).get();
+		BlindDTO dto = entityToDTO(entity, Member.builder()
+				.email(entity.getWriter().getEmail())
+				.nickName(entity.getWriter().getNickName())
+				.build()
+				,  Long.valueOf(commentsRepository.getCommentsByBlind(entity).size()));
+		return dto;
+	}
 	
 }

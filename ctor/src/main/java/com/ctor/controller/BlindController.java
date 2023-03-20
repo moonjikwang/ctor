@@ -29,8 +29,9 @@ public class BlindController {
 	}
 	@GetMapping({"blindRead","blindmodify"})
 	public void read(long bno, @ModelAttribute("requestDTO") BlindPageRequestDTO pageRequestDTO, Model model) {
-		/* BlindDTO dto = blindService.read(bno); */
-		/* model.addAttribute("dto",dto); */
+		BlindDTO dto = blindService.findById(bno);
+		model.addAttribute("dto",dto);
+		System.out.println("불러온 dto" + dto);
 		model.addAttribute("requestDTO",pageRequestDTO);
 		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
 	}
