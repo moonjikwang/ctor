@@ -1,4 +1,4 @@
-package com.ctor.entity;
+ package com.ctor.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,22 +29,22 @@ public class Blind extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bno;		  //익명게시글넘버
+	private Long bno;		  	 //익명게시글넘버
 	
-	private String blind_title;   //게시글 제목
+	private String blindTitle;   //게시글 제목
 	
-	private String blind_content; //게시글 내용
+	private String blindContent; //게시글 내용
 
 	
 	//Member 클래스와 M:1 관계설정
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;
 	
-	public void changeTitle(String blind_title) {
-		this.blind_title = blind_title;
+	public void changeTitle(String blindTitle) {
+		this.blindTitle = blindTitle;
 	}
 	
-	public void changeContent(String blind_content) {
-		this.blind_content = blind_content;
+	public void changeContent(String blindContent) {
+		this.blindContent = blindContent;
 	}
 }

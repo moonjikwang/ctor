@@ -34,13 +34,15 @@ public interface BlindService {
 	
 	default Blind dtoToEntity(BlindDTO dto) {
 		//실제 DB에 있는 email 사용 (nickName?)
-		Member member = Member.builder().email(dto.getWriter()).build();
+		Member memberEmail = Member.builder().email(dto.getWriter()).build();
+		Member memberNickName = Member.builder().nickName(dto.getNickName()).build();
 		
 		Blind blind = Blind.builder()
 				.bno(dto.getBno())
-				.blind_title(dto.getTitle())
-				.blind_content(dto.getContent())
-				.writer(member)
+				.blindTitle(dto.getTitle())
+				.blindContent(dto.getContent())
+				.writer(memberNickName)
+				.writer(memberEmail)
 				.build();
 		
 		return blind;
@@ -49,13 +51,13 @@ public interface BlindService {
 	default BlindDTO entityToDTO(Blind blind, Member member, Long replyCount) {
 		BlindDTO blindDTO = BlindDTO.builder()
 				.bno(blind.getBno())
-				.title(blind.getBlind_title())
-				.content(blind.getBlind_content())
+				.title(blind.getBlindTitle())
+				.content(blind.getBlindContent())
 				.regDate(blind.getRegDate())
 				.modDate(blind.getModDate())
 				.writer(member.getNickName())
 				.writer(member.getEmail())
-				.reply_count(replyCount.intValue())	//long으로 나오므로 int처리
+				.replyCount(replyCount.intValue())	//long으로 나오므로 int처리
 				.build();
 		
 		return blindDTO;

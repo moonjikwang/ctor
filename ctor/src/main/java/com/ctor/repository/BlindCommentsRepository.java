@@ -15,7 +15,6 @@ public interface BlindCommentsRepository extends JpaRepository<BlindComments, Lo
 	@Query("delete from BlindComments c where c.blind.bno =:bno ")
 	void deleteBybno(@Param("bno")Long bno);
 	
-	
 	//게시물로 댓글 가져오기
 	//List<BlindComments> findByBlind(Long blind_no);
 	
