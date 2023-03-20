@@ -49,7 +49,7 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			+ " GROUP BY b",
 			countQuery = "SELECT count(b) FROM Blind b")
 	//모든행 조회
-//	@Query(value = "SELECT * FROM blind b ORDER BY reg_date DESC", nativeQuery = true)
+	//@Query(value = "SELECT * FROM blind b ORDER BY reg_date DESC", nativeQuery = true)
 	Page<Object[]> getBlindWithCommentsCount(Pageable pageable);//목록화면에 필요한 데이터
 	
 	//4_1 게시글번호 조회(블라인드&멤버&댓글수 조인)
