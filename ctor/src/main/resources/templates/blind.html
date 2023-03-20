@@ -59,7 +59,7 @@
 	</thead>
 	<tbody>
 	<tr th:each="dto : ${pageResObj.dtoList}">
-			<td style="width: 5%" class="text-center">1</td>
+			<td style="width: 5%" class="text-center">[[${dto.bno}]]</td>
 			<td style="width: 50%">
 				<a class="text-reset" style="text-decoration: none;" th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]</a>
 			</td>

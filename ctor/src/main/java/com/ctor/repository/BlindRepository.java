@@ -38,7 +38,7 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 	@Query("SELECT b, c FROM Blind b LEFT JOIN BlindComments c ON c.blind = b WHERE b.bno =:bno")
 	List<Object[]> getBlindWithComments(@Param("bno") Long bno);
 	
-	//3. 목록화면에 필요한 블라인드&멤버&코멘츠 조인
+	//3. 목록화면에 필요한 행 조회(블라인드&멤버&코멘츠 조인)
 	//	 블라인드를 중심으로 group by -> 하나의 라인이 되도록 처리(ON키워드&countQuery)
 	//	 Lazy Fetch를 쓰고 있으므로 중심 테이블인 Blind에 countQuery 명시한다.
 	//	 countQuery를 넣지 않을 경우 -> LazyIntialized 예외 발생
@@ -48,6 +48,8 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			+ " LEFT JOIN BlindComments c ON c.blind = b "
 			+ " GROUP BY b",
 			countQuery = "SELECT count(b) FROM Blind b")
+	//모든행 조회
+//	@Query(value = "SELECT * FROM blind b ORDER BY reg_date DESC", nativeQuery = true)
 	Page<Object[]> getBlindWithCommentsCount(Pageable pageable);//목록화면에 필요한 데이터
 	
 	//4_1 게시글번호 조회(블라인드&멤버&댓글수 조인)

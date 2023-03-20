@@ -13,7 +13,10 @@ import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.service.BlindService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class BlindController {
 
 	@Autowired
