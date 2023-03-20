@@ -25,11 +25,14 @@ import lombok.ToString;
 @ToString
 public class BlindDTO {
 
-	private Long bno;   				//글넘버
-	private String writer; 	 				//작성자 이메일
-	private String nickName;				//작성자 닉네임
+	private Long bno;   					//글넘버
 	private String title;    				//제목
 	private String content;  				//내용
-	private int reply_count; 				//해당 게시글 댓글 수
+	private String writer; 	 				//작성자 이메일
 	private LocalDateTime regDate,modDate;  //등록일, 수정일
+	
+	//엔티티에 없고 조인으로 가져올 자료
+	private String nickName;				//작성자 닉네임
+	private int replyCount; 				//해당 게시글 댓글 수
+	
 }
