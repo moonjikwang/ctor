@@ -16,6 +16,7 @@ public interface BoardService {
 	Long delete(Long boardno);
 	
 	List<BoardDTO> findAllBoards();
+	BoardDTO findByBno(Long boardno);
 	List<BoardDTO> findByEmail(String email);
 	List<BoardDTO> findByTech(String tech);
 	List<BoardDTO> findByPosition(String position);
@@ -27,11 +28,11 @@ public interface BoardService {
 				.title(dto.getTitle())
 				.text(dto.getText())
 				.category(dto.getCategory())
+				.chatLink(dto.getChatLink())
 				.closingDate(dto.getClosingDate())
 				.duration(dto.getDuration())
 				.groupMember(dto.getGroupMember())
 				.viewCount(dto.getViewCount())
-				.replyCount(dto.getReplyCount())
 				.position(dto.getPosition())
 				.techStack(dto.getTechStack())
 				.hasTutor(dto.isHasTutor())
@@ -54,14 +55,18 @@ public interface BoardService {
 				.duration(board.getDuration())
 				.groupMember(board.getGroupMember())
 				.viewCount(board.getViewCount())
-				.replyCount(board.getReplyCount())
+				.chatLink(board.getChatLink())
 				.position(board.getPosition())
 				.techStack(board.getTechStack())
 				.hasTutor(board.isHasTutor())
 				.closed(board.isClosed())
 				.nickName(board.getMember().getNickName())
 				.profileImg(board.getMember().getProfileImg())
+				.replyCount(0)
+				.memberCount(0)
 				.memEmail(board.getMember().getEmail())
+				.nickName(board.getMember().getNickName())
+				.profileImg(board.getMember().getProfileImg())
 				.build();
 				
 		return dto;
