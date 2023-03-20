@@ -26,6 +26,7 @@ import com.ctor.entity.Member;
  */
 public interface BlindService {
 	
+	BlindDTO findById(Long bno);
 	Long register(BlindDTO dto);
 	BlindPageResultDTO<BlindDTO, Object[]> getList(BlindPageRequestDTO blindPageRequestDTO);
 	BlindDTO findByNickname(String nickName);

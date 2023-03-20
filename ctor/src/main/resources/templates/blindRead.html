@@ -52,21 +52,20 @@
 		<table class="table">
 			<thead>
 				<tr class="table-active">
-				<th  class="text-right"><p style="text-align: right;"><small>2023.03.15 11:34</small></p>
-				<h4>타이틀입니다.</h4>
-				<small>유저닉네임</small></th>
+				<th  class="text-right"><p style="text-align: right;"><small th:text="${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}"></small></p>
+				<h4>[[${dto.title}]]</h4>
+				<small>[[${dto.nickName}]]</small></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><pre>안녕하세요 여기는 컨텐츠 내용입니다. html 태그로 작성되어 img 나 다른 태그들도 쓸수있어요
-					<img src="https://picsum.photos/300/200" style="float: left;"><br> 이런식으로 이미지를 넣거나<Strong>볼드체를 쓰거나</Strong> 할 수있죠</pre></td>
+					<td id="content"></td>
 				</tr>
 				
 			</tbody>
 			
 		</table>
-		<span>댓글 <b>1</b></span>
+		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
 		<table class="table">
 			<tbody>
 			<tr>
@@ -236,7 +235,7 @@
 					d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
 </svg></a>
 	</div>
-
+			
 	<script>
 		var type;
 		var subject;
@@ -259,6 +258,7 @@
 	</script>
 	<script th:inline="javascript">
 		$(document).ready(function() {
+			document.getElementById("content").innerHTML = /*[[${dto.content}]]*/"";
 			var emailval = /*[[${regiInfo}]]*/"";
 			if (emailval != null) {
 				$('#test').modal('show');
