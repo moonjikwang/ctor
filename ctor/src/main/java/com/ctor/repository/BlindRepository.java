@@ -55,7 +55,7 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			+ " FROM Blind b LEFT JOIN b.writer w "
 			+ " LEFT OUTER JOIN BlindComments c ON c.blind = b "
 			+ " WHERE b.bno =:bno")
-	Object getBlindByBlind_no(@Param("bno") Long bno);
+	Object getBlindByBno(@Param("bno") Long bno);
 	
 	//4_2 닉네임으로 조회
 	@Query("SELECT b, w, count(c) "

@@ -110,14 +110,14 @@
 			<td style="width: 20%" class="text-center"><b>게시판지기</b></td>
 			<td style="width: 20%" class="text-center">2023/03/14 11:59</td>
 		</tr>
-		<tr>
-			<td style="width: 5%" class="text-center">2</td>
+		<tr th:each="dto : ${pageResObj.dtoList}">
+			<td style="width: 5%" class="text-center">1</td>
 			<td style="width: 50%">
-				<a class="text-reset" style="text-decoration: none;" href="#">안녕하세요 익명게시판입니다.</a>
+				<a class="text-reset" style="text-decoration: none;" th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]</a>
 			</td>
 			<!-- 작성자, 작성일, 조회수 -->
-			<td style="width: 20%" class="text-center">익명의개발자1</td>
-			<td style="width: 20%" class="text-center">2023/03/14 11:59</td>
+			<td style="width: 20%" class="text-center">[[${dto.nickName}]]</td>
+			<td style="width: 20%" class="text-center" th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</tbody>
 </table>
@@ -125,10 +125,66 @@
 <form action="blindWrite" method="get" style="float: right;">
 	<button type="submit" class="btn btn-secondary mb-3">새글쓰기</button>
 </form>
+<ul class="pagination h-100 justify-content-center align-items-center">
+
+			<li class="page-item" th:if="${pageResObj.prev}"><a
+				th:href="@{blind(page=${pageResObj.start-1})}">Previews</a></li>
+			<li class="page-item"
+				th:class="${pageResObj.page==page?'page-item active':''}"
+				th:each="page : ${pageResObj.pageList}"><a class="page-link"
+				th:href="@{blind(page=${page})}">[[${page}]]</a></li>
+			<li class="page-item" th:if="${pageResObj.next}"><a
+				th:href="@{blind(page=${pageResObj.end +1})}">Next</a></li>
+		</ul>
 </fieldset>
 
 
 <fieldset class="mobileonly" style="min-height: 500px; max-width: 100%; margin-left: auto; margin-right: auto;">
+			<div class="container my-1">
+	<div class="row">
+		<table class="table" style="max-width: 100%;">
+			<thead>
+				<tr class="table-active">
+				<th  class="text-right"><p style="text-align: right;"><small>2023.03.15 11:34</small></p>
+				<h4>타이틀입니다.</h4>
+				<small>유저닉네임</small></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>안녕하세요 여기는 컨텐츠 내용입니다. html 태그로 작성되어 img 나 다른 태그들도 쓸수있어요
+					<img src="https://picsum.photos/300/200" style="float: left;"><br> 이런식으로 이미지를 넣거나<Strong>볼드체를 쓰거나</Strong> 할 수있죠</td>
+				</tr>
+				
+			</tbody>
+			
+		</table>
+		<span>댓글 <b>1</b></span>
+		<table class="table">
+			<tbody>
+			<tr>
+				<th><img src='img/green.png' width="45px" height="45px" class="rounded-circle me-2"><br><small><strong>댓글쓴닉네임</strong></small><br>
+				<small>14분전</small></th>
+					<td><pre>여긴 댓글을 작성한 내용입니다 .안녕하세요 </pre></td>
+				</tr>
+				<tr>
+				<form>
+				
+		<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+  <div>
+    <button type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+  </div>
+		</form>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+</div>
+			
 			<table class="table table-hover" >
 	<thead>
 	</thead>

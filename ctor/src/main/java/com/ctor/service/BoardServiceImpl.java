@@ -115,6 +115,22 @@ public class BoardServiceImpl implements BoardService {
 
 		return dtoList;
 	}
+	
+	@Override
+	public BoardDTO findByBno(Long boardno) {
+
+		 Board result = boardRepository.getBoardByBoardno(boardno);
+		 BoardDTO boardDTO = new BoardDTO();
+		 if(result!=null) {
+			 System.out.println(result);
+			 boardDTO = entityToDTO(result);
+		 }else {
+			System.out.println("글넘버에 해당하는 데이터를 찾을수 없음");
+		}
+
+
+		return boardDTO;
+	}
 
 	
 }
