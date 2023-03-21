@@ -1,0 +1,24 @@
+{
+  "background_color": "#ffffff",
+  "description": "new Project();",
+  "dir": "auto",
+  "display": "standalone",
+  "name": "new Project();",
+  "orientation": "any",
+  "scope": "https://tomcat.jikwang.net/ctor/",
+  "short_name": "new Project();",
+  "start_url": "https://tomcat.jikwang.net/ctor/",
+  "theme_color": "#000000",
+  "categories": [
+    "education"
+  ],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "https://tomcat.jikwang.net/ctor/img/menu.png",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "ko"
+}
