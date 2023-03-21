@@ -36,50 +36,61 @@ public class BoardTests {
 	@Autowired
 	private BoardService boardService;
 	
-	@Test
-	@Transactional
-	@Commit
-	public void BoardTests() {
-
-		IntStream.rangeClosed(11, 20).forEach(i->{
-//			Member member = Member.builder().email("aaa"+i+"@green.com").name("테스터"+i).build();
-//			kakaoRepository.save(member);
-			
-			String myString = "20230331";
-			SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
-			Date mydate = null;
-			try {
-				mydate = dtFormat.parse(myString);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			BoardDTO boardDTO = BoardDTO.builder()
-					.boardno((long) i)
-					.title("스터디 모집 "+i)
-					.text("프로젝트 상세내용")
-					.category("스터디")
-					.closingDate(mydate.toString())
-					.duration("미정")
-					.groupMember(5)
-					.position("백엔드,프론트엔드,디자이너")
-					.techStack("자바,스프링,HTML")
-					.hasTutor(false)
-					.closed(false)
-					.memEmail("moonjikwang@naver.com")
-					.build();
-			boardService.modify(boardDTO);
-		});
-		
-		
-	}
+//	@Test
+//	@Transactional
+//	@Commit
+//	public void BoardTests() {
+//
+//		IntStream.rangeClosed(1, 5).forEach(i->{
+////			Member member = Member.builder().email("aaa"+i+"@green.com").name("테스터"+i).build();
+////			kakaoRepository.save(member);
+//			
+//			String myString = "20230331";
+//			SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+//			Date mydate = null;
+//			try {
+//				mydate = dtFormat.parse(myString);
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			BoardDTO boardDTO = BoardDTO.builder()
+//					.title("스터디 모집 "+i)
+//					.text("프로젝트 상세내용")
+//					.category("스터디")
+//					.closingDate(mydate.toString())
+//					.duration("3w")
+//					.groupMember((int)(Math.random()*5+2))
+//					.position("백엔드,프론트엔드,디자이너")
+//					.techStack("JAVA,JSP,MariaDB")
+//					.hasTutor(false)
+//					.closed(false)
+//					.memEmail("moonjikwang@naver.com")
+//					.build();
+//			boardService.write(boardDTO);
+//		});
+//		
+//		
+//	}
 
 //	@Test
 //	@Transactional
 //	public void find() {
 //		Optional<Board> result = boardRepository.findById(25l);
 //		System.out.println(result.get());
+//		
+//	
+//	}
+//	@Test
+//	@Transactional
+//	public void find() {
+//		List<Object[]> result = boardRepository.getBoardByEmail("moonjikwang@naver.com");
+//		result.forEach(i->{
+//			System.out.println("조회결과");
+//			System.out.println(i[0]);
+//			System.out.println(i[1]);
+//		});
 //		
 //	
 //	}
@@ -126,6 +137,15 @@ public class BoardTests {
 //		boardService.findByPosition("디자이너");
 //		dtoList.forEach(dto->System.out.println(dto));
 //	}
+	@Test
+	public void findTest() {
+//		BoardDTO dto =
+//		boardService.findByBno(5L);
+//		System.out.println(dto);
+		
+//		boardRepository.getBoardByBoardno(5L);
+		System.out.println(boardRepository.getBoardByBoardno(5L).length);
+	}
 //	@Test
 //	@Transactional
 //	public void findTest() {
