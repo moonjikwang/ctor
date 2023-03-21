@@ -17,5 +17,7 @@ public class BlindCommentsDTO {
 	private String text;    //내용
 	private String replyer; //댓글작성
 	private Long bno;       //익명게시물 번호
+	private String email;
+	private String profileImg;
 	private LocalDateTime regDate, modDate; //등록일, 수정일
 }
