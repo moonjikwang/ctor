@@ -61,7 +61,7 @@
 	<tr th:each="dto : ${pageResObj.dtoList}">
 			<td style="width: 5%" class="text-center">[[${dto.bno}]]</td>
 			<td style="width: 50%">
-				<a class="text-reset" style="text-decoration: none;" th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]</a>
+				<a class="text-reset" style="text-decoration: none;" th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]] <span th:if="${dto.replyCount != 0}" th:text="'('+${dto.replyCount}+')'"></span></a>
 			</td>
 			<!-- 작성자, 작성일, 조회수 -->
 			<td style="width: 20%" class="text-center">[[${dto.nickName}]]</td>

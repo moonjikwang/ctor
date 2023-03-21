@@ -6,6 +6,7 @@ import com.ctor.dto.BlindCommentsDTO;
 import com.ctor.dto.BlindDTO;
 import com.ctor.entity.Blind;
 import com.ctor.entity.BlindComments;
+import com.ctor.entity.Member;
 
 public interface BlindCommentsService {
 
@@ -20,6 +21,7 @@ public interface BlindCommentsService {
 		
 		BlindComments blindComments = BlindComments.builder()
 				.cno(blindCommentsDTO.getCno())
+				.writer(Member.builder().email(blindCommentsDTO.getEmail()).build())
 				.blindCtext(blindCommentsDTO.getText())
 				.blindCreplyer(blindCommentsDTO.getReplyer())
 				.blind(blind)
@@ -31,6 +33,7 @@ public interface BlindCommentsService {
 	//BlindComments객체 -> BlindCommentsDTO로 변환, Blind객체 필요 없으므로 게시물 번호만 가져온다
 	default BlindCommentsDTO entityToDTO(BlindComments blindComments) {
 		BlindCommentsDTO dto = BlindCommentsDTO.builder()
+				.profileImg(blindComments.getWriter().getProfileImg())
 				.cno(blindComments.getCno())
 				.text(blindComments.getBlindCtext())
 				.replyer(blindComments.getBlindCreplyer())

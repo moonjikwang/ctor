@@ -65,31 +65,38 @@
 			
 		</table>
 		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
-		<table class="table">
-			<tbody>
-			<tr>
-				<th><img src='img/green.png' width="45px" height="45px" class="rounded-circle me-2"><br><small><strong>댓글쓴닉네임</strong></small><br>
-				<small>14분전</small></th>
-					<td><pre>여긴 댓글을 작성한 내용입니다 .안녕하세요 </pre></td>
-				</tr>
-				<tr>
-				<form>
-				
+		<form action="blindCommentWrite" method="POST">
+				<input type="hidden" name="bno" th:value="${dto.bno}">
+				<input th:if="${session.userInfo != null}" type="hidden" name="email" th:value="${session.userInfo.email}">
+				<input th:if="${session.userInfo != null}" type="hidden" name="replyer" th:value="${session.userInfo.nickName}">
 		<div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
+  <textarea th:if="${session.userInfo != null}" name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
   <div>
-    <button type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo != null}"  type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
   </div>
 		</form>
+		<table class="table" style="margin-bottom: 50px;">
+			<th:block  th:each="comment : ${comments}">
+			<tr>
+				<td width="45px" class="text-center" style="border: none;"><img src="img/green.png" width="45px" height="45px" class="rounded-circle me-2">
+				</td><td style="border: none;"><small><strong>[[${comment.replyer}]]</strong></small>
+				<br><small>[[${#temporals.format(comment.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
-			</tbody>
+				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
+				<td colspan="2" style="border: none;">[[${comment.text}]]</td>
+				</tr>
+				</th:block>
 		</table>
+				
 		
 	</div>
 </div>
-			<table class="table table-hover" >
+<h5>익명게시판</h5>
+			<table class="table table-hover">
 	<thead>
 		<tr>
 		<th scope="col" class="text-center">번호</th>
@@ -147,32 +154,37 @@
 			</tbody>
 			
 		</table>
-		<span>댓글 <b>1</b></span>
-		<table class="table">
-			<tbody>
-			<tr>
-				<th><img src='img/green.png' width="45px" height="45px" class="rounded-circle me-2"><br><small><strong>댓글쓴닉네임</strong></small><br>
-				<small>14분전</small></th>
-					<td><pre>여긴 댓글을 작성한 내용입니다 .안녕하세요 </pre></td>
-				</tr>
-				<tr>
-				<form>
-				
+		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
+		<form action="blindCommentWrite" method="POST">
+				<input type="hidden" name="bno" th:value="${dto.bno}">
+				<input th:if="${session.userInfo != null}" type="hidden" name="email" th:value="${session.userInfo.email}">
+				<input th:if="${session.userInfo != null}" type="hidden" name="replyer" th:value="${session.userInfo.nickName}">
 		<div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
+  <textarea th:if="${session.userInfo != null}" name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
   <div>
-    <button type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo != null}"  type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
   </div>
 		</form>
+		<table class="table" style="margin-bottom: 50px;">
+			<th:block  th:each="comment : ${comments}">
+			<tr>
+				<td width="45px" class="text-center" style="border: none;"><img src="img/green.png" width="45px" height="45px" class="rounded-circle me-2">
+				</td><td style="border: none;"><small><strong>[[${comment.replyer}]]</strong></small>
+				<br><small>[[${#temporals.format(comment.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
-			</tbody>
+				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
+				<td colspan="2" style="border: none;">[[${comment.text}]]</td>
+				</tr>
+				</th:block>
 		</table>
 		
 	</div>
 </div>
-			
+			<h6>익명게시판</h6>
 			<table class="table table-hover" >
 	<thead>
 	</thead>

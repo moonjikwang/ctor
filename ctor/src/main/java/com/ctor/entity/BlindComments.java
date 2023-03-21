@@ -36,4 +36,6 @@ public class BlindComments extends BaseEntity{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Blind blind;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Member writer;
 }
