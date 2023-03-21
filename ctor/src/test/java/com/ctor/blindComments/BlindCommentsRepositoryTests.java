@@ -39,7 +39,7 @@ public class BlindCommentsRepositoryTests {
 	 */
 	@Test
 	public void addBComments() {
-		IntStream.rangeClosed(1, 40).forEach(i -> {
+		IntStream.rangeClosed(1, 20).forEach(i -> {
 			
 			long blindCno = (long)(Math.random() * 10) + 1;
 			
