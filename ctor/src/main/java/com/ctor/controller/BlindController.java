@@ -13,7 +13,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FilenameUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -81,7 +80,8 @@ public class BlindController {
 	    	byte[] bytes;
 			try {
 				bytes = file.getBytes();
-	    	String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+	    	String fileName = file.getOriginalFilename();
+	    	String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
 	    	 String imgUploadPath = "img"+ File.separator+"upload" + File.separator + uuid + "." + extension;
 	    	 out = new FileOutputStream(imgUploadPath);
 	            out.write(bytes);
