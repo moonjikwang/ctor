@@ -44,10 +44,12 @@ public interface BoardService {
 		
 	}
 	
-	default BoardDTO entityToDTO(Board board) {
+	default BoardDTO entityToDTO(Board board, int replyCount, int memberCount) {
 		
 		BoardDTO dto = BoardDTO.builder()
 				.boardno(board.getBoardno())
+				.regDate(board.getRegDate())
+				.modDate(board.getModDate())
 				.title(board.getTitle())
 				.text(board.getText())
 				.category(board.getCategory())
@@ -60,11 +62,10 @@ public interface BoardService {
 				.techStack(board.getTechStack())
 				.hasTutor(board.isHasTutor())
 				.closed(board.isClosed())
-				.regDate(board.getRegDate())
 				.nickName(board.getMember().getNickName())
 				.profileImg(board.getMember().getProfileImg())
-				.replyCount(0)
-				.memberCount(0)
+				.replyCount(replyCount)
+				.memberCount(memberCount)
 				.memEmail(board.getMember().getEmail())
 				.nickName(board.getMember().getNickName())
 				.profileImg(board.getMember().getProfileImg())
