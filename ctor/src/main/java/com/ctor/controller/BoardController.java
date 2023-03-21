@@ -46,7 +46,11 @@ public class BoardController {
 		redirectAttributes.addAttribute("bno",bno);
 		return "redirect:boardRead";
 	}
-	
+	@GetMapping({"boardRead","boardModify"})
+	public void boardRead(long boardno, Model model) {
+		BoardDTO dto = service.findByBno(boardno);
+		model.addAttribute("dto",dto);
+	}
     
 	@GetMapping("board/NewFile")
 	public String newFile(Model model) {
@@ -61,6 +65,8 @@ public class BoardController {
 				
 		return "board/board";
 	}
+	
+	
 	
 	
 

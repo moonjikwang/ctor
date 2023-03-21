@@ -41,8 +41,8 @@
 		
 		<main class="container">
 			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-				<h1 class="display-4 fw-normal">익명게시판</h1>
-				<p class="fs-5 text-muted">그린컴퓨터 익명커뮤니티입니다.</p>
+				<h1 class="display-4 fw-normal">프로젝트&스터디 모집</h1>
+				<p class="fs-5 text-muted">프로젝트멤버, 스터디멤버를 구해보세요🙋‍♂️</p>
 <hr>
 			</div>
 			
@@ -53,8 +53,37 @@
 			<thead>
 				<tr class="table-active">
 				<th  class="text-right">
-				<h4>[[${dto.title}]]</h4>
+				<h3>[[${dto.title}]]</h3>
 				<small style="float: right;">[[${dto.nickName}]] [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small></th>
+				<tr>
+					<th>
+						<table style="width: 100%;">
+							<tr>
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; margin-bottom: 20px;  line-height: 2rem;">모집 구분</td>
+								<td style="padding-left: 20px;">[[${dto.category}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 포지션</td>
+								<td style="padding-left: 20px;">[[${dto.position}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 인원</td>
+								<td style="padding-left: 20px;">[[${dto.groupMember}]]명</td>
+							</tr>
+							<tr>
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용 언어</td>
+								<td style="padding-left: 20px;">[[${dto.techStack}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
+								<td style="padding-left: 20px;">[[${dto.duration}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
+								<td style="padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
+							</tr>
+						</table>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -89,42 +118,7 @@
 		
 	</div>
 </div>
-			<table class="table table-hover" >
-	<thead>
-		<tr>
-		<th scope="col" class="text-center">번호</th>
-			<th scope="col" class="text-center">제목</th>
-			<th scope="col" class="text-center">글쓴이</th>
-			<th scope="col" class="text-center">작성일</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="dto : ${pageResObj.dtoList}">
-			<td style="width: 5%" class="text-center">1</td>
-			<td style="width: 50%">
-				<a class="text-reset" style="text-decoration: none;" th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]</a>
-			</td>
-			<!-- 작성자, 작성일, 조회수 -->
-			<td style="width: 20%" class="text-center">[[${dto.nickName}]]</td>
-			<td style="width: 20%" class="text-center" th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm')}"></td>
-		</tr>
-	</tbody>
-</table>
-
-<form action="blindWrite" method="get" style="float: right;">
-	<button type="submit" class="btn btn-secondary mb-3">새글쓰기</button>
-</form>
-<ul class="pagination h-100 justify-content-center align-items-center">
-
-			<li class="page-item" th:if="${pageResObj.prev}"><a
-				th:href="@{blind(page=${pageResObj.start-1})}">Previews</a></li>
-			<li class="page-item"
-				th:class="${pageResObj.page==page?'page-item active':''}"
-				th:each="page : ${pageResObj.pageList}"><a class="page-link"
-				th:href="@{blind(page=${page})}">[[${page}]]</a></li>
-			<li class="page-item" th:if="${pageResObj.next}"><a
-				th:href="@{blind(page=${pageResObj.end +1})}">Next</a></li>
-		</ul>
+			
 </fieldset>
 
 
@@ -138,6 +132,36 @@
 				<h4>[[${dto.title}]]</h4>
 				<small style="float: right;">[[${dto.nickName}]] [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small></th>
 				</tr>
+				<tr>
+					<th>
+						<table style="width: 100%;">
+							<tr>
+								<td style="width: 25%; border-right: solid 1px #5D5D5D; margin-bottom: 20px;  line-height: 2rem;">모집 구분</td>
+								<td style="padding-left: 20px;">[[${dto.category}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 포지션</td>
+								<td style="padding-left: 20px;">[[${dto.position}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 인원</td>
+								<td style="padding-left: 20px;">[[${dto.groupMember}]]명</td>
+							</tr>
+							<tr>
+								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용 언어</td>
+								<td style="padding-left: 20px;">[[${dto.techStack}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
+								<td style="padding-left: 20px;">[[${dto.duration}]]</td>
+							</tr>
+							<tr>
+								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
+								<td style="padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
+							</tr>
+						</table>
+					</th>
+				</tr>
 			</thead>
 			<tbody>
 				<tr style="height: 300px;">
@@ -147,7 +171,7 @@
 			</tbody>
 			
 		</table>
-		<span>댓글 <b>1</b></span>
+		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
 		<table class="table">
 			<tbody>
 			<tr>
@@ -178,25 +202,10 @@
 	</thead>
 	<tbody>
 			
-		<tr th:each="dto : ${pageResObj.dtoList}">
-			<td style="width: 70%">
-			<div>
-				<a class="text-reset" style="text-decoration: none;" th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}"><p style="margin-bottom: 5px;">[[${dto.title}]]</p>
-				<span class="small"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
-  <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
-  <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
-  <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-</svg>[[${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm')}]]</span><span style="float: right; margin-right: 10px;">[[${dto.nickName}]]</span>
-				</a>
-				</div>
-			</td>
-		</tr>
+		
 	</tbody>
 </table>
 
-<form action="blindWrite" method="get" style="float: right;">
-	<button type="submit" class="btn btn-secondary mb-3">새글쓰기</button>
-</form>
 </fieldset>
 			
 			<th:block th:replace="fragments/modal :: modalFragment"></th:block>
@@ -235,8 +244,8 @@
 	</script>
 	<script th:inline="javascript">
 		$(document).ready(function() {
-			document.getElementById("content").innerHTML = /*[[${dto.content}]]*/"";
-			document.getElementById("content2").innerHTML = /*[[${dto.content}]]*/"";
+			document.getElementById("content").innerHTML = /*[[${dto.text}]]*/"";
+			document.getElementById("content2").innerHTML = /*[[${dto.text}]]*/"";
 			var emailval = /*[[${regiInfo}]]*/"";
 			if (emailval != null) {
 				$('#test').modal('show');
