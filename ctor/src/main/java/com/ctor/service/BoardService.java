@@ -60,6 +60,7 @@ public interface BoardService {
 				.techStack(board.getTechStack())
 				.hasTutor(board.isHasTutor())
 				.closed(board.isClosed())
+				.regDate(board.getRegDate())
 				.nickName(board.getMember().getNickName())
 				.profileImg(board.getMember().getProfileImg())
 				.replyCount(0)

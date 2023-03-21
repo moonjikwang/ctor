@@ -2,7 +2,6 @@ package com.ctor.dto;
 
 import java.time.LocalDateTime;
 
-import com.ctor.entity.Board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

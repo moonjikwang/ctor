@@ -51,7 +51,7 @@
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-lg-8">
-                                    <h1 class="display-1 mb-4 animated slideInDown" style="text-align: left;">적당히 그럴싸한 글자적어놓기
+                                    <h1 class="display-1 mb-4 animated slideInDown" style="text-align: left;font-family: 'Noto Sans KR', sans-serif;">적당히 그럴싸한 글자적어놓기
                                     </h1>
                                     <a href="#" style="float: left; " class="btn btn-primary py-3 px-5 animated slideInDown">그럴싸한 버튼</a>
                                 </div>
@@ -93,6 +93,7 @@
 				class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 mb-3 text-center"
 				style="padding: 0px;">
 				<div th:each="dto : ${dto}" class="col">
+				<a th:href="@{boardRead(boardno=${dto.boardno})}" style="text-decoration: none; color: #adb5bd;">
 					<div class="card mb-4 rounded-4 shadow-sm"
 						style="margin-left: 5px; margin-right: 5px;">
 						<div class="card-header py-3">
@@ -137,6 +138,7 @@
 							</span>
 						</div>
 					</div>
+					</a>
 				</div>
 				
 			</div>
