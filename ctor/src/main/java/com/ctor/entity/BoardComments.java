@@ -24,11 +24,12 @@ public class BoardComments extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bCommentNo;		   //익명댓글넘버
+	private Long bCommentNo;		   //댓글넘버
 	
-	private String bCommentText;	   //익명댓글내용
+	private String bCommentText;	   //댓글내용
 	
-	private String bCommentWriter; //익명댓글작성자
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Member member;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Board board;
