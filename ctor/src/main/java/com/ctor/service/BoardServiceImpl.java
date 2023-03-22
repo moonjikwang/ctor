@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.Tuple;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,8 +63,9 @@ public class BoardServiceImpl implements BoardService {
 			for (int i = 0; i < result.size(); i++) {
 										
 				dtoList.add(entityToDTO((Board) result.get(i)[0], 
-						((Long) result.get(i)[1]).intValue(), 
-						((Long) result.get(i)[2]).intValue() ) );
+						(Member) result.get(i)[1],
+						((Long) result.get(i)[2]).intValue(), 
+						((Long) result.get(i)[3]).intValue() ) );
 			}
 		}
 		return dtoList;
@@ -71,13 +74,16 @@ public class BoardServiceImpl implements BoardService {
 	// 작성자ID(email)로 조회
 	@Override
 	public List<BoardDTO> findByEmail(String email) {
-		List<Board> result = boardRepository.getBoardByEmail(email);
+		List<Object[]> result = boardRepository.getBoardByEmail(email);
 		System.out.println(result);
 
 		List<BoardDTO> dtoList = new ArrayList<>();
 
 		for (int i = 0; i < result.size(); i++) {
-//			dtoList.add(entityToDTO(result.get(i)));
+			dtoList.add(entityToDTO((Board) result.get(i)[0], 
+					(Member) result.get(i)[1],
+					((Long) result.get(i)[2]).intValue(), 
+					((Long) result.get(i)[3]).intValue() ) );
 			System.out.println(result.get(i));
 
 		}
@@ -88,12 +94,15 @@ public class BoardServiceImpl implements BoardService {
 	// 기술스택으로 조회
 	@Override
 	public List<BoardDTO> findByTech(String tech) {
-		List<Board> result = boardRepository.getBoardByTech(tech);
+		List<Object[]> result = boardRepository.getBoardByTech(tech);
 
 		List<BoardDTO> dtoList = new ArrayList<>();
 
 		for (int i = 0; i < result.size(); i++) {
-//			dtoList.add(entityToDTO(result.get(i)));
+			dtoList.add(entityToDTO((Board) result.get(i)[0], 
+					(Member) result.get(i)[1],
+					((Long) result.get(i)[2]).intValue(), 
+					((Long) result.get(i)[3]).intValue() ) );
 		}
 
 		return dtoList;
@@ -102,12 +111,15 @@ public class BoardServiceImpl implements BoardService {
 	// 직군으로 조회
 	@Override
 	public List<BoardDTO> findByPosition(String position) {
-		List<Board> result = boardRepository.getBoardByPosition(position);
+		List<Object[]> result = boardRepository.getBoardByPosition(position);
 
 		List<BoardDTO> dtoList = new ArrayList<>();
 
 		for (int i = 0; i < result.size(); i++) {
-//			dtoList.add(entityToDTO(result.get(i)));
+			dtoList.add(entityToDTO((Board) result.get(i)[0], 
+					(Member) result.get(i)[1],
+					((Long) result.get(i)[2]).intValue(), 
+					((Long) result.get(i)[3]).intValue() ) );
 		}
 
 		return dtoList;
@@ -117,19 +129,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDTO findByBno(Long boardno) {
 
-		Object[] result = boardRepository.getBoardByBoardno(boardno);
-		BoardDTO boardDTO = new BoardDTO();
-		if (result != null) {
-			System.out.println(result);
-			System.out.println(result.length);
-			System.out.println(Arrays.toString(result));
-//			boardDTO = entityToDTO((Board) result[0], 
-//					((Long) result[1]).intValue(), 
-//					((Long) result[2]).intValue() );
-		} else {
-			System.out.println("글넘버에 해당하는 데이터를 찾을수 없음");
-		}
-
+		Tuple result = boardRepository.getBoardByBoardno(boardno);
+		
+		Board board = (Board) result.get(0);
+		Member member = (Member) result.get(1);
+		int replyCount = ((Long)result.get(2)).intValue();
+		int memberCount = ((Long)result.get(3)).intValue();
+		
+		BoardDTO boardDTO = entityToDTO(board, member, replyCount, memberCount);
+		
 		return boardDTO;
 	}
 
