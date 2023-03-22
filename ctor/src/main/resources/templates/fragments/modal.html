@@ -6,20 +6,39 @@
 <div th:fragment="modalFragment">
     <div class="modal fade" id="login" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" style="margin-top: 20%;">
+				<div class="modal-dialog " style="margin-top: 15%;">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">new
-								Project();</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
-						</div>
 						<div class="modal-body">
-							<div style="text-align: center;">
-								<a
+						<div style="margin-bottom: 3rem;">
+						<button style="float: right;" type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+								</div>
+						<div style="text-align: center; margin-left: auto; margin-right: auto;" class="col-7">
+						<h3 style="margin-bottom: 1.5rem;"><span class="fs-4"
+					style="font-family: 'Ubuntu', sans-serif;">new Project<span style="color: #ca9ed1;">(</span><span style="color: #be73cb;">)</span><span style="color: #ae45c1;">;</span></span></h3>
+						<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+   style="height: 2.5rem; border: none; background-color: #232323;">
+   
+  <label for="floatingInput" style="padding: 0.4rem .75rem;">Email address</label>
+</div>
+<div class="form-floating">
+  <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+   style="height: 2.5rem;border: none; background-color: #232323;">
+  <label for="floatingPassword" style="padding: 0.4rem .75rem;">Password</label>
+</div>
+</div>
+<div class="col-7" style="text-align: center; margin-left: auto; margin-right: auto;">
+								<button  style="width: 100%; margin-top: 2rem;" type="submit" class="btn btn-primary">Login</button>
+							<hr>
+							</div>
+							
+							<div class="col-7" style="text-align: center; margin-left: auto; margin-right: auto;">
+								<a 
 									href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=3ed402e0c9996c2d84bd716afed91789&redirect_uri=https://tomcat.jikwang.net/ctor/oauth">
-									<img alt="" src="./img/kakao.png">
+									<img style="width: 100%; margin-bottom: 2rem;" alt="" src="./img/kakao.png">
 								</a>
+								<small style="">아직 회원이 아니신가요? <a href="#" style="color: #be73cb;">회원가입</a></small>
 							</div>
 						</div>
 					</div>

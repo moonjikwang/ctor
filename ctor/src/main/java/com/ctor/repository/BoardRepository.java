@@ -18,7 +18,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 			+ "left join b.member m "
 			+ "left join BoardComments c ON c.board = b "
 			+ "left join Participation p ON p.board = b "
-			+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
+			+ "GROUP BY b ORDER BY b.closed, b.regDate DESC")
 	List<Object[]> getAll();
 	
 	//선택한 글 조회
