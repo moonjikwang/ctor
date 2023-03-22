@@ -41,7 +41,6 @@ public class BoardController {
   }
 	@PostMapping("boardWrite")
 	public String postImage(BoardDTO dto,RedirectAttributes redirectAttributes) {
-		System.out.println("=========입력받은값 :"+dto);
 		Long bno = service.write(dto);
 		redirectAttributes.addAttribute("bno",bno);
 		return "redirect:boardRead";
