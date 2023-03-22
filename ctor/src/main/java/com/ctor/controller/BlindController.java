@@ -54,13 +54,17 @@ public class BlindController {
 	@GetMapping("blindWrite")
 	public void blindWrite() {
 	}
-	@GetMapping({"blindRead","blindmodify"})
+	@GetMapping({"blindRead","blindModify"})
 	public void read(long bno, @ModelAttribute("requestDTO") BlindPageRequestDTO pageRequestDTO, Model model) {
 		BlindDTO dto = blindService.findById(bno);
 		model.addAttribute("dto",dto);
-		System.out.println("불러온 dto" + dto);
 		model.addAttribute("requestDTO",pageRequestDTO);
 		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
+	}
+	@GetMapping("blindDelete")
+	public String blindDelete(long bno) {
+		blindService.removeWithComments(bno);
+		return "redirect:blind";
 	}
 	
 	@PostMapping("blindWrite")

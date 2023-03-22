@@ -62,8 +62,14 @@
 					<td id="content"></td>
 				</tr>
 			</tbody>
-			
 		</table>
+		<div class="btn-group dropup" th:if="${session.userInfo != null}">
+		<a th:if="${session.userInfo.getEmail() == dto.writer}" style="margin-left: 90%;" data-bs-toggle="dropdown" aria-expanded="false" >이 게시글을.. </a>
+ <ul class="dropdown-menu">
+    <li><a class="dropdown-item"th:href="@{/blindModify(bno=${dto.bno})}">수정하기</a></li>
+    <li><a class="dropdown-item" th:href="@{/blindDelete(bno=${dto.bno})}">삭제하기</a></li>
+  </ul>
+</div>
 		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
 		<form action="blindCommentWrite" method="POST">
 				<input type="hidden" name="bno" th:value="${dto.bno}">
