@@ -22,6 +22,9 @@
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
+    <style>
+        td {word-break:break-all;word-wrap:break-word;}
+    </style>
 
 </head>
 <body>
@@ -125,6 +128,7 @@
 <fieldset class="mobileonly" style="min-height: 500px; max-width: 100%; margin-left: auto; margin-right: auto;">
 			<div class="container my-1">
 	<div class="row">
+	
 		<table class="table" style="max-width: 100%;">
 			<thead>
 				<tr class="table-active">
@@ -134,32 +138,34 @@
 				</tr>
 				<tr>
 					<th>
-						<table style="width: 100%;">
+					<div class="table-responsive">
+						<table class="table" style="width: 100%;">
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; margin-bottom: 20px;  line-height: 2rem;">모집 구분</td>
-								<td style="padding-left: 20px;">[[${dto.category}]]</td>
+								<td style="width: 75%; padding-left: 20px;">[[${dto.category}]]</td>
 							</tr>
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 포지션</td>
-								<td style="padding-left: 20px;">[[${dto.position}]]</td>
+								<td style="width: 75%; padding-left: 20px;">[[${dto.position}]]</td>
 							</tr>
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 인원</td>
-								<td style="padding-left: 20px;">[[${dto.groupMember}]]명</td>
+								<td style="width: 75%; padding-left: 20px;">[[${dto.groupMember}]]명</td>
 							</tr>
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용 언어</td>
-								<td style="padding-left: 20px;">[[${dto.techStack}]]</td>
+								<td style="width: 75%; padding-left: 20px;">[[${dto.techStack}]]</td>
 							</tr>
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
-								<td style="padding-left: 20px;">[[${dto.duration}]]</td>
+								<td style="width: 75%; padding-left: 20px;">[[${dto.duration}]]</td>
 							</tr>
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
-								<td style="padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
+								<td style="width: 75%; padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
 							</tr>
 						</table>
+						</div>
 					</th>
 				</tr>
 			</thead>
