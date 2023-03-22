@@ -19,7 +19,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "boardcomments")
+@ToString(exclude = "board")
 public class BoardComments extends BaseEntity{
 
 	@Id
