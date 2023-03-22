@@ -1,8 +1,5 @@
 package com.ctor.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import com.ctor.dto.BoardDTO;
@@ -20,6 +17,7 @@ public interface BoardService {
 	List<BoardDTO> findByEmail(String email);
 	List<BoardDTO> findByTech(String tech);
 	List<BoardDTO> findByPosition(String position);
+	Long viewCount(Long boardno);
 	
 	default Board boardDTOtoEntity(BoardDTO dto) {
 		

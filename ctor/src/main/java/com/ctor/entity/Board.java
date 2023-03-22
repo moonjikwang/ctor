@@ -46,7 +46,9 @@ public class Board extends BaseEntity{
 	private boolean closed;		//마감여부
 	
 	
-	
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
 	//멤버 ID
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;

@@ -42,12 +42,13 @@ public class BoardController {
 	@PostMapping("boardWrite")
 	public String postImage(BoardDTO dto,RedirectAttributes redirectAttributes) {
 		Long bno = service.write(dto);
-		redirectAttributes.addAttribute("bno",bno);
+		redirectAttributes.addAttribute("boardno",bno);
 		return "redirect:boardRead";
 	}
 	@GetMapping({"boardRead","boardModify"})
 	public void boardRead(long boardno, Model model) {
 		BoardDTO dto = service.findByBno(boardno);
+		service.viewCount(boardno);
 		model.addAttribute("dto",dto);
 	}
     

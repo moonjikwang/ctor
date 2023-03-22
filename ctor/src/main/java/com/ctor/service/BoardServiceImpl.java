@@ -141,4 +141,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardDTO;
 	}
 
+	@Override
+	public Long viewCount(Long boardno) {
+		Board board = boardRepository.findById(boardno).get();
+		board.setViewCount(board.getViewCount()+1);
+		boardRepository.save(board);
+		return null;
+	}
+
 }
