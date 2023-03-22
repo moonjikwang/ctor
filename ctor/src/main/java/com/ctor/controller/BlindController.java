@@ -31,8 +31,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ctor.dto.BlindCommentsDTO;
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
+import com.ctor.service.BlindCommentsService;
 import com.ctor.service.BlindService;
 
 import lombok.RequiredArgsConstructor;
@@ -45,6 +47,8 @@ public class BlindController {
 
 	@Autowired
 	BlindService blindService;
+	@Autowired
+	BlindCommentsService blindCommentsService;
 	
 	@GetMapping("blind")
 	public void blind(BlindPageRequestDTO pageRequestDTO,Model model) {
@@ -57,7 +61,9 @@ public class BlindController {
 	@GetMapping({"blindRead","blindModify"})
 	public void read(long bno, @ModelAttribute("requestDTO") BlindPageRequestDTO pageRequestDTO, Model model) {
 		BlindDTO dto = blindService.findById(bno);
+		List<BlindCommentsDTO> commentsDTOs = blindCommentsService.getList(bno);
 		model.addAttribute("dto",dto);
+		model.addAttribute("comments",commentsDTOs);
 		model.addAttribute("requestDTO",pageRequestDTO);
 		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
 	}
@@ -74,7 +80,13 @@ public class BlindController {
 		redirectAttributes.addAttribute("bno",bno);
 		return "redirect:blindRead";
 	}
-
+	@PostMapping("blindCommentWrite")
+	public String commentWrite(BlindCommentsDTO dto,RedirectAttributes redirectAttributes) {
+		blindCommentsService.register(dto);
+		Long bno = dto.getBno();
+		redirectAttributes.addAttribute("bno",bno);
+		return "redirect:blindRead";
+	}
 	
 	@PostMapping("fileUpload")
     public void postImage(MultipartFile upload, HttpServletResponse res, HttpServletRequest req){
