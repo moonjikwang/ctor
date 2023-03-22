@@ -1,0 +1,203 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>new Project();</title>
+<link rel="icon" type="image/x-icon" href="img/green.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/green.ico">
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Righteous&family=Noto+Sans+KR:wght@500&family=Raleway:wght@900&family=Ubuntu:wght@500&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="css/main.css">
+<!--회원만이용가능 <script th:inline="javascript">
+var isNotMember = /*[[${session.userInfo == null}]]*/"";
+if(isNotMember){
+	alert("로그인 후 이용가능합니다.");
+	window.history.back();
+}
+</script> -->
+</head>
+<body>
+	<div id="loading">
+		<div class="loader">
+			<div class="inner one"></div>
+			<div class="inner two"></div>
+			<div class="inner three"></div>
+		</div>
+		<div class="loading-text ">
+			<small style="font-family: 'Righteous', cursive;">new
+				Project();</small>
+		</div>
+	</div>
+	<div class="py-3" style="padding-left: 0px; padding-right: 0px;">
+		<th:block th:replace="fragments/header :: headerFragment"></th:block>
+		
+		<main class="container">
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+				<h1 class="display-4 fw-normal">익명게시판</h1>
+				<p class="fs-5 text-muted">그린컴퓨터 익명커뮤니티입니다.</p>
+<hr>
+			</div>
+			
+			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
+			<form action="blindWrite" method="post">
+			<input type="hidden" name="bno" th:value="${dto.bno}">
+			<input th:if="${session.userInfo != null}" type="hidden" name="nickName" th:value="${session.userInfo.getNickName()}">
+			<input type="hidden" name="writer" th:value="${session.userInfo.getEmail}">
+	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
+		placeholder="제목을 입력해주세요." th:value="${dto.title}" required
+	>
+	<div class="form-group">
+		<textarea id="editor" class="form-control" rows="20" name="content"
+			placeholder="내용을 입력해주세요" required
+		>[[${dto.content}]]</textarea>
+	</div>
+	<button type="submit" class="btn btn-secondary mb-3" onclick="saveGallery();" style="margin-top: 15px; float: right;">제출하기</button>
+</form>
+
+</fieldset>
+			
+
+			
+			<th:block th:replace="fragments/modal :: modalFragment"></th:block>
+
+		</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+		
+		<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top"
+			role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+				height="16" fill="currentColor" class="bi bi-arrow-up"
+				viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+					d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+</svg></a>
+	</div>
+<!--스크립트단 -->
+<script src="js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+$(function() {
+    CKEDITOR.replace('editor',{
+    	filebrowserUploadMethod :'form',
+    	filebrowserUploadUrl: 'fileUpload',
+        font_names : "맑은 고딕/Malgun Gothic;굴림/Gulim;돋움/Dotum;바탕/Batang;궁서/Gungsuh;Arial/Arial;Comic Sans MS/Comic Sans MS;Courier New/Courier New;Georgia/Georgia;Lucida Sans Unicode/Lucida Sans Unicode;Tahoma/Tahoma;Times New Roman/Times New Roman;MS Mincho/MS Mincho;Trebuchet MS/Trebuchet MS;Verdana/Verdana",
+        font_defaultLabel : "맑은 고딕/Malgun Gothic",
+        fontSize_defaultLabel : "12",
+        height : '300px',
+        skin : "dark",
+        language : "ko"
+    });
+
+    // ...
+});
+
+// ...
+
+function saveGallery() {
+
+    if (!confirm("저장하시겠습니까?")) {
+        return;
+    }
+
+     var formData = new FormData();
+
+    formData.append("deleteFiles", deleteFileList);
+    formData.set("contents", CKEDITOR.instances.contents.getData());
+
+    for (var i = 0; i < inputFileList.length; i++) {
+        if(!inputFileList[i].is_delete){
+             formData.append("files", inputFileList[i]);
+        }
+    }
+
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+
+    $.ajax({
+        type : "POST",
+        enctype : "multipart/form-data",
+        url : "/blindWrite",
+        data : formData,
+        dataType:"json",
+        processData : false,
+        contentType : false,
+        success : function(result) {
+            if (result.response == "OK") {
+                    alert("저장되었습니다.");
+                location.href = "blind"
+            } else {
+                alert(result.errorMsg);
+            }
+        },
+    });
+}
+/*]]>*/
+</script>
+<!--에디터 스크립트 끝-->
+	<script>
+		var type;
+		var subject;
+
+		function checkValue(memberType) {
+
+			type = memberType;
+			document.getElementById("page1").style.display = 'none';
+			document.getElementById("page2").style.display = 'block';
+			document.getElementById("page2title").innerHTML = (type == "student" ? "학생"
+					: "강사님")
+					+ '이시군요! <br> 지금 진행중인 or 관심있는 과정을 선택해주세요.';
+		}
+		function checkpage2Value(subjectType) {
+			subject = subjectType;
+			document.getElementById("submitGrade").setAttribute("value", type);
+			document.getElementById("page2").style.display = 'none';
+			document.getElementById("page3").style.display = 'block';
+		}
+	</script>
+	<script th:inline="javascript">
+		$(document).ready(function() {
+			var emailval = /*[[${regiInfo}]]*/"";
+			if (emailval != null) {
+				$('#test').modal('show');
+			}
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > 50) {
+					$('#back-to-top').fadeIn();
+				} else {
+					$('#back-to-top').fadeOut();
+				}
+			});
+			// scroll body to 0px on click
+			$('#back-to-top').click(function() {
+				$('body,html').animate({
+					scrollTop : 0
+				}, 400);
+				return false;
+			});
+		});
+	</script>
+	<script>
+		setTimeout(function() {
+			$('#loading').hide();
+		}, 1000);
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+		crossorigin="anonymous"></script>
+</body>
+</html>
