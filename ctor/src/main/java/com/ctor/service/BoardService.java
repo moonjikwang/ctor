@@ -44,7 +44,7 @@ public interface BoardService {
 		
 	}
 	
-	default BoardDTO entityToDTO(Board board, int replyCount, int memberCount) {
+	default BoardDTO entityToDTO(Board board, Member member, int replyCount, int memberCount) {
 		
 		BoardDTO dto = BoardDTO.builder()
 				.boardno(board.getBoardno())
@@ -62,13 +62,11 @@ public interface BoardService {
 				.techStack(board.getTechStack())
 				.hasTutor(board.isHasTutor())
 				.closed(board.isClosed())
-				.nickName(board.getMember().getNickName())
-				.profileImg(board.getMember().getProfileImg())
 				.replyCount(replyCount)
 				.memberCount(memberCount)
-				.memEmail(board.getMember().getEmail())
-				.nickName(board.getMember().getNickName())
-				.profileImg(board.getMember().getProfileImg())
+				.memEmail(member.getEmail())
+				.nickName(member.getNickName())
+				.profileImg(member.getProfileImg())
 				.build();
 				
 		return dto;
