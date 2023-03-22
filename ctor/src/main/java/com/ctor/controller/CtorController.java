@@ -61,7 +61,7 @@ public class CtorController {
 		}else {
 			System.out.println("회원가입 오류발생");
 		}
-		return "index";
+		return "redirect:/index";
 		
 	}
 }
