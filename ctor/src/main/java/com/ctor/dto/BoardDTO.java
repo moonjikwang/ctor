@@ -39,6 +39,7 @@ public class BoardDTO {
 	private int memberCount;	//모집된 참여자 수(신청 테이블에서 조회)
 	private String memEmail;	//멤버 PK(이하 멤버테이블에서 조회)
 	private String nickName;	//멤버 닉네임
+	private String name;
 	private String profileImg;	//멤버 프로필사진
 	
 }

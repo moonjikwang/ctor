@@ -96,28 +96,39 @@
 			</tbody>
 			
 		</table>
+				<div th:if="${session.userInfo != null}">
+		<div style="float: right;" th:if="${session.userInfo.getEmail() == dto.memEmail}">
+		<a class="btn btn-primary mb-3" th:href="@{/boardModify(boardno=${dto.boardno})}">수정하기</a>
+		<a class="btn btn-primary mb-3" th:href="@{/boardDelete(boardno=${dto.boardno})}">삭제하기</a>
+		</div>
+</div>
 		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
-		<table class="table">
-			<tbody>
-			<tr>
-				<th><img src='img/green.png' width="45px" height="45px" class="rounded-circle me-2"><br><small><strong>댓글쓴닉네임</strong></small><br>
-				<small>14분전</small></th>
-					<td><pre>여긴 댓글을 작성한 내용입니다 .안녕하세요 </pre></td>
-				</tr>
-				<tr>
-				<form>
-				
+		<form action="boardCommentWrite" method="POST">
+				<input type="hidden" name="bCommentBno" th:value="${dto.boardno}">
+				<input th:if="${session.userInfo != null}" type="hidden" name="bCommentWriterEmail" th:value="${session.userInfo.email}">
 		<div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
+  <textarea th:if="${session.userInfo != null}" name="bCommentText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
   <div>
-    <button type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo != null}"  type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
   </div>
 		</form>
+		<table class="table" style="margin-bottom: 50px;">
+			<th:block  th:each="comment : ${comments}">
+			<tr>
+				<td width="45px" class="text-center" style="border: none;"><img th:src="${comment.bCommentProfileImg}" width="45px" height="45px" class="rounded-circle me-2">
+				</td><td style="border: none;"><small><strong>[[${comment.bCommentNickName}]]</strong></small>
+				<br><small>[[${#temporals.format(comment.bCommentRegDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
-			</tbody>
+				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
+				<td colspan="2" style="border: none;">[[${comment.bCommentText}]]</td>
+				</tr>
+				</th:block>
 		</table>
+				
 		
 	</div>
 </div>
@@ -177,28 +188,39 @@
 			</tbody>
 			
 		</table>
+		<div th:if="${session.userInfo != null}">
+		<div style="float: right;" th:if="${session.userInfo.getEmail() == dto.memEmail}">
+		<a class="btn btn-primary mb-3" th:href="@{/boardModify(boardno=${dto.boardno})}">수정하기</a>
+		<a class="btn btn-primary mb-3" th:href="@{/boardDelete(boardno=${dto.boardno})}">삭제하기</a>
+		</div>
+</div>
 		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
-		<table class="table">
-			<tbody>
-			<tr>
-				<th><img src='img/green.png' width="45px" height="45px" class="rounded-circle me-2"><br><small><strong>댓글쓴닉네임</strong></small><br>
-				<small>14분전</small></th>
-					<td><pre>여긴 댓글을 작성한 내용입니다 .안녕하세요 </pre></td>
-				</tr>
-				<tr>
-				<form>
-				
+				<form action="boardCommentWrite" method="POST">
+				<input type="hidden" name="bCommentBno" th:value="${dto.boardno}">
+				<input th:if="${session.userInfo != null}" type="hidden" name="bCommentWriterEmail" th:value="${session.userInfo.email}">
 		<div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
+  <textarea th:if="${session.userInfo != null}" name="bCommentText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
   <div>
-    <button type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
+    <button th:if="${session.userInfo != null}"  type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
   </div>
 		</form>
+		<table class="table" style="margin-bottom: 50px;">
+			<th:block  th:each="comment : ${comments}">
+			<tr>
+				<td width="45px" class="text-center" style="border: none;"><img th:src="${comment.bCommentProfileImg}" width="45px" height="45px" class="rounded-circle me-2">
+				</td><td style="border: none;"><small><strong>[[${comment.bCommentNickName}]]</strong></small>
+				<br><small>[[${#temporals.format(comment.bCommentRegDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
-			</tbody>
+				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
+				<td colspan="2" style="border: none;">[[${comment.bCommentText}]]</td>
+				</tr>
+				</th:block>
 		</table>
+				
 		
 	</div>
 </div>

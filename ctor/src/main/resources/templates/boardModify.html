@@ -52,25 +52,25 @@ if(isNotMember){
 				<p class="fs-5 text-muted">프로젝트멤버, 스터디멤버를 구해보세요🙋‍♂️</p></div>
 			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="boardWrite" method="post">
-			<input type="hidden" name="groupMember" value="0">
+			<input type="hidden" name="boardno" th:value="${dto.boardno}">
 			<input th:if="${session.userInfo != null}" type="hidden" name="memEmail" th:value="${session.userInfo.getEmail()}">
 	<h5>👆기본정보를 입력해주세요.</h5>
 	<hr>
 	<b>모집 구분</b><br>
-	<input type="radio" class="btn-check" name="category" id="project" autocomplete="off" value="프로젝트" checked="checked">
+	<input type="radio" class="btn-check" name="category" id="project" autocomplete="off" value="프로젝트" th:checked="${(dto.category.equals('프로젝트'))}">
 	<label class="btn btn-outline-secondary" for="project" style="margin-bottom: 5px!important;">프로젝트</label>
-		<input type="radio" class="btn-check" name="category" id="study" value="스터디" autocomplete="off">
+		<input type="radio" class="btn-check" name="category" id="study" value="스터디" autocomplete="off" th:checked="${(dto.category.equals('스터디'))}">
 	<label class="btn btn-outline-secondary" for="study" style="margin-bottom: 5px!important;">스터디</label>
 	<br>
 	<b>모집 포지션</b><br>
 	<th:block th:each="job : ${job}">
-	<input type="checkbox" name="position" class="btn-check" th:value="${job.name}" th:id="${job.name}" autocomplete="off">
+	<input type="checkbox" name="position" class="btn-check" th:value="${job.name}" th:id="${job.name}" autocomplete="off" th:checked="${(dto.position.contains(job.name))}">
 <label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>
 <b>기술 스택</b><br>
 <th:block th:each="skill : ${skill}">
-	<input type="checkbox" name="techStack" class="btn-check" th:value="${skill.skill}" th:id="${skill.skill}" autocomplete="off">
+	<input type="checkbox" name="techStack" class="btn-check" th:value="${skill.skill}" th:id="${skill.skill}" autocomplete="off" th:checked="${(dto.techStack.contains(skill.skill))}">
 <label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>
@@ -78,35 +78,35 @@ if(isNotMember){
     <div class="col-sm-6 col-md-6">
       <b>모집 인원</b><br>
       <select class="form-select" name="groupMember" aria-label="Default select example" style="margin-bottom: 5px!important;">
-  <option value="0">인원 미정</option>
-  <option value="1">1명</option>
-  <option value="2">2명</option>
-  <option value="3">3명</option>
-  <option value="4">4명</option>
-  <option value="5">5명</option>
-  <option value="more">5명이상</option>
+  <option value="0" th:selected="${(dto.groupMember.equals('0'))}">인원 미정</option>
+  <option value="1" th:selected="${(dto.groupMember.equals('1'))}">1명</option>
+  <option value="2" th:selected="${(dto.groupMember.equals('2'))}">2명</option>
+  <option value="3" th:selected="${(dto.groupMember.equals('3'))}">3명</option>
+  <option value="4" th:selected="${(dto.groupMember.equals('4'))}">4명</option>
+  <option value="5" th:selected="${(dto.groupMember.equals('5'))}">5명</option>
+  <option value="more" th:selected="${(dto.groupMember.equals('more'))}">5명이상</option>
 </select>
     </div>
     <div class="col-sm-6 col-md-6">
       <b>진행 기간</b><br>
       <select class="form-select" name="duration" aria-label="Default select example" style="margin-bottom: 5px!important;">
-  <option value="기간 미정">기간 미정</option>
-  <option value="1주">1주</option>
-  <option value="2주">2주</option>
-  <option value="3주">3주</option>
-  <option value="4주">4주</option>
-  <option value="장기 프로젝트">장기</option>
+  <option value="기간 미정" th:selected="${(dto.duration.equals('기간 미정'))}">기간 미정</option>
+  <option value="1주" th:selected="${(dto.duration.equals('1주'))}">1주</option>
+  <option value="2주" th:selected="${(dto.duration.equals('2주'))}">2주</option>
+  <option value="3주" th:selected="${(dto.duration.equals('3주'))}">3주</option>
+  <option value="4주" th:selected="${(dto.duration.equals('4주'))}">4주</option>
+  <option value="장기 프로젝트" th:selected="${(dto.duration.equals('장기 프로젝트'))}">장기</option>
 </select>
     </div>
     </div>
     <div class="row">
     <div class="col-sm-6 col-md-6">
       <b>모집 마감</b><br>
-      <input type="date" name="closingDate" class="form-control" id="exampleFormControlInput1">
+      <input type="date" name="closingDate" class="form-control" id="exampleFormControlInput1" th:value="${dto.closingDate}">
     </div>
     <div class="col-sm-6 col-md-6">
       <b>연락 방법</b><br>
-      <input type="text" name="chatLink" class="form-control" id="exampleFormControlInput1" placeholder="카카오톡 오픈채팅 링크">
+      <input type="text" name="chatLink" class="form-control" id="exampleFormControlInput1" th:value="${dto.chatLink}" placeholder="카카오톡 오픈채팅 링크">
     </div>
     </div>
 
@@ -114,12 +114,12 @@ if(isNotMember){
 	<h5>✌소개글을 작성해주세요.</h5>
 	<hr>
 	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
-		placeholder="제목을 입력해주세요." required
+		placeholder="제목을 입력해주세요." th:value="${dto.title}" required
 	>
 	<div class="form-group">
 		<textarea id="editor" class="form-control" rows="20" name="text"
 			placeholder="내용을 입력해주세요" required
-		></textarea>
+		>[[${dto.text}]]</textarea>
 	</div>
 	<button type="submit" class="btn btn-primary mb-3" onclick="saveBoard();" style="margin-top: 15px; float: right;">제출하기</button>
 </form>
