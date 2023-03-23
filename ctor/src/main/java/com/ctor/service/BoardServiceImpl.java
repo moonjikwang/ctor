@@ -33,11 +33,20 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Long modify(BoardDTO dto) {
 
-		Board board = Board.builder().boardno(dto.getBoardno()).title(dto.getTitle()).text(dto.getText())
-				.category(dto.getCategory()).closingDate(dto.getClosingDate()).duration(dto.getDuration())
-				.groupMember(dto.getGroupMember()).position(dto.getPosition()).techStack(dto.getTechStack())
-				.hasTutor(dto.isHasTutor()).closed(dto.isClosed())
-				.member(new Member().builder().email(dto.getMemEmail()).build()).build();
+		Board board = Board.builder()
+				.boardno(dto.getBoardno())
+				.title(dto.getTitle())
+				.text(dto.getText())
+				.category(dto.getCategory())
+				.closingDate(dto.getClosingDate())
+				.duration(dto.getDuration())
+				.groupMember(dto.getGroupMember())
+				.position(dto.getPosition())
+				.techStack(dto.getTechStack())
+				.hasTutor(dto.isHasTutor())
+				.closed(dto.isClosed())
+				.member(new Member().builder().email(dto.getMemEmail()).build())
+				.build();
 
 		boardRepository.save(board);
 		return board.getBoardno();
@@ -141,12 +150,22 @@ public class BoardServiceImpl implements BoardService {
 		return boardDTO;
 	}
 
+	//조회수 세팅
 	@Override
 	public Long viewCount(Long boardno) {
 		Board board = boardRepository.findById(boardno).get();
 		board.setViewCount(board.getViewCount()+1);
 		boardRepository.save(board);
 		return null;
+	}
+	
+	//자동마감처리
+	@Override
+	public Long autoClose(Long boardno, boolean closing) {
+		Board board = boardRepository.findById(boardno).get();
+		board.setClosed(closing);
+		boardRepository.save(board);
+		return boardno;
 	}
 
 }
