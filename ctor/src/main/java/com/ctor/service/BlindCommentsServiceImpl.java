@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BlindCommentsImpl implements BlindCommentsService{
+public class BlindCommentsServiceImpl implements BlindCommentsService{
 
 	private final BlindCommentsRepository bCRepository;
 

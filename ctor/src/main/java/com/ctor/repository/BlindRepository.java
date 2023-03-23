@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.ctor.dto.BlindDTO;
 import com.ctor.entity.Blind;
 /**
  * 
@@ -66,11 +65,10 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			+ " WHERE w.nickName =:nickName")
 	Object getBlindByNickname(@Param("nickName") String nickName);
 	
-	//검색기능_1 제목으로 조회
-	List<BlindDTO> findByBlindTitleContaining(String keyword);
-	
+	//검색기능
+	List<Blind> findByBlindTitleContaining(String keyword);
 	
 	//검색 후 페이징 처리
-	Page<BlindDTO> findByBlindTitleContaining(String keyword, Pageable pageable);
+	Page<Blind> findByBlindTitleContaining(String keyword, Pageable pageable);
 	
 }
