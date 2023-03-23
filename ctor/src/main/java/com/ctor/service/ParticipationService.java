@@ -9,9 +9,10 @@ import com.ctor.entity.Participation;
 
 public interface ParticipationService {
 
-	Long participate(ParticipationDTO dto);	//참여신청하기(insert)
-	Long cancel(Long pno);	//신청 취소하기(delete)
+	boolean participate(ParticipationDTO dto);	//참여신청하기(insert): 신청 후 프로젝트 참여자 꽉 찼는지 여부를 리턴
+	boolean cancel(Long pno);	//신청 취소하기(delete)
 	
+	ParticipationDTO findByPno(Long pno);	//해당 신청 조회하기
 	List<ParticipationDTO> findByBno(Long bno);	//플젝,스터디로 조회하기
 	List<ParticipationDTO> findByEmail(String email);	//참여자로 조회하기
 	

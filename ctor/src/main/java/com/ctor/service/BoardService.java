@@ -18,6 +18,7 @@ public interface BoardService {
 	List<BoardDTO> findByTech(String tech);
 	List<BoardDTO> findByPosition(String position);
 	Long viewCount(Long boardno);
+	Long autoClose(Long boardno, boolean closing);
 	
 	default Board boardDTOtoEntity(BoardDTO dto) {
 		
