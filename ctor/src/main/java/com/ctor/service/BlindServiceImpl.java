@@ -1,5 +1,6 @@
 package com.ctor.service;
 
+import java.util.List;
 import java.util.function.Function;
 
 import javax.transaction.Transactional;
@@ -108,8 +109,24 @@ public class BlindServiceImpl implements BlindService{
 				.email(entity.getWriter().getEmail())
 				.nickName(entity.getWriter().getNickName())
 				.build()
-				,  Long.valueOf(commentsRepository.getCommentsByBlind(entity).size()));
+				,Long.valueOf(commentsRepository.getCommentsByBlind(entity).size()));
 		return dto;
+	}
+	
+	//검색 기능(제목)
+	@Transactional
+	@Override
+	public List<BlindDTO> searchBlinds(String keyword) {
+		List<BlindDTO> searchList = blindRepository.findByTitleContaining(keyword);
+		return searchList;
+	}
+
+	//검색 후 목록 처리
+	@Transactional
+	@Override
+	public Page<BlindDTO> searchBlindsList(String keyword, Pageable pageable) {
+		Page<BlindDTO> searchList = blindRepository.findByTitleContaining(keyword, pageable);
+		return searchList;
 	}
 	
 }

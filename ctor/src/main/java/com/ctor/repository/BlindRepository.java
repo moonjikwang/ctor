@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.ctor.dto.BlindDTO;
 import com.ctor.entity.Blind;
 /**
  * 
@@ -64,4 +65,11 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			+ " LEFT OUTER JOIN BlindComments c ON c.blind = b "
 			+ " WHERE w.nickName =:nickName")
 	Object getBlindByNickname(@Param("nickName") String nickName);
+	
+	//검색기능_1 제목으로 조회
+	List<BlindDTO> findByTitleContaining(String keyword);
+	
+	//검색 후 페이징 처리
+	Page<BlindDTO> findByTitleContaining(String keyword, Pageable pageable);
+	
 }
