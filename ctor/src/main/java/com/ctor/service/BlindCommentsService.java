@@ -13,8 +13,12 @@ public interface BlindCommentsService {
 	Long register(BlindCommentsDTO blindCommentsDTO);//댓글 등록
 	List<BlindCommentsDTO> getList(Long bno); 		 //특정 게시물의 댓글 목록
 	void modify(BlindCommentsDTO blindCommentsDTO);  //댓글 수정
+<<<<<<< HEAD
 	void remove(Long cno); 							 //댓글삭제
 	BlindCommentsDTO getDTO(Long cno);
+=======
+	void remove(Long cno); 							 //댓글 삭제
+>>>>>>> branch 'main' of https://github.com/moonjikwang/ctor.git
 	
 	//BlindCommentsDTO -> BlindComments객체로 변환
 	default BlindComments dtoToEntity(BlindCommentsDTO blindCommentsDTO) {
