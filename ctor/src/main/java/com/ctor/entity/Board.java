@@ -45,11 +45,17 @@ public class Board extends BaseEntity{
 	private boolean hasTutor;	//멘토링 있는지 여부
 	private boolean closed;		//마감여부
 	
-	
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
-	}
 	//멤버 ID
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;
+	
+	//조회수 카운트 변경
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+	
+	//자동마감 처리
+	public void setClosed(boolean closing) {
+		this.closed = closing;
+	}
 }
