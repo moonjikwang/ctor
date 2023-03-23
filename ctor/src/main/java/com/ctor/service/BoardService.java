@@ -65,6 +65,7 @@ public interface BoardService {
 				.memEmail(member.getEmail())
 				.nickName(member.getNickName())
 				.profileImg(member.getProfileImg())
+				.name(member.getName())
 				.build();
 				
 		return dto;

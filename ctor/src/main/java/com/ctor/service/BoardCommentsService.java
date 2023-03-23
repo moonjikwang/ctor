@@ -35,6 +35,7 @@ public interface BoardCommentsService {
 				.bCommentWriterEmail(boardComments.getMember().getEmail())
 				.bCommentNickName(boardComments.getMember().getNickName())
 				.bCommentProfileImg(boardComments.getMember().getProfileImg())
+				.name(boardComments.getMember().getName())
 				.build();
 		
 		return dto;

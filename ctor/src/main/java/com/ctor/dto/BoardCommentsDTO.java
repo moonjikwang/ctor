@@ -21,7 +21,7 @@ public class BoardCommentsDTO {
 	private String bCommentText; // 댓글내용
 	
 	private Long bCommentBno;	//원글번호(보드PK)
-	
+	private String name;
 	private String bCommentWriterEmail;	//멤버 PK(이하 멤버테이블에서 조회)
 	private String bCommentNickName;	//멤버 닉네임
 	private String bCommentProfileImg;	//멤버 프로필사진
