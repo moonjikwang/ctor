@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ctor.dto.ParticipationDTO;
+import com.ctor.entity.Board;
 import com.ctor.entity.Participation;
+import com.ctor.repository.BoardRepository;
 import com.ctor.repository.ParticipationRepository;
 
 @Service
@@ -16,19 +18,47 @@ public class ParticipationServiceImpl implements ParticipationService{
 	@Autowired
 	private ParticipationRepository pRepository;
 	
-	//참여신청하기(insert)
+	//참여신청하기(insert) 
 	@Override
-	public Long participate(ParticipationDTO dto) {
+	public boolean participate(ParticipationDTO dto) {
 		Participation p = dtoToEntity(dto);
 		pRepository.save(p);
-		return p.getPNo();
+		
+		int groupMem = p.getBoard().getGroupMember();
+		int memberCnt = pRepository.getMemberCount(dto.getPBno());
+		boolean closing = false;	//기본적으로 마감 전
+	
+		if (memberCnt >= groupMem) {
+			closing = true;			//인원이 넘으면 마감
+		}
+			
+		return closing;
 	}
 
 	//신청 취소하기(delete)
 	@Override
-	public Long cancel(Long pno) {
+	public boolean cancel(Long pno) {
+		
+		Participation p = pRepository.findById(pno).get();
+		int groupMem = p.getBoard().getGroupMember();
+		int memberCnt = pRepository.getMemberCount(p.getBoard().getBoardno()) -1;
+		
+		boolean closing = false;	//기본적으로 마감 전
+	
+		if (memberCnt >= groupMem) {
+			closing = true;			//인원이 넘으면 마감
+		}
+	
 		pRepository.deleteById(pno);
-		return pno;
+		
+		return closing;
+	}
+	
+	//해당 신청 조회하기
+	@Override
+	public ParticipationDTO findByPno(Long pno) {
+		ParticipationDTO dto = entityToDTO(pRepository.findById(pno).get());
+		return dto;
 	}
 
 	//플젝,스터디로 조회하기
@@ -58,5 +88,9 @@ public class ParticipationServiceImpl implements ParticipationService{
 		}
 		return dtoList;
 	}
+
+	
+
+	
 
 }

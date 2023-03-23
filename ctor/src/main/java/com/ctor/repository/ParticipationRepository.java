@@ -16,7 +16,7 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 				+ "LEFT JOIN FETCH p.member "
 				+ "LEFT JOIN FETCH p.board "
 				+ "WHERE p.board.boardno =:bno "
-				+ "ORDER BY p.regDate DESC")
+				+ "ORDER BY p.regDate")
 		List<Participation> getByBno(@Param("bno")Long bno);
 		
 	//회원이 참여중인 내용을 조회
@@ -28,5 +28,10 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 				+ "ORDER BY p.regDate DESC")
 		List<Participation> getByEmail(@Param("email")String email);
 	
+	//한 프로젝트에 몇명이 참여중인지 조회
+		@Query(value = "SELECT COUNT(*) "
+				+ "FROM Participation p "
+				+ "WHERE p.board.boardno =:bno ")
+		int getMemberCount(@Param("bno")Long bno);
 		
 }
