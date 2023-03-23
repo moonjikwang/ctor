@@ -112,20 +112,20 @@ public class BlindServiceImpl implements BlindService{
 				,Long.valueOf(commentsRepository.getCommentsByBlind(entity).size()));
 		return dto;
 	}
-	
+
 	//검색 기능(제목)
 	@Transactional
 	@Override
-	public List<BlindDTO> searchBlinds(String keyword) {
-		List<BlindDTO> searchList = blindRepository.findByBlindTitleContaining(keyword);
+	public List<Blind> searchBlinds(String keyword) {
+		List<Blind> searchList = blindRepository.findByBlindTitleContaining(keyword);
 		return searchList;
 	}
 
 	//검색 후 목록 처리
 	@Transactional
 	@Override
-	public Page<BlindDTO> searchBlindsList(String keyword, Pageable pageable) {
-		Page<BlindDTO> searchList = blindRepository.findByBlindTitleContaining(keyword, pageable);
+	public Page<Blind> searchBlindsList(String keyword, Pageable pageable) {
+		Page<Blind> searchList = blindRepository.findByBlindTitleContaining(keyword, pageable);
 		return searchList;
 	}
 	

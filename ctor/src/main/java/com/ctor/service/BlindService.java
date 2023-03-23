@@ -10,7 +10,6 @@ import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.dto.BlindPageResultDTO;
 import com.ctor.entity.Blind;
 import com.ctor.entity.Member;
-import com.ctor.repository.BlindRepository;
 
 /**
  * 
@@ -40,8 +39,8 @@ public interface BlindService {
 	BlindDTO findByNickname(String nickName);
 	void removeWithComments(Long blind_no);
 	void modify(BlindDTO blindDTO);
-	List<BlindDTO> searchBlinds(String keyword);
-	Page<BlindDTO> searchBlindsList(String keyword, Pageable pageable);
+	List<Blind> searchBlinds(String keyword);
+	Page<Blind> searchBlindsList(String keyword, Pageable pageable);
 	
 	default Blind dtoToEntity(BlindDTO dto) {
 		//실제 DB에 있는 email 사용

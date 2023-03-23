@@ -38,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ctor.dto.BlindCommentsDTO;
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
+import com.ctor.entity.Blind;
 import com.ctor.service.BlindCommentsService;
 import com.ctor.service.BlindService;
 
@@ -162,7 +163,7 @@ public class BlindController {
 	//검색 기능
 	@GetMapping("blindsearch")
 	public String search(String keyword, Model model) {
-		List<BlindDTO> searchList = blindService.searchBlinds(keyword);
+		List<Blind> searchList = blindService.searchBlinds(keyword);
 		
 		model.addAttribute("searchList", searchList);
 		
@@ -172,7 +173,7 @@ public class BlindController {
 	//검색 후 페이징 처리
 //	@GetMapping("blindsearch")
 //	public String search(String keyword, Model model, @PageableDefault(sort = "nickName", direction = Sort.Direction.DESC) Pageable pageable) {
-//		Page<BlindDTO> searchList = blindService.searchBlindsList(keyword, pageable);
+//		Page<Blind> searchList = blindService.searchBlindsList(keyword, pageable);
 //		
 //		model.addAttribute("searchList", searchList);
 //		model.addAttribute("keyword", keyword);
