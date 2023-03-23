@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -164,5 +166,7 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 		kakaoRepository.save(member);
 		return member.getEmail();
 	}
+
+	
 
 }

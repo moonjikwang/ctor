@@ -21,5 +21,6 @@ public class Member extends BaseEntity{
 	private String nickName;
 	private String grade;
 	private String subject;
+	private String introduce;
 	private String profileImg;
 }

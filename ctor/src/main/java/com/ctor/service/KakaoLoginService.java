@@ -8,7 +8,6 @@ import com.ctor.entity.Member;
 public interface KakaoLoginService {
 
 	String getAccessToken(String authorize_code) throws Throwable;
-
 	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
 	
 	MemberDTO findByEmail(String email);
@@ -22,6 +21,7 @@ public interface KakaoLoginService {
 		.grade(member.getGrade())
 		.subject(member.getSubject())
 		.nickName(member.getNickName())
+		.introduce(member.getIntroduce())
 		.profileImg(member.getProfileImg())
 		.modDate(member.getModDate())
 		.regDate(member.getRegDate())
@@ -34,6 +34,7 @@ public interface KakaoLoginService {
 		.name(dto.getName())
 		.grade(dto.getGrade())
 		.nickName(dto.getNickName())
+		.introduce(dto.getIntroduce())
 		.subject(dto.getSubject())
 		.profileImg(dto.getProfileImg())
 		.build();

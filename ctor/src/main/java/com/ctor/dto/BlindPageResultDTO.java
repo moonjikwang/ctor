@@ -69,9 +69,9 @@ public class BlindPageResultDTO<DTO, EN> {
 		
 		//DB에 있는 목록을 가져와 페이징 index를 생성한다.
 		//
-		int tempEnd = (int)(Math.ceil(page/10.0)) * 10; 	//temp end page(가변의 endPage)
+		int tempEnd = (int)(Math.ceil(page/5.0)) * 5; 	//temp end page(가변의 endPage)
 		
-		start = tempEnd - 9; 								//시작은 1 -> -9
+		start = tempEnd - 4; 								//시작은 1 -> -9
 		
 		prev  = start > 1;	 								//이전페이지를 표현할지 여부
 		
