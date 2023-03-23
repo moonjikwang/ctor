@@ -67,9 +67,10 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 	Object getBlindByNickname(@Param("nickName") String nickName);
 	
 	//검색기능_1 제목으로 조회
-	List<BlindDTO> findByTitleContaining(String keyword);
+	List<BlindDTO> findByBlindTitleContaining(String keyword);
+	
 	
 	//검색 후 페이징 처리
-	Page<BlindDTO> findByTitleContaining(String keyword, Pageable pageable);
+	Page<BlindDTO> findByBlindTitleContaining(String keyword, Pageable pageable);
 	
 }
