@@ -17,6 +17,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -154,6 +158,30 @@ public class BlindController {
             } catch(IOException e) { e.printStackTrace(); }
         }
     }
-
+	
+	//검색 기능
+	@GetMapping("blindsearch")
+	public String search(String keyword, Model model) {
+		List<BlindDTO> searchList = blindService.searchBlinds(keyword);
+		
+		model.addAttribute("searchList", searchList);
+		
+		return "blindsearch";
 	}
+	
+	//검색 후 페이징 처리
+	@GetMapping("blindsearch")
+	public String search(String keyword, Model model, @PageableDefault(sort = "nickName", direction = Sort.Direction.DESC) Pageable pageable) {
+		Page<BlindDTO> searchList = blindService.searchBlindsList(keyword, pageable);
+		
+		model.addAttribute("searchList", searchList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
+		model.addAttribute("next", pageable.next().getPageNumber());
+		model.addAttribute("hasNext", searchList.hasNext());
+		model.addAttribute("hasPrev", searchList.hasPrevious());
+		
+		return "blindsearch";
+	}
+}
 	    

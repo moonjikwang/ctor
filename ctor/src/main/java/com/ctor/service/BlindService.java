@@ -1,10 +1,17 @@
 package com.ctor.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.dto.BlindPageResultDTO;
 import com.ctor.entity.Blind;
 import com.ctor.entity.Member;
+import com.ctor.repository.BlindRepository;
+
 /**
  * 
  * @백승연
@@ -22,7 +29,8 @@ import com.ctor.entity.Member;
  * 	  BlindServiceImpl의 findByNickname()를 이용해 처리
  * 
  * 4. 글 삭제 : removeWithComments()
- * 5. 글 수정
+ * 5. 글 수정 : modify()
+ * 6. 검색기능
  */
 public interface BlindService {
 	
@@ -32,6 +40,8 @@ public interface BlindService {
 	BlindDTO findByNickname(String nickName);
 	void removeWithComments(Long blind_no);
 	void modify(BlindDTO blindDTO);
+	List<BlindDTO> searchBlinds(String keyword);
+	Page<BlindDTO> searchBlindsList(String keyword, Pageable pageable);
 	
 	default Blind dtoToEntity(BlindDTO dto) {
 		//실제 DB에 있는 email 사용
