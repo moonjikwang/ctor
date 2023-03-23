@@ -168,4 +168,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardno;
 	}
 
+	@Override
+	public List<BoardDTO> findMyProject(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

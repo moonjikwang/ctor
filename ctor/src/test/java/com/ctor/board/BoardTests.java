@@ -126,9 +126,9 @@ public class BoardTests {
 //	public void delTest() {
 //		boardService.delete(3l);
 //	}
-	@Test
-	@Transactional
-	public void findTest() {
+//	@Test
+//	@Transactional
+//	public void findTest() {
 	//레포지토리 테스트
 //		List<Object[]> result = boardRepository.getBoardByTech("JAVA");
 //		result.forEach(arr->{
@@ -146,11 +146,11 @@ public class BoardTests {
 //		});
 		
 	//서비스 테스트
-		List<BoardDTO> dtoList =
-		boardService.findByTech("MariaDB");
-		System.out.println(dtoList);
-		dtoList.forEach(b->System.out.println(b));
-	}
+//		List<BoardDTO> dtoList =
+//		boardService.findByTech("MariaDB");
+//		System.out.println(dtoList);
+//		dtoList.forEach(b->System.out.println(b));
+//	}
 //	@Test
 //	public void findTest() {
 //		List<BoardDTO> dtoList =
@@ -181,5 +181,12 @@ public class BoardTests {
 //		dtoList.forEach(dto->System.out.println(dto));
 //	}
 //	
+	@Test
+	public void countTest() {
+		List<Object[]> result = boardRepository.getMyStudy("aaa@green.com");
+		result.forEach(arr->{
+			System.out.println((Board) arr[0]);
+		});
+	}
 	
 }

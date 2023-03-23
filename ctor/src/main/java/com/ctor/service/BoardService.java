@@ -14,11 +14,15 @@ public interface BoardService {
 	
 	List<BoardDTO> findAllBoards();
 	BoardDTO findByBno(Long boardno);
-	List<BoardDTO> findByEmail(String email);
-	List<BoardDTO> findByTech(String tech);
-	List<BoardDTO> findByPosition(String position);
+	List<BoardDTO> findByEmail(String email);	//작성자 기준으로 조회
+	List<BoardDTO> findByTech(String tech);		//기술스택에 tech가 있는 보드 조회
+	List<BoardDTO> findByPosition(String position);	//직군에 position가 있는 보드 조회
 	Long viewCount(Long boardno);
 	Long autoClose(Long boardno, boolean closing);
+	
+	List<BoardDTO> findMyProject(String email);	//개설한 프로젝트만 조회
+	
+	
 	
 	default Board boardDTOtoEntity(BoardDTO dto) {
 		
