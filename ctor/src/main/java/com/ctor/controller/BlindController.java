@@ -170,18 +170,18 @@ public class BlindController {
 	}
 	
 	//검색 후 페이징 처리
-	@GetMapping("blindsearch")
-	public String search(String keyword, Model model, @PageableDefault(sort = "nickName", direction = Sort.Direction.DESC) Pageable pageable) {
-		Page<BlindDTO> searchList = blindService.searchBlindsList(keyword, pageable);
-		
-		model.addAttribute("searchList", searchList);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
-		model.addAttribute("next", pageable.next().getPageNumber());
-		model.addAttribute("hasNext", searchList.hasNext());
-		model.addAttribute("hasPrev", searchList.hasPrevious());
-		
-		return "blindsearch";
-	}
+//	@GetMapping("blindsearch")
+//	public String search(String keyword, Model model, @PageableDefault(sort = "nickName", direction = Sort.Direction.DESC) Pageable pageable) {
+//		Page<BlindDTO> searchList = blindService.searchBlindsList(keyword, pageable);
+//		
+//		model.addAttribute("searchList", searchList);
+//		model.addAttribute("keyword", keyword);
+//		model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
+//		model.addAttribute("next", pageable.next().getPageNumber());
+//		model.addAttribute("hasNext", searchList.hasNext());
+//		model.addAttribute("hasPrev", searchList.hasPrevious());
+//		
+//		return "blindsearch";
+//	}
 }
 	    

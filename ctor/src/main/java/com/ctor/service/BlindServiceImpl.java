@@ -117,7 +117,7 @@ public class BlindServiceImpl implements BlindService{
 	@Transactional
 	@Override
 	public List<BlindDTO> searchBlinds(String keyword) {
-		List<BlindDTO> searchList = blindRepository.findByTitleContaining(keyword);
+		List<BlindDTO> searchList = blindRepository.findByBlindTitleContaining(keyword);
 		return searchList;
 	}
 
@@ -125,7 +125,7 @@ public class BlindServiceImpl implements BlindService{
 	@Transactional
 	@Override
 	public Page<BlindDTO> searchBlindsList(String keyword, Pageable pageable) {
-		Page<BlindDTO> searchList = blindRepository.findByTitleContaining(keyword, pageable);
+		Page<BlindDTO> searchList = blindRepository.findByBlindTitleContaining(keyword, pageable);
 		return searchList;
 	}
 	
