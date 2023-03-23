@@ -16,6 +16,7 @@ public class MemberDTO {
 	private String name;
 	private String grade;
 	private String subject;
+	private String introduce;
 	private String nickName;
 	private String profileImg;
 	private LocalDateTime regDate,modDate;

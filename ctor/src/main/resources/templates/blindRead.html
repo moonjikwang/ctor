@@ -77,7 +77,9 @@
 		<div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
   <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
-  <textarea th:if="${session.userInfo != null}" name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea th:if="${session.userInfo != null}" name="text" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+  <textarea th:if="${session.userInfo != null && commentDTO != null}" name="text" class="form-control" id="exampleFormControlTextarea12" th:value="commentDTO.blindCtext" rows="3"></textarea>
+
 </div>
   <div>
     <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
@@ -89,6 +91,10 @@
 			<tr>
 				<td width="45px" class="text-center" style="border: none;"><img src="img/green.png" width="45px" height="45px" class="rounded-circle me-2">
 				</td><td style="border: none;"><small><strong>[[${comment.replyer}]]</strong></small>
+				<small style="float: right;" th:if="${dto.writer == comment.email}"> 
+				<a th:href="@{/blindCommentRemove(cno=${comment.cno}, bno=${dto.bno})}">삭제</a>
+				
+				</small>
 				<br><small>[[${#temporals.format(comment.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
 				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
@@ -128,14 +134,14 @@
 </form>
 <ul class="pagination h-100 justify-content-center align-items-center">
 
-			<li class="page-item" th:if="${pageResObj.prev}"><a
-				th:href="@{blind(page=${pageResObj.start-1})}">Previews</a></li>
+			<li class="page-item" th:if="${pageResObj.prev}"><a class="page-link"
+				th:href="@{blind(page=${pageResObj.start-1})}" style="border: none; text-decoration: none;">···</a></li>
 			<li class="page-item"
 				th:class="${pageResObj.page==page?'page-item active':''}"
 				th:each="page : ${pageResObj.pageList}"><a class="page-link"
-				th:href="@{blind(page=${page})}">[[${page}]]</a></li>
-			<li class="page-item" th:if="${pageResObj.next}"><a
-				th:href="@{blind(page=${pageResObj.end +1})}">Next</a></li>
+				th:href="@{blind(page=${page})}" style="border: none;">[[${page}]]</a></li>
+			<li class="page-item" th:if="${pageResObj.next}"><a class="page-link"
+				th:href="@{blind(page=${pageResObj.end +1})}" style="border: none; text-decoration: none;">···</a></li>
 		</ul>
 </fieldset>
 
@@ -220,6 +226,17 @@
 <form action="blindWrite" method="get" style="float: right;">
 	<button type="submit" class="btn btn-secondary mb-3">새글쓰기</button>
 </form>
+<ul class="pagination h-100 justify-content-center align-items-center">
+
+			<li class="page-item" th:if="${pageResObj.prev}"><a class="page-link"
+				th:href="@{blind(page=${pageResObj.start-1})}" style="border: none; text-decoration: none;">···</a></li>
+			<li class="page-item"
+				th:class="${pageResObj.page==page?'page-item active':''}"
+				th:each="page : ${pageResObj.pageList}"><a class="page-link"
+				th:href="@{blind(page=${page})}" style="border: none;">[[${page}]]</a></li>
+			<li class="page-item" th:if="${pageResObj.next}"><a class="page-link"
+				th:href="@{blind(page=${pageResObj.end +1})}" style="border: none; text-decoration: none;">···</a></li>
+		</ul>
 </fieldset>
 			
 			<th:block th:replace="fragments/modal :: modalFragment"></th:block>

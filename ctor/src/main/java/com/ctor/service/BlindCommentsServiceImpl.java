@@ -44,5 +44,10 @@ public class BlindCommentsServiceImpl implements BlindCommentsService{
 	public void remove(Long cno) {
 		bCRepository.deleteById(cno);
 	}
+
+	@Override
+	public BlindCommentsDTO getDTO(Long cno) {
+		return entityToDTO(bCRepository.findById(cno).get());
+	}
 	
 }

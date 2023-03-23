@@ -92,6 +92,12 @@ public class BlindController {
 		redirectAttributes.addAttribute("bno",bno);
 		return "redirect:blindRead";
 	}
+	@GetMapping("blindCommentRemove")
+	public String blindCommentRemove(Long cno,Long bno,RedirectAttributes redirectAttributes) {
+		blindCommentsService.remove(cno);
+		redirectAttributes.addAttribute("bno",bno);
+		return "redirect:blindRead";
+	}
 	
 	@PostMapping("fileUpload")
     public void postImage(MultipartFile upload, HttpServletResponse res, HttpServletRequest req){
