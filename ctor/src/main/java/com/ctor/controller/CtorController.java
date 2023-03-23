@@ -1,6 +1,8 @@
 package com.ctor.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +37,8 @@ public class CtorController {
 		return "redirect:/index";
 	}
 	@GetMapping("/index")
-	public void index(Model model) {
+	public void index(Model model, String[] skillChk) {
+		
 		List<BoardDTO> dto = boardService.findAllBoards();
 		List<SkillDTO> skillList = skillService.getList();
 		
@@ -43,8 +46,22 @@ public class CtorController {
 		for(SkillDTO skill : skillList) {
 			skillMap.put(skill.getSkill(), skill.getColor());
 		}
+		
+		//선택한 스킬이 없으면 모든 스킬 반환
+		if(skillChk == null || skillChk.length == 0) {
+			String[] allSkills = new String[skillList.size()];
+			for (int i = 0; i < allSkills.length; i++) {
+				allSkills[i] = skillList.get(i).getSkill(); 
+				System.out.println(allSkills[i]);
+			}
+			skillChk = allSkills;
+		}
 		model.addAttribute("dto",dto);
 		model.addAttribute("skillMap",skillMap);
+		model.addAttribute("skillList",skillList);
+		model.addAttribute("ChkdSkill",skillChk);
+		
+		System.out.println("skillChk : "+Arrays.toString(skillChk));
 	}
 	@GetMapping("/changelog")
 	public void changelog(Model model) {
@@ -68,6 +85,10 @@ public class CtorController {
 			System.out.println("회원가입 오류발생");
 		}
 		return "redirect:/index";
+		
+	}
+	@GetMapping("/index/tab")
+	public void tab(Model model) {
 		
 	}
 }

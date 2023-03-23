@@ -60,5 +60,26 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 				+ "WHERE b.position like %:position% "
 				+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
 		List<Object[]> getBoardByPosition(@Param("position")String position);
-
+		
+	//회원이 개설한 프로젝트 조회
+		@Query(value = "SELECT b, m, COUNT(DISTINCT c), COUNT(DISTINCT p) "
+				+ "FROM Board b "
+				+ "left join b.member m "
+				+ "left join BoardComments c ON c.board = b "
+				+ "left join Participation p ON p.board = b "
+				+ "WHERE b.category = '프로젝트' "
+				+ "AND b.member.email =:email "
+				+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
+		List<Object[]> getMyProject(@Param("email")String email);
+		
+	//회원이 개설한 스터디 조회
+		@Query(value = "SELECT b, m, COUNT(DISTINCT c), COUNT(DISTINCT p) "
+				+ "FROM Board b "
+				+ "left join b.member m "
+				+ "left join BoardComments c ON c.board = b "
+				+ "left join Participation p ON p.board = b "
+				+ "WHERE b.category = '스터디' "
+				+ "AND b.member.email =:email "
+				+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
+		List<Object[]> getMyStudy(@Param("email")String email);
 }

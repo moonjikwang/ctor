@@ -72,20 +72,9 @@ public class BoardController {
 		redirectAttributes.addAttribute("boardno",bno);
 		return "redirect:boardRead";
 	}
-    
-	@GetMapping("board/NewFile")
-	public String newFile(Model model) {
-		model.addAttribute("result", service.findAllBoards());
-
-		return "board/NewFile";
-	}
 	
-	@GetMapping("board/board")
-	public String board(Model model) {
-		model.addAttribute("result", service.findAllBoards());
-				
-		return "board/board";
-	}
+    
+
 	
 	
 	
