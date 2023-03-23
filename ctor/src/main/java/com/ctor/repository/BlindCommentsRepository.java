@@ -11,6 +11,7 @@ import com.ctor.entity.Blind;
 import com.ctor.entity.BlindComments;
 
 public interface BlindCommentsRepository extends JpaRepository<BlindComments, Long>{
+	//Blind게시물 삭제시 댓글 삭제
 	@Modifying
 	@Query("delete from BlindComments c where c.blind.bno =:bno ")
 	void deleteBybno(@Param("bno")Long bno);
