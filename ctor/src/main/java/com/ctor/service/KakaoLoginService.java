@@ -9,7 +9,7 @@ public interface KakaoLoginService {
 
 	String getAccessToken(String authorize_code) throws Throwable;
 	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
-	
+	MemberDTO login(String email,String password);
 	MemberDTO findByEmail(String email);
 	
 	String register(MemberDTO dto);
@@ -20,6 +20,7 @@ public interface KakaoLoginService {
 		.name(member.getName())
 		.grade(member.getGrade())
 		.subject(member.getSubject())
+		.password(member.getPassword())
 		.nickName(member.getNickName())
 		.introduce(member.getIntroduce())
 		.profileImg(member.getProfileImg())
@@ -35,6 +36,7 @@ public interface KakaoLoginService {
 		.grade(dto.getGrade())
 		.nickName(dto.getNickName())
 		.introduce(dto.getIntroduce())
+		.password(dto.getPassword())
 		.subject(dto.getSubject())
 		.profileImg(dto.getProfileImg())
 		.build();

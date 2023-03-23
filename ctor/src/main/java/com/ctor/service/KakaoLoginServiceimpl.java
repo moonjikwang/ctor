@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -165,6 +166,20 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 		Member member = dtoToEntity(dto);
 		kakaoRepository.save(member);
 		return member.getEmail();
+	}
+
+	@Override
+	public MemberDTO login(String email, String password) {
+		Optional<Member> res = kakaoRepository.findById(email);
+		if(res.isEmpty()) {
+			return null;
+		}else {
+			if(res.get().getPassword().equals(password)) {
+				return entityToDto(res.get());
+			}else {
+				return null;
+			}
+		}
 	}
 
 	
