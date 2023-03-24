@@ -85,6 +85,7 @@ public class CtorController {
 		model.addAttribute("list",committer);
 	}
 	
+
 	@GetMapping("/myPage")
 	public void myPage(String email,Model model) {
 		MemberDTO dto = kakaoLoginService.findByEmail(email);
@@ -128,6 +129,7 @@ public class CtorController {
 		System.out.println("chkdSkill : "+chkdSkill);
 		System.out.println(session.getAttribute("chkdSkill"));
 		return "redirect:/index";
+
 		
 	}
 }

@@ -38,6 +38,7 @@ public interface BlindCommentsService {
 				.profileImg(blindComments.getWriter().getProfileImg())
 				.cno(blindComments.getCno())
 				.text(blindComments.getBlindCtext())
+				.email(blindComments.getWriter().getEmail())
 				.replyer(blindComments.getBlindCreplyer())
 				.regDate(blindComments.getRegDate())
 				.modDate(blindComments.getModDate())

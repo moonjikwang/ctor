@@ -20,6 +20,7 @@ public class ParticipationDTO {
 	private LocalDateTime pModDate;	//수정일
 	
 	private Long pBno;	//신청한 프로젝트/스터디
+	private String title;
 	private String pMemEmail;	//멤버 PK(이하 멤버테이블에서 조회)
 	private String pNickName;	//멤버 닉네임
 	private String pProfileImg;	//멤버 프로필사진
