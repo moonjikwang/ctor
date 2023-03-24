@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ctor.dto.SkillDTO;
 import com.ctor.entity.Skill;
+import com.ctor.entity.SkillLevel;
 
 public interface SkillService {
 

@@ -29,7 +29,8 @@ import com.ctor.entity.Member;
  * 
  * 4. 글 삭제 : removeWithComments()
  * 5. 글 수정 : modify()
- * 6. 검색기능
+ * 6. 검색기능과 검색한글 목록화 : searchBlinds(), searchBlindsList()
+ * 7. 사용자가 작성한 게시글 조회
  */
 public interface BlindService {
 	
@@ -41,6 +42,7 @@ public interface BlindService {
 	void modify(BlindDTO blindDTO);
 	List<Blind> searchBlinds(String keyword);
 	Page<Blind> searchBlindsList(String keyword, Pageable pageable);
+	List<Object[]> findMyBlindPost(String nickName); 
 	
 	default Blind dtoToEntity(BlindDTO dto) {
 		//실제 DB에 있는 email 사용
@@ -70,4 +72,5 @@ public interface BlindService {
 		
 		return blindDTO;
 	}
+	
 }
