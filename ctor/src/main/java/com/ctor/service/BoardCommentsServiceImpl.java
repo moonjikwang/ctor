@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ctor.dto.BoardCommentsDTO;
+import com.ctor.dto.BoardDTO;
 import com.ctor.entity.Board;
 import com.ctor.entity.BoardComments;
 import com.ctor.entity.Member;
@@ -56,6 +57,19 @@ public class BoardCommentsServiceImpl implements BoardCommentsService {
 			}
 		}
 		
+		return dtoList;
+	}
+
+	@Override
+	public List<BoardCommentsDTO> findByEmail(String email) {
+		List<BoardComments> result = commentsRepository.findByMember(Member.builder().email(email).build());
+
+		List<BoardCommentsDTO> dtoList = new ArrayList<>();
+
+		for (int i = 0; i < result.size(); i++) {
+			dtoList.add(entityToDTO(result.get(i)));
+
+		}
 		return dtoList;
 	}
 	

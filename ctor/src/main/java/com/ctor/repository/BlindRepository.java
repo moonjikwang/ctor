@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ctor.entity.Blind;
+import com.ctor.entity.Participation;
 /**
  * 
  * @백승연

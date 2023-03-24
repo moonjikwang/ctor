@@ -128,5 +128,5 @@ public class BlindServiceImpl implements BlindService{
 		Page<Blind> searchList = blindRepository.findByBlindTitleContaining(keyword, pageable);
 		return searchList;
 	}
-	
+
 }

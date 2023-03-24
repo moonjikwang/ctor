@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ctor.entity.BoardComments;
+import com.ctor.entity.Member;
 
 public interface BoardCommentsRepository extends JpaRepository<BoardComments, Long> {
 
@@ -27,4 +28,5 @@ public interface BoardCommentsRepository extends JpaRepository<BoardComments, Lo
 			+ "ORDER BY c.regDate DESC")
 	List<BoardComments> getByBno(@Param("bno")Long bno);
 	
+	List<BoardComments> findByMember(Member member);
 }
