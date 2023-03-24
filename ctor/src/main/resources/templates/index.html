@@ -97,7 +97,7 @@
 						 <input th:if="${chkdSkill == null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
 						required="required" onclick="submitForm()">
 					<label class="btn btn-outline-light" th:for="${skillTab.skill}"  style="height:3rem; margin-bottom: 5px!important; border-radius: 25px; "><span style="line-height:2rem;">
-					<img th:src="${'img/'+skillTab.skill+'.png'}" width="25"
+					<img th:src="${'img/'+#strings.toLowerCase(skillTab.skill)+'.png'}" width="25"
 							height="25" class="rounded-circle me-2">
 					[[${skillTab.skill}]]</span></label>
 					</th:block>
