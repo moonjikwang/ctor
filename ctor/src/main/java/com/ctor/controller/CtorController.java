@@ -1,5 +1,6 @@
 package com.ctor.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.MemberDTO;
@@ -37,8 +39,8 @@ public class CtorController {
 		return "redirect:/index";
 	}
 	@GetMapping("/index")
-	public void index(Model model, String[] skillChk) {
-		
+	public void index(Model model, HttpServletRequest request) {
+		System.out.println("인덱스 get실행");
 		List<BoardDTO> dto = boardService.findAllBoards();
 		List<SkillDTO> skillList = skillService.getList();
 		
@@ -47,21 +49,35 @@ public class CtorController {
 			skillMap.put(skill.getSkill(), skill.getColor());
 		}
 		
+		HttpSession session = request.getSession();
+		
+		System.out.println("session.getAttribute('chkdSkill')");
+		System.out.println(session.getAttribute("chkdSkill"));
+		
 		//선택한 스킬이 없으면 모든 스킬 반환
-		if(skillChk == null || skillChk.length == 0) {
-			String[] allSkills = new String[skillList.size()];
-			for (int i = 0; i < allSkills.length; i++) {
-				allSkills[i] = skillList.get(i).getSkill(); 
-				System.out.println(allSkills[i]);
+		if(session.getAttribute("chkdSkill") == null) {
+			System.out.println("선택된 스킬 없음");
+			List<String> allSkills = new ArrayList();
+			for (int i = 0; i < skillList.size(); i++) {
+				allSkills.add(skillList.get(i).getSkill()); 
+				System.out.println(allSkills.get(i));
 			}
-			skillChk = allSkills;
+			session.setAttribute("chkdSkill", allSkills);
+		}else {
+			List<String> skillChk = new ArrayList<>();
+			for(int i = 0; i < ((List<String>)session.getAttribute("chkdSkill")).size(); i++) {
+				skillChk.add(((List<String>)session.getAttribute("chkdSkill")).get(i));
+			}
+			session.setAttribute("chkdSkill", skillChk);
+			System.out.println("skillChk");
+			System.out.println(skillChk);
 		}
+		
+		
 		model.addAttribute("dto",dto);
 		model.addAttribute("skillMap",skillMap);
 		model.addAttribute("skillList",skillList);
-		model.addAttribute("ChkdSkill",skillChk);
 		
-		System.out.println("skillChk : "+Arrays.toString(skillChk));
 	}
 	@GetMapping("/changelog")
 	public void changelog(Model model) {
@@ -70,8 +86,50 @@ public class CtorController {
 	}
 	
 
-	@GetMapping("/index/tab")
-	public void tab(Model model) {
+	@GetMapping("/myPage")
+	public void myPage(String email,Model model) {
+		MemberDTO dto = kakaoLoginService.findByEmail(email);
+		model.addAttribute("dto",dto);
+	}
+	@PostMapping("/register")
+	public String register(MemberDTO dto,HttpServletRequest request) {
+		String email = kakaoLoginService.register(dto);
+		if(email!= null) {
+			System.out.println(email + "회원 가입완료");
+			HttpSession session = request.getSession();
+			session.setAttribute("userInfo", dto);
+		}else {
+			System.out.println("회원가입 오류발생");
+		}
+		return "redirect:/index";
+		
+	}
+	/**
+	 * 
+	 * 이하 내용을 스크립트에서 처리하도록 하고 삭제예정
+	 */
+	@PostMapping("/tab")
+	public String tab(@RequestParam(value = "skillChk", required = false) List<String> selectedSkills, HttpServletRequest request) {
+		System.out.println("post 실행");
+		List<SkillDTO> skillList = skillService.getList();
+		List<String> chkdSkill = selectedSkills;
+		//선택한 스킬이 없으면 모든 스킬 반환
+		if(selectedSkills == null || selectedSkills.size() == 0) {
+			List<String> allSkills = new ArrayList();
+			for (int i = 0; i < skillList.size(); i++) {
+				allSkills.add(skillList.get(i).getSkill()); 
+				System.out.println(allSkills.get(i));
+			}
+			chkdSkill = allSkills;
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("chkdSkill", chkdSkill);
+		
+		System.out.println("selectedSkills : "+selectedSkills);
+		System.out.println("chkdSkill : "+chkdSkill);
+		System.out.println(session.getAttribute("chkdSkill"));
+		return "redirect:/index";
+
 		
 	}
 }
