@@ -22,13 +22,13 @@
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
-<!--회원만이용가능 <script th:inline="javascript">
+<script th:inline="javascript">
 var isNotMember = /*[[${session.userInfo == null}]]*/"";
 if(isNotMember){
 	alert("로그인 후 이용가능합니다.");
 	window.history.back();
 }
-</script> -->
+</script>
 </head>
 <body>
 	<div id="loading">
@@ -55,7 +55,7 @@ if(isNotMember){
 			<fieldset class="writeform"  style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<form action="blindWrite" method="post">
 			<input th:if="${session.userInfo != null}" type="hidden" name="nickName" th:value="${session.userInfo.getNickName()}">
-			<input type="hidden" name="writer" th:value="${session.userInfo.getEmail}">
+			<input th:if="${session.userInfo != null}" type="hidden" name="writer" th:value="${session.userInfo.getEmail}">
 	<input type="text" name="title" class="form-control mt-4 mb-2" autocomplete="off"
 		placeholder="제목을 입력해주세요." required
 	>
