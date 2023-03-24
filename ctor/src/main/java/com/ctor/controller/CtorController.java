@@ -30,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CtorController {
 
-	private final KakaoLoginService kakaoLoginService;
 	private final BoardService boardService;
 	private final SkillService skillService;
 	private final ApiService apiService;
