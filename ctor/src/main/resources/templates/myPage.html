@@ -46,7 +46,7 @@
 <hr>
 			</div>
 			
-			<fieldset class="pconly" style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
+			<fieldset class="pconly" id="print" style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
 			<!-- 게시물 내용 출력 -->
 			<div class="col-12" style="border-radius: 15px; background-color: #232323; ">
 			<table>
@@ -54,7 +54,7 @@
 			<td><img th:src="${dto.profileImg}" width="70"
 							height="70" class="rounded-circle me-2" style="margin: 15px;">
 			</td>
-			<td class="col-4"><span class="h3">[[${dto.nickName}]]님</span><br>
+			<td class="col-4"><span class="h3">[[${dto.Name}]]님</span><br>
 			<span class="h6">[[${dto.email}]]</span>
 			</td>
 			<td ><div style="margin-left: 15px; margin-right: 15px; border-radius: 15px; background-color: #4B4B4B; width: 10rem; height: 4rem; text-align: center;">
@@ -99,17 +99,99 @@
 		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;">Edit</h6>
 		</div>
 		</div>
+		
+		<div class="col-12" style=" margin-top: 2rem; border-radius: 15px; background-color: #232323;">
+		<h4 style="padding: 1rem;">프로젝트 & 스터디 참여 목록</h4>
+		<table class="table">
+			<tr>
+				<td class="col-1 text-center">no.</td>
+				<td class="col-5 text-center">Title</td>
+				<td class="col-5 text-center">Date</td>
+			</tr>
+			<th:block th:each="board : ${boards}">
+			<tr>
+				<td class="text-center">[[${board.pBno}]]</td>
+				<td class="text-center">[[${board.title}]]</td>
+				<td class="text-center">[[${board.pRegDate}]]</td>
+			</tr>
+			</th:block>
+		</table>
+		<br>
+		</div>
+		
 		<div style="float: right; margin-top: 25px;">
 		<a th:href="@{/removeAccount(email=${dto.email})}"><button type="button" class="btn btn-danger">회원탈퇴</button></a>
 		<button type="button" class="btn btn-primary">비밀번호 변경</button>
-		<button type="button" class="btn btn-primary">닉네임 변경</button>
+		<!-- <button type="button" class="btn btn-primary">닉네임 변경</button> -->
+		 <button type="button" class="btn btn-primary" onclick="javascript:info_print();">
+                  <!-- Download SVG icon from http://tabler-icons.io/i/printer -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" /><path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" /><rect x="7" y="13" width="10" height="8" rx="2" /></svg>
+                  출력
+                </button>
 		</div>
 		
 </fieldset>
 
 
 <fieldset class="mobileonly" style="min-height: 500px; max-width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 5rem;">
-			
+			<!-- 게시물 내용 출력 -->
+			<div class="col-12" style="border-radius: 15px; background-color: #232323; ">
+			<table>
+			<tr>
+			<td><img th:src="${dto.profileImg}" width="70"
+							height="70" class="rounded-circle me-2" style="margin: 15px;">
+			</td>
+			<td class="col-4"><span class="h3">[[${dto.Name}]]님</span><br>
+			<span class="h6">[[${dto.email}]]</span>
+			</td>
+			</tr>
+			<tr>
+			<td class="col-4"><div style="margin-left: 15px; margin-bottom: 15px;  margin-right: 15px; border-radius: 15px; background-color: #4B4B4B; height: 4rem; text-align: center;">
+				<span>스터디 참여</span>
+				<h5 style="margin-top: 5px;">0개</h5>
+			</div></td>
+			<td class="col-4"><div style="margin-right: 15px; margin-bottom: 15px;  border-radius: 15px; background-color: #4B4B4B;  height: 4rem; text-align: center;">
+				<span>프로젝트 참여</span>
+				<h5 style="margin-top: 5px;">0개</h5>
+			</div></td>
+			<td class="col-4"><div style="margin-right: 15px; margin-bottom: 15px; border-radius: 15px; background-color: #4B4B4B;  height: 4rem; text-align: center;">
+				<span>작성 글 수</span>
+				<h5 style="margin-top: 5px;">0개</h5>
+			</div></td>
+			</tr>
+			</table>
+		</div>
+		<div class="col-12" style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
+		<h4 style="padding: 1rem;">자기 소개 </h4>
+		<h6 th:text="${dto.grade+' | ' +dto.subject}"></h6>
+		<h5 th:if="${dto.introduce==null}">소개글이 없습니다. 아래 Edit 을 눌러 수정해주세요.</h5>
+		<h5 th:if="${dto.introduce!=null}" th:text="${dto.introduce}"></h5>
+		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;">Edit</h6>
+		</div>
+		
+		<div class="col-12" style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
+		<h4 style="padding: 1rem;">Skill </h4>
+		
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" style="width: 75%; text-align: left;">JAVA</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" style="width: 55%; text-align: left;">JSP</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" style="width: 80%; text-align: left;">SpringBoot</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" style="width: 95%; text-align: left;">HTML/CSS</div>
+		</div>
+		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;">Edit</h6>
+		</div>
+		
+		<div style="float: right; margin-top: 25px;">
+		<a th:href="@{/removeAccount(email=${dto.email})}"><button type="button" class="btn btn-danger">회원탈퇴</button></a>
+		<button type="button" class="btn btn-primary">비밀번호 변경</button>
+		<button type="button" class="btn btn-primary">닉네임 변경</button>
+		</div>
 </fieldset>
 			
 			<th:block th:replace="fragments/modal :: modalFragment"></th:block>
@@ -125,7 +207,18 @@
 					d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
 </svg></a>
 	</div>
-
+<script>
+          	function info_print() {
+                var initBody = document.body.innerHTML;
+                window.onbeforeprint = function () {
+                    document.body.innerHTML = document.getElementById("print").innerHTML;
+                }		
+                window.onafterprint = function () {
+                    document.body.innerHTML = initBody;
+                }		
+                window.print();
+            }
+          </script>  
 	<script>
 		var type;
 		var subject;

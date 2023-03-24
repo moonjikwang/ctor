@@ -31,15 +31,21 @@
 						style="display: none;" id="registerBtn" href="#"
 						data-bs-toggle="modal" data-bs-target="#test">회원가입</a>
 					<!--회원이 아닐경우 닉네임출력 <p th:if="${regiInfo != null}" th:text="${regiInfo['nickname']}"></p> -->
+					
 
 					<a th:if="${session.userInfo != null}"
 						class="me-3 py-2 text-white text-decoration-none" href="#"
-						th:text='${session.userInfo.getName()}'></a>
-					<div style="margin-top: auto; margin-bottom: auto;">
+						th:text='${session.userInfo.getNickName()}' data-bs-toggle="dropdown" aria-expanded="false"></a>
+					<div style="margin-top: auto; margin-bottom: auto;" data-bs-toggle="dropdown" aria-expanded="false">
 						<img th:if="${session.userInfo != null}"
 							th:src='${session.userInfo.getProfileImg()}' width="45"
 							height="45" class="rounded-circle me-2">
 					</div>
+					 <ul class="dropdown-menu">
+    <li th:if="${session.userInfo != null}"><a class="dropdown-item" th:href="@{/myPage(email=${session.userInfo.getEmail()})}">마이페이지</a></li>
+    <hr>
+    <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+  </ul>
 				</nav>
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto mobilenav"
 					style="position: absolute; width: 90%; margin-top: 0px !important; margin-right: 0px;">
@@ -81,10 +87,15 @@
 					<div style="margin-top: auto; margin-bottom: auto;">
 						<img th:if="${session.userInfo != null}"
 							th:src='${session.userInfo.getProfileImg()}' width="45"
-							height="45" class="rounded-circle me-2">
+							height="45" class="rounded-circle me-2" data-bs-toggle="dropdown" aria-expanded="false">
 							<a th:if="${session.userInfo != null}"
-						class="py-2 text-white text-decoration-none" href="#"
-						>[[${session.userInfo.getName}]]</a>
+						class="py-2 text-white text-decoration-none" href="#" data-bs-toggle="dropdown" aria-expanded="false"
+						>[[${session.userInfo.getNickName}]]</a>
+						<ul class="dropdown-menu">
+    <li th:if="${session.userInfo != null}"><a class="dropdown-item" th:href="@{/myPage(email=${session.userInfo.getEmail()})}">마이페이지</a></li>
+    <hr>
+    <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+  </ul>
 					</div>
   </div>
 </div>

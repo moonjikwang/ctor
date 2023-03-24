@@ -19,6 +19,7 @@ public interface ParticipationService {
 	default ParticipationDTO entityToDTO(Participation p) {
 		ParticipationDTO dto = ParticipationDTO.builder()
 				.pNo(p.getPNo())
+				.title(p.getBoard().getTitle())
 				.pRegDate(p.getRegDate())
 				.pModDate(p.getModDate())
 				.pBno(p.getBoard().getBoardno())
