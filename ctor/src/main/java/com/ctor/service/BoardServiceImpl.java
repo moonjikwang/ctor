@@ -2,7 +2,9 @@ package com.ctor.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Tuple;
 
@@ -103,18 +105,18 @@ public class BoardServiceImpl implements BoardService {
 	// 기술스택으로 조회
 	@Override
 	public List<BoardDTO> findByTech(String tech) {
-		List<Object[]> result = boardRepository.getBoardByTech(tech);
+	    List<Object[]> result = boardRepository.getBoardByTech(tech);
 
-		List<BoardDTO> dtoList = new ArrayList<>();
+	    Set<BoardDTO> dtoSet = new HashSet<>();
 
-		for (int i = 0; i < result.size(); i++) {
-			dtoList.add(entityToDTO((Board) result.get(i)[0], 
-					(Member) result.get(i)[1],
-					((Long) result.get(i)[2]).intValue(), 
-					((Long) result.get(i)[3]).intValue() ) );
-		}
+	    for (int i = 0; i < result.size(); i++) {
+	        dtoSet.add(entityToDTO((Board) result.get(i)[0], 
+	                                (Member) result.get(i)[1],
+	                                ((Long) result.get(i)[2]).intValue(), 
+	                                ((Long) result.get(i)[3]).intValue()));
+	    }
 
-		return dtoList;
+	    return new ArrayList<>(dtoSet);
 	}
 
 	// 직군으로 조회

@@ -88,18 +88,32 @@
 		<!-- 기술 선택 탭 -->
 			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
 				<h1 class="display-4 fw-normal">적당한 문구와</h1>
-				<p class="fs-5 text-muted">선택할만한 탭을 넣기</p>
-				기술 스택별로 보기<br>
-				<form action="tab" method="post" id="skillTab">
+				<p class="fs-5 text-muted">기술 스택별로 보기</p>
+				
+				<form action="/index" method="post" id="skillTab">
 					<th:block th:each="skillTab : ${skillList}">
-						<input type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
-						 th:checked="${#lists.contains(session.chkdSkill, skillTab.skill)}" >
-					<label class="btn btn-outline-secondary" th:for="${skillTab.skill}" th:text="${skillTab.skill}" style="margin-bottom: 5px!important;"></label>
+						<input th:if="${chkdSkill != null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
+						 th:checked="${#lists.contains(chkdSkill, skillTab.skill)}" required="required" onclick="submitForm()">
+						 <input th:if="${chkdSkill == null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
+						required="required" onclick="submitForm()">
+					<label class="btn btn-outline-light" th:for="${skillTab.skill}"  style="height:3rem; margin-bottom: 5px!important; border-radius: 25px; "><span style="line-height:2rem;">
+					<img th:src="${'img/'+skillTab.skill+'.png'}" width="25"
+							height="25" class="rounded-circle me-2">
+					[[${skillTab.skill}]]</span></label>
 					</th:block>
-					<input type="submit">
-					<button id="reset">선택 취소</button>
+					
 				</form>
-
+<script>
+  function submitForm() {
+    var form = document.getElementById("skillTab");
+    var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkboxes.length === 0) {
+    	window.location.href = '/index';
+    	return;
+      }
+    form.submit();
+  }
+</script>
 			</div>
 		<!-- 기술 선택 탭 끝-->
 		<!-- 보드 목록 -->
