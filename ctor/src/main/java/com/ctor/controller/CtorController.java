@@ -85,25 +85,6 @@ public class CtorController {
 		model.addAttribute("list",committer);
 	}
 	
-
-	@GetMapping("/myPage")
-	public void myPage(String email,Model model) {
-		MemberDTO dto = kakaoLoginService.findByEmail(email);
-		model.addAttribute("dto",dto);
-	}
-	@PostMapping("/register")
-	public String register(MemberDTO dto,HttpServletRequest request) {
-		String email = kakaoLoginService.register(dto);
-		if(email!= null) {
-			System.out.println(email + "회원 가입완료");
-			HttpSession session = request.getSession();
-			session.setAttribute("userInfo", dto);
-		}else {
-			System.out.println("회원가입 오류발생");
-		}
-		return "redirect:/index";
-		
-	}
 	/**
 	 * 
 	 * 이하 내용을 스크립트에서 처리하도록 하고 삭제예정
