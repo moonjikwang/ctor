@@ -171,7 +171,7 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 	@Override
 	public MemberDTO login(String email, String password) {
 		Optional<Member> res = kakaoRepository.findById(email);
-		if(res.isEmpty()) {
+		if(res.get() == null) {
 			return null;
 		}else {
 			if(res.get().getPassword().equals(password)) {
