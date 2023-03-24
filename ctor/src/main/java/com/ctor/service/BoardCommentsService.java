@@ -14,7 +14,7 @@ public interface BoardCommentsService {
 	Long delete(Long boardno);
 	
 	List<BoardCommentsDTO> findByBno(Long boardno);	//원글번호로 글에 딸린 댓글을 조회
-	
+	List<BoardCommentsDTO> findByEmail(String email);
 	default BoardComments dtoToEntity(BoardCommentsDTO commentsDTO) {
 		BoardComments comments = BoardComments.builder()
 				.bCommentNo(commentsDTO.getBCommentNo())

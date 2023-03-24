@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.MemberDTO;
 import com.ctor.dto.ParticipationDTO;
+import com.ctor.service.BlindCommentsService;
+import com.ctor.service.BlindService;
+import com.ctor.service.BoardCommentsService;
 import com.ctor.service.BoardService;
 import com.ctor.service.KakaoLoginService;
 import com.ctor.service.ParticipationService;
@@ -28,10 +31,19 @@ public class MemberController {
 
 	private final KakaoLoginService kakaoLoginService;
 	private final ParticipationService participationService;
+	private final BoardService boardService;
+	private final BoardCommentsService BoardCommentsService;
+	
 	@GetMapping("/myPage")
 	public void myPage(String email,Model model) {
 		MemberDTO dto = kakaoLoginService.findByEmail(email);
 		List<ParticipationDTO> boardList = participationService.findByEmail(email);
+		int writeCount = boardService.findByEmail(email).size();
+		int projectSize = participationService.findByEmail(email).size();
+		int replyCount = BoardCommentsService.findByEmail(email).size();
+		model.addAttribute("replyCount",replyCount);
+		model.addAttribute("writeCount",writeCount);
+		model.addAttribute("partCount",projectSize);
 		model.addAttribute("dto",dto);
 		model.addAttribute("boards",boardList);
 	}
