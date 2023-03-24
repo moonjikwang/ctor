@@ -1,5 +1,10 @@
 package com.ctor.blind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.dto.BlindPageResultDTO;
+import com.ctor.repository.BlindRepository;
 import com.ctor.service.BlindService;
 /**
  * 
@@ -17,6 +23,7 @@ import com.ctor.service.BlindService;
  * 3. 특정글조회(닉네임)
  * 4. 글삭제
  * 5. 글수정
+ * 6. 로그인한 사용자가 작성한 게시글 조회
  */
 @SpringBootTest
 public class BlindServiceTests {
@@ -24,6 +31,8 @@ public class BlindServiceTests {
 	@Autowired
 	private BlindService blindService;
 	
+	@Autowired
+	private BlindRepository blindRepository;
 	//글등록
 	@Test
 	public void testRegister() {
@@ -80,6 +89,16 @@ public class BlindServiceTests {
 				.build();
 		
 		blindService.modify(blindDTO);
+	}
+	
+	@Test
+	@DisplayName("로그인한 사용자가 작성한 익명게시글 조회하기")
+	public void testGetMyBlinds() {
+		String nickName = "친절한 동그라미";
+		
+		List<Object[]> myBlinds = blindRepository.findBlindByMemberNickname(nickName);
+		
+		assertThat(myBlinds).isNotEmpty();
 	}
 	
 }

@@ -35,6 +35,7 @@ import lombok.extern.log4j.Log4j2;
  * 3. 글 조회
  * 4. 글 삭제
  * 5. 글 수정
+ * 6. 로그인한 사용자가 작성한 게시글 조회
  */
 @Service
 @RequiredArgsConstructor
@@ -127,6 +128,13 @@ public class BlindServiceImpl implements BlindService{
 	public Page<Blind> searchBlindsList(String keyword, Pageable pageable) {
 		Page<Blind> searchList = blindRepository.findByBlindTitleContaining(keyword, pageable);
 		return searchList;
+	}
+
+	//로그인한 사용자가 작성한 게시글 조회
+	@Override
+	public List<Object[]> findMyBlindPost(String nickName) {
+		List<Object[]> postList = blindRepository.findBlindByMemberNickname(nickName);
+		return postList;
 	}
 
 }
