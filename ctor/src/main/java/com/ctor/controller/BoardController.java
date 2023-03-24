@@ -3,6 +3,8 @@ package com.ctor.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -13,8 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ctor.dto.BoardCommentsDTO;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
+import com.ctor.dto.ParticipationDTO;
 import com.ctor.dto.SkillDTO;
 import com.ctor.service.JobGroupService;
+import com.ctor.service.ParticipationService;
 import com.ctor.service.SkillService;
 import com.ctor.service.BoardCommentsService;
 import com.ctor.service.BoardService;
@@ -33,6 +37,8 @@ public class BoardController {
 	JobGroupService jobGroupService;
 	@Autowired
 	BoardCommentsService boardCommentsService;
+	@Autowired
+	ParticipationService participationService;
   
 	@GetMapping("boardWrite")
 	public void boardWrite(Model model) {
@@ -44,6 +50,8 @@ public class BoardController {
 	@PostMapping("boardWrite")
 	public String postImage(BoardDTO dto,RedirectAttributes redirectAttributes) {
 		Long bno = service.write(dto);
+		ParticipationDTO pcDTO = ParticipationDTO.builder().pBno(bno).pMemEmail(dto.getMemEmail()).build();
+		participationService.participate(pcDTO);
 		redirectAttributes.addAttribute("boardno",bno);
 		return "redirect:boardRead";
 	}
