@@ -116,5 +116,52 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" id="skillModal" tabindex="-1" aria-labelledby="skillModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="skillModalLabel">기술역량 체크</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="skillCheck" method="get">
+      <div class="modal-body">
+      <input th:if="${session.userInfo !=null}" type="hidden" th:value="${session.userInfo.email}" name="email">
+      <input th:if="${skills != null}" type="hidden" th:value="${skills.no}" name="no">
+        <label class="form-label" for="java">JAVA</label>
+			<div class="range">
+  				<input type="range" min="0" max="100" class="form-range" id="java" name="java"/>
+			</div>
+			<label class="form-label" for="JSP">JSP</label>
+			<div class="range">
+  				<input type="range"  min="0" max="100" class="form-range" id="JSP" name="jsp"/>
+			</div>
+			<label class="form-label" for="SpringBoot">SpringBoot</label>
+			<div class="range">
+  				<input type="range"  min="0" max="100" class="form-range" id="SpringBoot" name="springboot"/>
+			</div>
+			<label class="form-label" for="HTML/CSS">HTML/CSS</label>
+			<div class="range">
+  				<input type="range"  min="0" max="100" class="form-range" id="HTML/CSS" name="htmlcss"/>
+			</div>
+			<label class="form-label" for="JavaScript">JavaScript</label>
+			<div class="range">
+  				<input type="range"  min="0" max="100" class="form-range" id="JavaScript" name="javascript"/>
+			</div>
+			<label class="form-label" for="MySQL">MySQL</label>
+			<div class="range">
+  				<input type="range"  min="0" max="100" class="form-range" id="MySQL" name="mysql"/>
+			</div>
+			
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+			
 </div>
 </html>
