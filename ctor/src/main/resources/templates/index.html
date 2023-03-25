@@ -25,7 +25,39 @@
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
+<style type="text/css">
+/* 아래의 모든 코드는 영역::코드로 사용 */
+.scrollBar::-webkit-scrollbar {
+    margin-top: 5px;
+    height: 5px;
+}
 
+.scrollBar::-webkit-scrollbar-thumb {
+    width: 10%; /* 스크롤바의 길이 */
+    background: #ca9ed1; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+body::-webkit-scrollbar {
+    height: 2px;
+    width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+    width: 10%; /* 스크롤바의 길이 */
+    background: #ca9ed1; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+</style>
 </head>
 <body>
 <!-- 	<div id="loading">
@@ -86,29 +118,31 @@
     
 		<main class="container">
 		<!-- 기술 선택 탭 -->
+			
 			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
 				<h1 class="display-4 fw-normal">적당한 문구와</h1>
 				<p class="fs-5 text-muted">기술 스택별로 보기</p>
-				
-				<form action="/index" method="post" id="skillTab">
+				<div class="scrollBar" style="width: 100%; overflow-x: auto; white-space: nowrap;">
+				<form action="index" method="post" id="skillTab">
 					<th:block th:each="skillTab : ${skillList}">
 						<input th:if="${chkdSkill != null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
 						 th:checked="${#lists.contains(chkdSkill, skillTab.skill)}" required="required" onclick="submitForm()">
 						 <input th:if="${chkdSkill == null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
 						required="required" onclick="submitForm()">
 					<label class="btn btn-outline-light" th:for="${skillTab.skill}"  style="height:3rem; margin-bottom: 5px!important; border-radius: 25px; "><span style="line-height:2rem;">
-					<img th:src="${'img/'+#strings.toLowerCase(skillTab.skill)+'.png'}" width="25"
+					<img th:src="${'img/'+skillTab.skill+'.png'}" width="25"
 							height="25" class="rounded-circle me-2">
 					[[${skillTab.skill}]]</span></label>
 					</th:block>
 					
 				</form>
+				</div>
 <script>
   function submitForm() {
     var form = document.getElementById("skillTab");
     var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
     if (checkboxes.length === 0) {
-    	window.location.href = '/index';
+    	window.location.href = 'index';
     	return;
       }
     form.submit();

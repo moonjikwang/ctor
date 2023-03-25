@@ -44,7 +44,7 @@
 					 <ul class="dropdown-menu">
     <li th:if="${session.userInfo != null}"><a class="dropdown-item" th:href="@{/myPage(email=${session.userInfo.getEmail()})}">마이페이지</a></li>
     <hr>
-    <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+    <li><a class="dropdown-item" href="logout">로그아웃</a></li>
   </ul>
 				</nav>
 				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto mobilenav"
