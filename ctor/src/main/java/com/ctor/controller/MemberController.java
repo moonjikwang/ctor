@@ -59,14 +59,14 @@ public class MemberController {
 		
 		skillLevelService.register(dto);
 		redirectAttributes.addAttribute("email",dto.getEmail());
-		return "redirect:/myPage";
+		return "redirect:myPage";
 	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.invalidate();
-		return "redirect:/index";
+		return "redirect:index";
 	}
 	@PostMapping("/register")
 	public String register(MemberDTO dto,HttpServletRequest request) {
@@ -78,7 +78,7 @@ public class MemberController {
 		}else {
 			System.out.println("회원가입 오류발생");
 		}
-		return "redirect:/index";
+		return "redirect:index";
 		
 	}
 	@PostMapping("/login")
@@ -107,6 +107,6 @@ public class MemberController {
 		            
 		        }
 			}
-		return "redirect:/index";
+		return "redirect:index";
 	}
 }

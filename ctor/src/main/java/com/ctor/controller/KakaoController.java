@@ -40,7 +40,7 @@ public class KakaoController {
 		}else {
 			redirectAttributes.addFlashAttribute("regiInfo",userInfo);
 		}
-		return "redirect:/index";
+		return "redirect:index";
 
 	}
 }
