@@ -5,7 +5,10 @@
 <link rel="manifest" href="manifest.json">
     <link rel="icon" sizes="192x192" href="menu.png">
     <link rel="icon" sizes="512x512" href="menu.png">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+<meta name="viewport" content="user-scalable=0;"/>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
 <title>new Project();</title>
 <link rel="icon" type="image/x-icon" href="img/green.ico">
 <link rel="shortcut icon" type="image/x-icon" href="img/menu.png">
@@ -113,18 +116,16 @@ body::-webkit-scrollbar-track {
             </div>
             
         </div>
-    </div>
-    <!-- 캐러셀 끝 -->
-    
-		<main class="container">
-		<!-- 기술 선택 탭 -->
-			
-			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-				<h1 class="display-4 fw-normal">적당한 문구와</h1>
+        <div style="text-align: center;">
+        <h1 class="display-4 fw-normal" style="margin-top: 15px">적당한 문구와</h1>
 				<p class="fs-5 text-muted">기술 스택별로 보기</p>
-				<div class="scrollBar" style="width: 100%; overflow-x: auto; white-space: nowrap;">
+				<div class="table-responsive">
+  
+
 				<form action="index" method="post" id="skillTab">
+				<div style="max-width: 100%!important">
 					<th:block th:each="skillTab : ${skillList}">
+					
 						<input th:if="${chkdSkill != null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
 						 th:checked="${#lists.contains(chkdSkill, skillTab.skill)}" required="required" onclick="submitForm()">
 						 <input th:if="${chkdSkill == null}" type="checkbox" name="skillChk" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
@@ -134,9 +135,18 @@ body::-webkit-scrollbar-track {
 							height="25" class="rounded-circle me-2">
 					[[${skillTab.skill}]]</span></label>
 					</th:block>
-					
-				</form>
 				</div>
+				</form>
+				</div>	
+				</div>
+    </div>
+    <!-- 캐러셀 끝 -->
+    
+		<main class="container">
+		<!-- 기술 선택 탭 -->
+			
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+				
 <script>
   function submitForm() {
     var form = document.getElementById("skillTab");
