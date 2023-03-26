@@ -4,6 +4,38 @@
     font-weight: normal;
     font-style: normal;
 }
+
+.scrollBar::-webkit-scrollbar {
+    margin-top: 5px;
+    height: 5px;
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+    width: 10%; /* 스크롤바의 길이 */
+    background: #ca9ed1; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+body::-webkit-scrollbar {
+    height: 2px;
+    width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+    width: 10%; /* 스크롤바의 길이 */
+    background: #ca9ed1; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
 ::-moz-selection {
    background: #000;
    color: #fff;

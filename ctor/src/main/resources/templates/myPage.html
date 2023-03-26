@@ -169,20 +169,20 @@
 			<td><img th:src="${dto.profileImg}" width="70"
 							height="70" class="rounded-circle me-2" style="margin: 15px;">
 			</td>
-			<td class="col-4"><span class="h3">[[${dto.Name}]]님</span><br>
+			<td class="col-4" colspan="2"><span class="h3">[[${dto.Name}]]님</span><br>
 			<span class="h6">[[${dto.email}]]</span>
 			</td>
 			</tr>
 			<tr>
-			<td class="col-4"><div style="margin-left: 15px; margin-bottom: 15px;  margin-right: 15px; border-radius: 15px; background-color: #4B4B4B; height: 4rem; text-align: center;">
+			<td width="30%"><div style="margin-left: 15px; margin-bottom: 15px;  margin-right: 15px; border-radius: 15px; background-color: #4B4B4B; height: 4rem; text-align: center;">
 				<span>작성 글 수</span>
 				<h5 style="margin-top: 5px;">[[${writeCount}]]개</h5>
 			</div></td>
-			<td class="col-4"><div style="margin-right: 15px; margin-bottom: 15px;  border-radius: 15px; background-color: #4B4B4B;  height: 4rem; text-align: center;">
+			<td width="30%"><div style="margin-right: 15px; margin-bottom: 15px;  border-radius: 15px; background-color: #4B4B4B;  height: 4rem; text-align: center;">
 				<span>프로젝트 참여</span>
 				<h5 style="margin-top: 5px;">[[${partCount}]]개</h5>
 			</div></td>
-			<td class="col-4"><div style="margin-right: 15px; margin-bottom: 15px; border-radius: 15px; background-color: #4B4B4B;  height: 4rem; text-align: center;">
+			<td width="30%"><div style="margin-right: 15px; margin-bottom: 15px; border-radius: 15px; background-color: #4B4B4B;  height: 4rem; text-align: center;">
 				<span>작성 댓글 수</span>
 				<h5 style="margin-top: 5px;">[[${replyCount}]]개</h5>
 			</div></td>
@@ -199,20 +199,47 @@
 		
 		<div class="col-12" style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
 		<h4 style="padding: 1rem;">Skill </h4>
-		
+		<th:block th:if="${skills==null}">하단 Edit 을 눌러서 기술역량을 체크해주세요.
 		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
-  <div class="progress-bar" style="width: 75%; text-align: left;">JAVA</div>
+  <div class="progress-bar" style="width: 0%; text-align: left;">JAVA</div>JAVA
 		</div>
 		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
-  <div class="progress-bar" style="width: 55%; text-align: left;">JSP</div>
+  <div class="progress-bar" style="width: 0%; text-align: left;">JSP</div>JSP
 		</div>
 		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
-  <div class="progress-bar" style="width: 80%; text-align: left;">SpringBoot</div>
+  <div class="progress-bar" style="width: 0%; text-align: left;">SpringBoot</div>SpringBoot
 		</div>
 		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
-  <div class="progress-bar" style="width: 95%; text-align: left;">HTML/CSS</div>
+  <div class="progress-bar" style="width: 0%; text-align: left;">HTML/CSS</div>HTML/CSS
 		</div>
-		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;">Edit</h6>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" style="width: 0%; text-align: left;">JavaScript</div>JavaScript
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" style="width: 0%; text-align: left;">MySQL</div>MySQL
+		</div>
+		</th:block>
+		<th:block th:if="${skills!=null}">
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style=" text-align: left; height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" th:style="'width:' + ${skills.java}+'%;text-align: left;'">JAVA</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" th:style="'width:' + ${skills.jsp}+'%;text-align: left;'">JSP</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" th:style="'width:' + ${skills.springboot}+'%;text-align: left;'">SpringBoot</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" th:style="'width:' + ${skills.htmlcss}+'%;text-align: left;'">HTML/CSS</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" th:style="'width:' + ${skills.javascript}+'%;text-align: left;'">JavaScript</div>
+		</div>
+		<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+  <div class="progress-bar" th:style="'width:' + ${skills.mysql}+'%;text-align: left;'">MySQL</div>
+		</div>
+		</th:block>
+		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;" data-bs-toggle="modal" data-bs-target="#skillModal">Edit</h6>
 		</div>
 		<div class="col-12" style=" margin-top: 2rem; border-radius: 15px; background-color: #232323;">
 		<h4 style="padding: 1rem;">프로젝트 & 스터디 참여 목록</h4>
@@ -227,7 +254,6 @@
 				<td class="text-center">[[${board.pBno}]]</td>
 				<td class="text-center"><a th:href="@{boardRead(boardno=${board.pBno})}">[[${board.title}]]</a></td>
 				<td class="text-center">[[${#temporals.format(board.pRegDate,'yyyy-MM-dd HH:mm')}]]</td>
-				
 			</tr>
 			</th:block>
 		</table>
@@ -236,7 +262,12 @@
 		<div style="float: right; margin-top: 25px;">
 		<a th:href="@{/removeAccount(email=${dto.email})}"><button type="button" class="btn btn-danger">회원탈퇴</button></a>
 		<button type="button" class="btn btn-primary">비밀번호 변경</button>
-		<button type="button" class="btn btn-primary">닉네임 변경</button>
+		<!-- <button type="button" class="btn btn-primary">닉네임 변경</button> -->
+		 <button type="button" class="btn btn-primary" onclick="javascript:info_print();">
+                  <!-- Download SVG icon from http://tabler-icons.io/i/printer -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" /><path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" /><rect x="7" y="13" width="10" height="8" rx="2" /></svg>
+                  출력
+                </button>
 		</div>
 		
 </fieldset>
