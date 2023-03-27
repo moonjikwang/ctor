@@ -109,9 +109,21 @@
 							height="25" class="rounded-circle me-2">
 					[[${skillTab.skill}]]</label>
 					</th:block>
-				
 				</form>
-
+				</div>
+				<p class="fs-5 text-muted">직군으로 보기</p>
+				<div class="scrollBar"  style=" overflow-x: auto;  white-space: nowrap;">
+				<form id="skillTab">
+					<input type="checkbox" class="btn-check" id="selectAllPosition" onchange="showDivs()">
+       				<label class="btn btn-outline-light" for="selectAllPosition" style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">All</label>
+					<th:block th:each="positionTab : ${positionList}">
+						<input type="checkbox" name="positions" class="btn-check" th:value="${positionTab.name}" th:id="${positionTab.name}" autocomplete="off"
+						  onchange="showDivs()">
+					<label class="btn btn-outline-light" th:for="${positionTab.name}"  style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">
+					[[${positionTab.name}]]</label>
+					</th:block>
+				</form>
+				</div>
 			</div>
 		<!-- 기술 선택 탭 끝-->
 		<!-- 기술별 보기 스크립트 -->
@@ -120,10 +132,14 @@
 	        var checkedSkills = $('input[name="skills"]:checked').map(function () {
 	            return $(this).val();
 	        }).get();
+	        var checkedPositions = $('input[name="positions"]:checked').map(function () {
+	            return $(this).val();
+	        }).get();
 
-	        if (checkedSkills.length == 0) {
+	        if (checkedSkills.length == 0 && checkedPositions.length == 0) {
 	            $('.skillDiv').show();
 	        } else {
+<<<<<<< HEAD
 	        	 $('label[name="flag"]').show();
 	            $('.skillDiv').hide().filter(function () {
 	                var techStacks = $(this).data('tech-stack').split(',');
@@ -134,6 +150,60 @@
 	                }
 	                return false;
 	            }).show();
+=======
+	        	if(checkedPositions.length != 0 && checkedSkills.length == 0) {
+		        	$('.skillDiv').hide().filter(function () {
+		                var position = $(this).data('position').split(',');
+		                for (var i = 0; i < position.length; i++) {
+		                    if (checkedPositions.includes(position[i])) {
+		                        return true;
+		                    }
+		                }
+		                return false;
+		            }).show();
+        		}
+	        	else if (checkedSkills.length != 0 && checkedPositions.length == 0 ) {
+	        
+		        	$('.skillDiv').hide().filter(function () {
+		                var techStacks = $(this).data('tech-stack').split(',');
+		                for (var i = 0; i < techStacks.length; i++) {
+		                    if (checkedSkills.includes(techStacks[i]) ){
+		                        return true;
+		                    }
+		                }
+		                return false;
+		            }).show();
+	        	}
+	        	else if (checkedSkills.length != 0 && checkedPositions.length != 0 ) {
+	        
+		        	$('.skillDiv').hide().filter(function () {
+		                var techStacks = $(this).data('tech-stack').split(',');
+		                var position = $(this).data('position').split(',');
+		                var flag = 0;
+		                
+		                for (var i = 0; i < techStacks.length; i++) {
+		                    if (checkedSkills.includes(techStacks[i])){
+		                        flag++;
+		                    }
+		                }
+		                
+		                for (var i = 0; i < position.length; i++) {
+		                    if (checkedPositions.includes(position[i])) {
+		                    	flag++;
+		                    }
+		                }
+		                
+		                if(flag == 2){
+		                	return true;
+		                }
+		                
+		                return false;
+		            }).show();
+	        	}
+	        	
+		        
+	        	
+>>>>>>> stash
 	        }
 	    }
 		    $(document).ready(function () {
@@ -142,6 +212,10 @@
 		            $('input[name="skills"]').prop('checked', null);
 		            $('input[name="flag"]').prop('checked', null);
 		            $('label[name="flag"]').hide();
+		            showDivs();
+		        });
+		        $("#selectAllPosition").click(function () {
+		            $('input[name="positions"]').prop('checked', this.checked);
 		            showDivs();
 		        });
 		    });
@@ -153,8 +227,8 @@
 			<div
 				class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 mb-3 text-center"
 				style="padding: 0px;">
-				<div th:each="dto : ${dto}" class="col skillDiv" th:attr="data-tech-stack=${dto.techStack}">
-				<th:block th:if="${dto.techStack}" th:attr="data-tech-stack=${dto.techStack}">
+				<div th:each="dto : ${dto}" class="col skillDiv" th:attr="data-tech-stack=${dto.techStack}, data-position=${dto.position}">
+				<th:block th:if="${dto.techStack}" th:attr="data-tech-stack=${dto.techStack}, data-position=${dto.position}">
 				<a th:href="@{boardRead(boardno=${dto.boardno})}" style="text-decoration: none; color: #adb5bd;">
 					<div class="card mb-4 rounded-4 shadow-sm"
 						style="margin-left: 5px; margin-right: 5px;">
