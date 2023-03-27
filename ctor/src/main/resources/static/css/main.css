@@ -41,7 +41,7 @@ body::-webkit-scrollbar-track {
    color: #fff;
 }
 ::selection {
-   background: #000;
+   background: #ca9ed1;
    color: #fff;
 }
 :root{
