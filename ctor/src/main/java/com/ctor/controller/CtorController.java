@@ -2,9 +2,10 @@ package com.ctor.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,12 +52,13 @@ public class CtorController {
 		List<String> chkdSkill = selectedSkills;
 		
 		if(chkdSkill!=null) {
-			List<BoardDTO> tempList = new ArrayList<>();
+			Set<BoardDTO> tempSet = new HashSet<>();
 			for (String skill : chkdSkill) {
 			    boardService.findByTech(skill).forEach(tempDTO ->{
-			    	tempList.add(tempDTO);
+			        tempSet.add(tempDTO);
 			    });
 			}
+			List<BoardDTO> tempList = new ArrayList<>(tempSet);
 			dto = tempList;
 		}else {
 		dto = boardService.findAllBoards();
