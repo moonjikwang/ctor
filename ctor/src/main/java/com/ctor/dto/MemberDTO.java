@@ -21,4 +21,6 @@ public class MemberDTO {
 	private String nickName;
 	private String profileImg;
 	private LocalDateTime regDate,modDate;
+	
+
 }

@@ -124,7 +124,7 @@
 		<h6 th:text="${dto.grade+' | ' +dto.subject}"></h6>
 		<h5 th:if="${dto.introduce==null}">소개글이 없습니다. 아래 Edit 을 눌러 수정해주세요.</h5>
 		<h5 th:if="${dto.introduce!=null}" th:text="${dto.introduce}"></h5>
-		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;">Edit</h6>
+		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px; "  data-bs-toggle="modal" data-bs-target="#introModal">Edit</h6>
 		</div>
 		</div>
 		

@@ -225,5 +225,30 @@
   </div>
 </div>
 			
+			
+			<div class="modal fade" id="introModal" tabindex="-1" aria-labelledby="introModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="introModalLabel">자기소개 수정</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="introCheck" method="POST">
+      <input th:if="${session.userInfo !=null}" type="hidden" th:value="${session.userInfo.email}" name="email">
+      <div class="modal-body">
+      <div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">자기소개</label>
+  <textarea class="form-control" name="introduce" id="exampleFormControlTextarea1" rows="3" placeholder="수정할 내용을 입력해주세요!"></textarea>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 </div>
 </html>

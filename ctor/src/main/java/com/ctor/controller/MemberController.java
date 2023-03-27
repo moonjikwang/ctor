@@ -61,6 +61,12 @@ public class MemberController {
 		redirectAttributes.addAttribute("email",dto.getEmail());
 		return "redirect:myPage";
 	}
+	@PostMapping("/introCheck")
+	public String introCheck(MemberDTO dto, RedirectAttributes redirectAttributes) {
+		kakaoLoginService.modify(dto);
+		redirectAttributes.addAttribute("email",dto.getEmail());
+		return "redirect:myPage";
+	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest req) {
