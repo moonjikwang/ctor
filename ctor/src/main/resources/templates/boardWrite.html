@@ -64,13 +64,13 @@ if(isNotMember){
 	<br>
 	<b>모집 포지션</b><br>
 	<th:block th:each="job : ${job}">
-	<input type="checkbox" name="position" class="btn-check" th:value="${job.name}" th:id="${job.name}" autocomplete="off" required="required">
+	<input type="checkbox" name="position" class="btn-check" th:value="${job.name}" th:id="${job.name}" autocomplete="off" >
 <label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>
 <b>기술 스택</b><br>
 <th:block th:each="skill : ${skill}">
-	<input type="checkbox" name="techStack" class="btn-check" th:value="${skill.skill}" th:id="${skill.skill}" autocomplete="off" required="required">
+	<input type="checkbox" name="techStack" class="btn-check" th:value="${skill.skill}" th:id="${skill.skill}" autocomplete="off">
 <label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 5px!important;"></label>
 </th:block>
 <br>

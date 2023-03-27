@@ -182,6 +182,13 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 		}
 	}
 
+	@Override
+	public void modify(MemberDTO dto) {
+		Member member = dtoToEntity(findByEmail(dto.getEmail()));
+		member.setIntroduce(dto.getIntroduce());
+		kakaoRepository.save(member);
+	}
+
 	
 
 }

@@ -13,6 +13,7 @@ public interface KakaoLoginService {
 	MemberDTO findByEmail(String email);
 	
 	String register(MemberDTO dto);
+	void modify(MemberDTO dto);
 	
 	default MemberDTO entityToDto(Member member) {
 		MemberDTO dto = MemberDTO.builder()

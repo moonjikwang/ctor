@@ -24,4 +24,8 @@ public class Member extends BaseEntity{
 	private String subject;
 	private String introduce;
 	private String profileImg;
+	
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 }
