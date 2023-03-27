@@ -94,17 +94,18 @@
 			<div style="text-align: center; display: block;">
 				<h1 class="display-6 fw-normal" style="margin-top: 15px">새로운 경험을 쌓아보세요.</h1>
 				<p class="fs-5 text-muted">기술 스택별로 보기</p>
+
 				<div class="scrollBar"  style=" overflow-x: auto;  white-space: nowrap;">
 				<form id="skillTab">
 					<input type="checkbox" class="btn-check" name="flag"  id="selectAll" onchange="showDivs()">
-       				<label class="btn btn-outline-light" for="selectAll" name="flag" style="display:none; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+       				<label class="btn btn-outline-light" for="selectAll" name="flag" style="display:none;  margin-right: 2px; height:3rem; border: solid 2px; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
   <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
 </svg>초기화</label>
 					<th:block th:each="skillTab : ${skillList}">
-						<input type="checkbox" name="skills" style="display: none;" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
+						<input type="checkbox" name="skills" style="display: none;"  class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
 						  onchange="showDivs()">
-					<label class="btn btn-outline-light" th:for="${skillTab.skill}"  style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">
+					<label class="btn btn-outline-light" th:for="${skillTab.skill}"   style="margin-right: 2px; border: solid 2px; display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">
 					<img th:src="${'img/'+skillTab.skill+'.png'}" width="25"
 							height="25" class="rounded-circle me-2">
 					[[${skillTab.skill}]]</label>
@@ -232,7 +233,7 @@
 				<th:block th:if="${dto.techStack}" th:attr="data-tech-stack=${dto.techStack}, data-position=${dto.position}">
 				<a th:href="@{boardRead(boardno=${dto.boardno})}" style="text-decoration: none; color: #adb5bd;">
 					<div class="card mb-4 rounded-4 shadow-sm"
-						style="margin-left: 5px; margin-right: 5px;">
+						style="margin-left: 5px; margin-right: 5px; border: solid 2px #353535;">
 						<div class="card-header py-3">
 							<span class="badge text-bg-light" style="color: dimgrey !important;
 							 float: left; margin-left: 10px; margin-top: 10px;"
