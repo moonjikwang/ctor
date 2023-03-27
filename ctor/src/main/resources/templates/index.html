@@ -96,10 +96,13 @@
 				<p class="fs-5 text-muted">기술 스택별로 보기</p>
 				<div class="scrollBar"  style=" overflow-x: auto;  white-space: nowrap;">
 				<form id="skillTab">
-					<input type="checkbox" class="btn-check" id="selectAll" onchange="showDivs()">
-       				<label class="btn btn-outline-light" for="selectAll" style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">All</label>
+					<input type="checkbox" class="btn-check" name="flag"  id="selectAll" onchange="showDivs()">
+       				<label class="btn btn-outline-light" for="selectAll" name="flag" style="display:none; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+</svg>초기화</label>
 					<th:block th:each="skillTab : ${skillList}">
-						<input type="checkbox" name="skills" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
+						<input type="checkbox" name="skills" style="display: none;" class="btn-check" th:value="${skillTab.skill}" th:id="${skillTab.skill}" autocomplete="off"
 						  onchange="showDivs()">
 					<label class="btn btn-outline-light" th:for="${skillTab.skill}"  style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">
 					<img th:src="${'img/'+skillTab.skill+'.png'}" width="25"
@@ -121,6 +124,7 @@
 	        if (checkedSkills.length == 0) {
 	            $('.skillDiv').show();
 	        } else {
+	        	 $('label[name="flag"]').show();
 	            $('.skillDiv').hide().filter(function () {
 	                var techStacks = $(this).data('tech-stack').split(',');
 	                for (var i = 0; i < techStacks.length; i++) {
@@ -135,11 +139,15 @@
 		    $(document).ready(function () {
 		        showDivs();
 		        $("#selectAll").click(function () {
-		            $('input[name="skills"]').prop('checked', this.checked);
+		            $('input[name="skills"]').prop('checked', null);
+		            $('input[name="flag"]').prop('checked', null);
+		            $('label[name="flag"]').hide();
 		            showDivs();
 		        });
 		    });
 		</script>
+		<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+		</div>
 		<!--기술별 보기 스크립트 끝  -->
 		<!-- 보드 목록 -->
 			<div
