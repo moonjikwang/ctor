@@ -138,8 +138,9 @@
 
 	        if (checkedSkills.length == 0 && checkedPositions.length == 0) {
 	            $('.skillDiv').show();
+	            $('label[name="flag"]').hide();
 	        } else {
-<<<<<<< HEAD
+
 	        	 $('label[name="flag"]').show();
 	            $('.skillDiv').hide().filter(function () {
 	                var techStacks = $(this).data('tech-stack').split(',');
@@ -150,7 +151,7 @@
 	                }
 	                return false;
 	            }).show();
-=======
+
 	        	if(checkedPositions.length != 0 && checkedSkills.length == 0) {
 		        	$('.skillDiv').hide().filter(function () {
 		                var position = $(this).data('position').split(',');
@@ -203,7 +204,7 @@
 	        	
 		        
 	        	
->>>>>>> stash
+
 	        }
 	    }
 		    $(document).ready(function () {

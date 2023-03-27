@@ -40,12 +40,74 @@
 									href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=3ed402e0c9996c2d84bd716afed91789&redirect_uri=https://tomcat.jikwang.net/ctor/oauth">
 									<img style="width: 100%; margin-bottom: 2rem;" alt="" src="./img/kakao.png">
 								</a>
-								<small style="">아직 회원이 아니신가요? <a href="#" style="color: #be73cb;">회원가입</a></small>
+								<small style="">아직 회원이 아니신가요? <a href="" data-bs-toggle="modal"
+						data-bs-target="#signup" style="color: #be73cb;">회원가입</a></small>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			<div class="modal fade" id="signup" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" style="margin-top: 20%;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">new
+								Project();</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<th:block>
+								<div style="text-align: center; margin-left: auto; margin-right: auto;" class="col-sm-7 col-10">
+										<h3>처음오셨군요!</h3>
+										<form action="register" method="POST">
+										<input type="hidden" name="profileImg" value="https://tomcat.jikwang.net/ctor/img/green.png">
+										<div class="form-floating mb-3">
+											<input type="email" name="email" class="form-control" id="floatingInput2" placeholder="name@example.com"
+   style="height: 2.5rem; border: none; background-color: #232323;">
+   
+  <label for="floatingInput2" style="padding: 0.4rem .75rem;">Email address</label>
+  </div>
+  <div class="form-floating mb-3">
+											<input type="password" name="password" class="form-control" id="floatingPassword2" placeholder="Password"
+   style="height: 2.5rem;border: none; background-color: #232323;">
+  <label for="floatingPassword2" style="padding: 0.4rem .75rem;">Password</label>
+  </div>
+    <div class="form-floating mb-3">
+											<input type="text" name="name" class="form-control" id="floatingPassword3" placeholder="홍길동"
+   style="height: 2.5rem;border: none; background-color: #232323;">
+  <label for="floatingPassword3" style="padding: 0.4rem .75rem;">이름</label>
+  </div>
+											  <div class="form-floating mb-3">
+											<input type="text" name="nickName" class="form-control" id="floatingPassword4" placeholder="Password"
+   style="height: 2.5rem;border: none; background-color: #232323;">
+  <label for="floatingPassword4" style="padding: 0.4rem .75rem;">닉네임</label>
+  </div>
+  <select class="form-select form-select-lg mb-3" id="grade"
+											name="grade" aria-label=".form-select-lg example">
+											<option  value="student">학생</option>
+											<option  value="teacher">강사</option>
+										</select>
+											<select class="form-select form-select-lg mb-3" id="subject"
+											name="subject" aria-label=".form-select-lg example">
+											<option value="Open API를 활용한 JAVA 풀스택
+												과정">Open API를 활용한 JAVA 풀스택
+												과정</option>
+											<option value="UI/UX 과정">UI/UX 과정</option>
+											<option value="웹디자이너 과정">웹디자이너 과정</option>
+										</select>
+										<button class="btn btn-primary" type="submit">회원가입!</button>
+									
+									</form>
+								</div>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 			<div class="modal fade" id="test" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" style="margin-top: 20%;">
