@@ -164,13 +164,13 @@
 							 th:text="${dto.category=='스터디'?'✏️스터디':'🗂️프로젝트'}">🗂️프로젝트</span>
 						</div>
 						<div class="card-body">
-							<small class="text-muted fw-light">마감일 | [[${dto.closingDate}]]</small>
+							<small class="text-muted fw-light" style="color: #f9f7fa!important;">마감일 | [[${dto.closingDate}]]</small>
 							<ul class="list-unstyled mt-3 mb-4">
-								<span class="textLine"><b>[[${dto.title}]]</b></span>
+								<span class="textLine"><b style="color: #f9f7fa;">[[${dto.title}]]</b></span>
 								<br>
 								<th:block th:each="position : ${#strings.arraySplit(dto.position,',')}">
 								<span class="badge"
-									style="margin-top: 20px; color: black; background-color: lightgray">[[${position}]]</span>
+									style=" margin-top: 20px; color: black; background-color: #f9f7fa">[[${position}]]</span>
 									</th:block>
 							</ul>
 							<div style="padding-bottom: 10px; min-height: 58px;">
@@ -183,7 +183,7 @@
 							</div>
 							<hr>
 							<img th:src="${dto.profileImg}" alt="" width="25" height="25"
-								class="rounded-circle me-2"> <span><b>[[${dto.nickName}]]</b></span> <span
+								class="rounded-circle me-2"> <span><b style="color: #f9f7fa;">[[${dto.name}]]</b></span> <span
 								style="float: right"> <b></b> <svg
 									xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 									fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
