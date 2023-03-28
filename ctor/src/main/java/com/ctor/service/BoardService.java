@@ -17,6 +17,7 @@ public interface BoardService {
 	List<BoardDTO> findByEmail(String email);	//작성자 기준으로 조회
 	List<BoardDTO> findByTech(String tech);		//기술스택에 tech가 있는 보드 조회
 	List<BoardDTO> findByPosition(String position);	//직군에 position가 있는 보드 조회
+	List<BoardDTO> findByClosed(Boolean closed);	//마감여부로 조회
 	Long viewCount(Long boardno);
 	Long autoClose(Long boardno, boolean closing);
 	

@@ -151,6 +151,22 @@ public class BoardServiceImpl implements BoardService {
 		
 		return boardDTO;
 	}
+	//마감여부로 조회
+	@Override
+	public List<BoardDTO> findByClosed(Boolean closed) {
+		List<Object[]> result = boardRepository.getBoardIsClosed(closed);
+
+		List<BoardDTO> dtoList = new ArrayList<>();
+
+		for (int i = 0; i < result.size(); i++) {
+			dtoList.add(entityToDTO((Board) result.get(i)[0], 
+					(Member) result.get(i)[1],
+					((Long) result.get(i)[2]).intValue(), 
+					((Long) result.get(i)[3]).intValue() ) );
+		}
+
+		return dtoList;
+	}
 
 	//조회수 세팅
 	@Override
@@ -175,5 +191,7 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

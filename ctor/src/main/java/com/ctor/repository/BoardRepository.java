@@ -82,4 +82,14 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 				+ "AND b.member.email =:email "
 				+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
 		List<Object[]> getMyStudy(@Param("email")String email);
+		
+	//마감여부로 조회
+		@Query(value = "SELECT b, m, COUNT(DISTINCT c), COUNT(DISTINCT p) "
+				+ "FROM Board b "
+				+ "left join b.member m "
+				+ "left join BoardComments c ON c.board = b "
+				+ "left join Participation p ON p.board = b "
+				+ "WHERE b.closed =:closed "
+				+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
+		List<Object[]> getBoardIsClosed(@Param("closed")Boolean closed);
 }
