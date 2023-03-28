@@ -20,6 +20,7 @@ import com.ctor.dto.SkillDTO;
 import com.ctor.service.ApiService;
 import com.ctor.service.BoardService;
 import com.ctor.service.JobGroupService;
+import com.ctor.service.KakaoLoginService;
 import com.ctor.service.SkillService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class CtorController {
 	private final SkillService skillService;
 	private final ApiService apiService;
 	private final JobGroupService jobGroupService;
+	private final KakaoLoginService kakaoLoginService;
 	
 	@GetMapping("/")
 	public String home() {
@@ -58,7 +60,16 @@ public class CtorController {
 		for(SkillDTO skill : skillList) {
 			skillMap.put(skill.getSkill(), skill.getColor());
 		}
-		
+		//멘토 여부 확인 후 있으면 멘토 이름을 dto에 세팅
+		for (BoardDTO board : dto) {
+			  if (board.getMentorEmail() != null) {
+			    try {
+			      board.setMentorName(kakaoLoginService.findByEmail(board.getMentorEmail()).getName());
+			    } catch (Exception e) {
+			      // 예외 처리
+			    }
+			  }
+			}
 		
 		model.addAttribute("dto",dto);
 		model.addAttribute("skillMap",skillMap);
@@ -72,6 +83,10 @@ public class CtorController {
 		redirectAttributes.addAttribute("checkedList",selectedSkills);
 		
 		return "redirect:index";
+	}
+	@GetMapping("admin")
+	public void admin() {
+		
 	}
 	
 	@GetMapping("/changelog")

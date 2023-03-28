@@ -240,6 +240,8 @@
 							<span class="badge text-bg-light" style="color: dimgrey !important;
 							 float: left; margin-left: 10px; margin-top: 10px;"
 							 th:text="${dto.category=='스터디'?'✏️스터디':'🗂️프로젝트'}">🗂️프로젝트</span>
+							 <span th:if="${dto.mentorName}!=null" class="badge text-bg-light" style="color: dimgrey !important;
+							 float: left; margin-left: 10px; margin-top: 10px;">🙋‍♂️멘토</span>
 						</div>
 						<div class="card-body">
 							<small class="text-muted fw-light" style="color: #f9f7fa!important;">마감일 | [[${dto.closingDate}]]</small>
@@ -345,7 +347,6 @@
 			$('#loading').hide();
 		}, 1000);
 	</script>
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
