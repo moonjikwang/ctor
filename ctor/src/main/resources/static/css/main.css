@@ -45,7 +45,8 @@ body::-webkit-scrollbar-track {
    color: #fff;
 }
 :root{
-	--bs-body-bg: #111111;
+	--bs-body-bg: #060b12; 
+	/* 기존색상 #111111 */
 }
      .container{
         max-width: 1320px;
@@ -196,7 +197,7 @@ left: 0;
 position: fixed;
 display: block;
 opacity: 1;
-background: #111111;
+background: #060b12;
 z-index: 99;
 text-align: center;
 

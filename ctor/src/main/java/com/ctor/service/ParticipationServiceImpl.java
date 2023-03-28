@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.ctor.dto.ParticipationDTO;
 import com.ctor.entity.Board;
+import com.ctor.entity.Member;
 import com.ctor.entity.Participation;
 import com.ctor.repository.BoardRepository;
+import com.ctor.repository.KakaoRepository;
 import com.ctor.repository.ParticipationRepository;
 
 @Service
@@ -19,6 +21,8 @@ public class ParticipationServiceImpl implements ParticipationService{
 
 	@Autowired
 	private ParticipationRepository pRepository;
+	@Autowired
+	private KakaoRepository kakaoRepository;
 	
 	//참여신청하기(insert) 
 	@Override
@@ -51,7 +55,7 @@ public class ParticipationServiceImpl implements ParticipationService{
 			closing = true;			//인원이 넘으면 마감
 		}
 	
-		pRepository.deleteById(pno);
+		pRepository.delete(p);
 		
 		return closing;
 	}
@@ -80,7 +84,8 @@ public class ParticipationServiceImpl implements ParticipationService{
 	//참여자로 조회하기
 	@Override
 	public List<ParticipationDTO> findByEmail(String email) {
-		List<Participation> result = pRepository.getByEmail(email);
+		List<Participation> result = pRepository.findByMember(kakaoRepository.findById(email).get());
+		System.out.println("1111111"+result);
 		List<ParticipationDTO> dtoList = new ArrayList<>();
 		
 		if (result.size() != 0) {
@@ -88,6 +93,7 @@ public class ParticipationServiceImpl implements ParticipationService{
 				dtoList.add(entityToDTO(result.get(i)));
 			}
 		}
+		System.out.println("22222"+dtoList);
 		return dtoList;
 	}
 

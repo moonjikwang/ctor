@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>new Project();</title>
-<link rel="icon" type="image/x-icon" href="img/green.ico">
-<link rel="shortcut icon" type="image/x-icon" href="img/green.ico">
+<link rel="icon" type="image/x-icon" href="img/menu.png">
+<link rel="shortcut icon" type="image/x-icon" href="img/menu.png">
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
@@ -58,26 +58,26 @@ if(isNotMember){
 	<hr>
 	<b>모집 구분</b><br>
 	<input type="radio" class="btn-check" name="category" id="project" autocomplete="off" value="프로젝트" checked="checked">
-	<label class="btn btn-outline-secondary" for="project" style="margin-bottom: 5px!important;">프로젝트</label>
+	<label class="btn btn-outline-secondary" for="project" style="margin-bottom: 8px!important; margin-top: 5px;">프로젝트</label>
 		<input type="radio" class="btn-check" name="category" id="study" value="스터디" autocomplete="off">
 	<label class="btn btn-outline-secondary" for="study" style="margin-bottom: 5px!important;">스터디</label>
 	<br>
 	<b>모집 포지션</b><br>
 	<th:block th:each="job : ${job}">
 	<input type="checkbox" name="position" class="btn-check" th:value="${job.name}" th:id="${job.name}" autocomplete="off" >
-<label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 5px!important;"></label>
+<label class="btn btn-outline-secondary" th:for="${job.name}" th:text="${job.name}" style="margin-bottom: 8px!important; margin-top: 5px;"></label>
 </th:block>
 <br>
 <b>기술 스택</b><br>
 <th:block th:each="skill : ${skill}">
 	<input type="checkbox" name="techStack" class="btn-check" th:value="${skill.skill}" th:id="${skill.skill}" autocomplete="off">
-<label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 5px!important;"></label>
+<label class="btn btn-outline-secondary" th:for="${skill.skill}" th:text="${skill.skill}" style="margin-bottom: 8px!important; margin-top: 5px;"></label>
 </th:block>
 <br>
  <div class="row">
     <div class="col-sm-6 col-md-6">
       <b>모집 인원</b><br>
-      <select class="form-select" name="groupMember" aria-label="Default select example" style="margin-bottom: 5px!important;">
+      <select class="form-select" name="groupMember" aria-label="Default select example" style="margin-bottom: 8px!important; margin-top: 5px;">
   <option value="0">인원 미정</option>
   <option value="1">1명</option>
   <option value="2">2명</option>
@@ -89,7 +89,7 @@ if(isNotMember){
     </div>
     <div class="col-sm-6 col-md-6">
       <b>진행 기간</b><br>
-      <select class="form-select" name="duration" aria-label="Default select example" style="margin-bottom: 5px!important;">
+      <select class="form-select" name="duration" aria-label="Default select example" style="margin-bottom: 8px!important; margin-top: 5px;">
   <option value="기간 미정">기간 미정</option>
   <option value="1주">1주</option>
   <option value="2주">2주</option>
@@ -102,11 +102,11 @@ if(isNotMember){
     <div class="row">
     <div class="col-sm-6 col-md-6">
       <b>모집 마감</b><br>
-      <input type="date" name="closingDate" class="form-control" id="exampleFormControlInput1">
+      <input type="date" name="closingDate" class="form-control" id="exampleFormControlInput1" style="margin-bottom: 8px!important; margin-top: 5px;">
     </div>
     <div class="col-sm-6 col-md-6">
       <b>연락 방법</b><br>
-      <input type="text" name="chatLink" class="form-control" id="exampleFormControlInput1" placeholder="카카오톡 오픈채팅 링크">
+      <input type="text" name="chatLink" class="form-control" id="exampleFormControlInput1" placeholder="카카오톡 오픈채팅 링크" style="margin-bottom: 8px!important; margin-top: 5px;">
     </div>
     </div>
 
