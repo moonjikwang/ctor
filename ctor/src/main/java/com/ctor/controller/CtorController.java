@@ -43,7 +43,10 @@ public class CtorController {
 		int dtoSize = boardService.findAllBoards().size();
 		model.addAttribute("dto",dtoSize);
 	}
-	
+	@GetMapping("documentation")
+	public void documentation() {
+		
+	}
 	@GetMapping("index")
 	public void index(Model model) {
 		
