@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.ctor.entity.Member;
 import com.ctor.entity.Participation;
 
 public interface ParticipationRepository extends JpaRepository<Participation, Long> {
@@ -33,5 +34,7 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 				+ "FROM Participation p "
 				+ "WHERE p.board.boardno =:bno ")
 		int getMemberCount(@Param("bno")Long bno);
+		
+		List<Participation> findByMember(Member member);
 		
 }

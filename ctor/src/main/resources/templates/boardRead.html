@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>new Project();</title>
-<link rel="icon" type="image/x-icon" href="img/green.ico">
-<link rel="shortcut icon" type="image/x-icon" href="img/green.ico">
+<link rel="icon" type="image/x-icon" href="img/menu.png">
+<link rel="shortcut icon" type="image/x-icon" href="img/menu.png">
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
@@ -95,12 +95,28 @@
 				</tr>
 				<tr>
 					<td colspan="4" class="text-center">
-					<button type="button" class="btn btn-outline-success" style="border: solid 2px darkgreen; line-height: 3rem;">
+					<th:block th:if="${session.userInfo != null}">
+					<form action="participate" method="post" th:if="${!#lists.contains(partyList,session.userInfo.getEmail())}">
+					<input type="hidden" name="pMemEmail" th:value="${session.userInfo.getEmail()}">
+					<input type="hidden" name="pBno" th:value="${dto.boardno}">
+					<button type="submit" class="btn btn-outline-success" style="border: solid 2px darkgreen; line-height: 3rem;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
   <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
 </svg><b>참가신청</b>
 </button>
+</form>
+<form action="cancel" method="post" th:if="${#lists.contains(partyList,session.userInfo.getEmail())}">
+					<input type="hidden" name="email" th:value="${session.userInfo.getEmail()}">
+					<input type="hidden" name="bno" th:value="${dto.boardno}">
+					<button type="submit" class="btn btn-outline-danger" style="border: solid 2px darkred; line-height: 3rem;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg><b>참가취소</b>
+</button>
+</form>
+</th:block>
 </td>
 				</tr>
 			</tbody>
@@ -136,7 +152,7 @@
 				<br><small>[[${#temporals.format(comment.bCommentRegDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
 				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
-				<td colspan="2" style="border: none;">[[${comment.bCommentText}]]</td>
+				<td colspan="2" style="border: none; height: 4rem;">[[${comment.bCommentText}]]</td>
 				</tr>
 				</th:block>
 		</table>
@@ -198,12 +214,28 @@
 				</tr>
 				<tr>
 					<td colspan="4" class="text-center">
-					<button type="button" class="btn btn-outline-success" style="border: solid 2px darkgreen; line-height: 3rem;">
+					<th:block th:if="${session.userInfo != null}">
+					<form action="participate" method="post" th:if="${!#lists.contains(partyList,session.userInfo.getEmail())}">
+					<input type="hidden" name="pMemEmail" th:value="${session.userInfo.getEmail()}">
+					<input type="hidden" name="pBno" th:value="${dto.boardno}">
+					<button type="submit" class="btn btn-outline-success" style="border: solid 2px darkgreen; line-height: 3rem;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
   <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
 </svg><b>참가신청</b>
 </button>
+</form>
+<form action="cancel" method="post" th:if="${#lists.contains(partyList,session.userInfo.getEmail())}">
+					<input type="hidden" name="email" th:value="${session.userInfo.getEmail()}">
+					<input type="hidden" name="bno" th:value="${dto.boardno}">
+					<button type="submit" class="btn btn-outline-danger" style="border: solid 2px darkred; line-height: 3rem;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg><b>참가취소</b>
+</button>
+</form>
+</th:block>
 </td>
 				</tr>
 			</tbody>
@@ -237,7 +269,7 @@
 				<br><small>[[${#temporals.format(comment.bCommentRegDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
 				</tr>
 				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
-				<td colspan="2" style="border: none;">[[${comment.bCommentText}]]</td>
+				<td colspan="2" style="border: none; height: 4rem;">[[${comment.bCommentText}]]</td>
 				</tr>
 				</th:block>
 		</table>

@@ -1,6 +1,7 @@
 package com.ctor.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -62,6 +63,10 @@ public class BoardController {
 		service.viewCount(boardno);
 		List<SkillDTO> list = skillService.getList();
 		List<JobGroupDTO> jobList = jobGroupService.getList();
+		List<ParticipationDTO> partiList = participationService.findByBno(boardno);
+		List<String> partEmailList = new ArrayList<String>();
+		partiList.forEach(parti -> partEmailList.add(parti.getPMemEmail()));
+		model.addAttribute("partyList",partEmailList);
 		model.addAttribute("skill",list);
 		model.addAttribute("job",jobList);
 		model.addAttribute("dto",dto);
