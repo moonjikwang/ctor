@@ -147,6 +147,10 @@ body::-webkit-scrollbar-track {
 
 /* PConly */
 @media (max-width: 576px){
+	.nav-tabs a{
+	padding: 0px;
+	}
+	
 	.pconly{
 	display: none;
 	}
