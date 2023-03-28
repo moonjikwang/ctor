@@ -164,7 +164,7 @@
 <fieldset class="mobileonly" style="min-height: 500px; max-width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 5rem;">
 			<!-- 게시물 내용 출력 -->
 			<div class="col-12" style="border-radius: 15px; background-color: #232323; ">
-			<table>
+			<table style="margin-left: auto; margin-right: auto;">
 			<tr>
 			<td><img th:src="${dto.profileImg}" width="70"
 							height="70" class="rounded-circle me-2" style="margin: 15px;">
@@ -194,7 +194,7 @@
 		<h6 th:text="${dto.grade+' | ' +dto.subject}"></h6>
 		<h5 th:if="${dto.introduce==null}">소개글이 없습니다. 아래 Edit 을 눌러 수정해주세요.</h5>
 		<h5 th:if="${dto.introduce!=null}" th:text="${dto.introduce}"></h5>
-		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px;">Edit</h6>
+		<h6 style="text-align: right; padding-right: 15px; padding-bottom: 15px; "  data-bs-toggle="modal" data-bs-target="#introModal">Edit</h6>
 		</div>
 		
 		<div class="col-12" style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
