@@ -88,13 +88,30 @@
         
     </div>
     <!-- 캐러셀 끝 -->
-    
+   
 		<main class="container">
+		
 		<!-- 기술 선택 탭 -->
 			<div style="text-align: center; display: block;">
 				<h1 class="display-6 fw-normal" style="margin-top: 15px">새로운 경험을 쌓아보세요.</h1>
-				<p class="fs-5 text-muted">기술 스택별로 보기</p>
+				
+				  <form id="skillTab">
+<ul class="nav nav-tabs col-md-10" style="margin-bottom: 1rem; margin-left: auto; margin-right: auto;">
 
+					<th:block th:each="positionTab : ${positionList}">
+					 <li class="nav-item">
+					 <a class="nav-link">
+						<input type="radio" name="positions" class="btn-check" th:value="${positionTab.name}" th:id="${positionTab.name}" autocomplete="off"
+						  onchange="showDivs()">
+					<label th:for="${positionTab.name}">
+					[[${positionTab.name}]]</label>
+					</a>
+					</li>
+					</th:block>
+			
+  
+</ul>
+	</form>
 				<div class="scrollBar"  style=" overflow-x: auto;  white-space: nowrap;">
 				<form id="skillTab">
 					<input type="checkbox" class="btn-check" name="flag"  id="selectAll" onchange="showDivs()">
@@ -112,19 +129,7 @@
 					</th:block>
 				</form>
 				</div>
-				<p class="fs-5 text-muted">직군으로 보기</p>
-				<div class="scrollBar"  style=" overflow-x: auto;  white-space: nowrap;">
-				<form id="skillTab">
-					<input type="checkbox" class="btn-check" id="selectAllPosition" onchange="showDivs()">
-       				<label class="btn btn-outline-light" for="selectAllPosition" style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">All</label>
-					<th:block th:each="positionTab : ${positionList}">
-						<input type="checkbox" name="positions" class="btn-check" th:value="${positionTab.name}" th:id="${positionTab.name}" autocomplete="off"
-						  onchange="showDivs()">
-					<label class="btn btn-outline-light" th:for="${positionTab.name}"  style="display:inline-block; height:3rem; margin-bottom: 10px!important; border-radius: 25px; line-height:2rem;">
-					[[${positionTab.name}]]</label>
-					</th:block>
-				</form>
-				</div>
+				
 			</div>
 		<!-- 기술 선택 탭 끝-->
 		<!-- 기술별 보기 스크립트 -->
@@ -213,11 +218,8 @@
 		        $("#selectAll").click(function () {
 		            $('input[name="skills"]').prop('checked', null);
 		            $('input[name="flag"]').prop('checked', null);
+		            $('input[name="positions"]').prop('checked',null);
 		            $('label[name="flag"]').hide();
-		            showDivs();
-		        });
-		        $("#selectAllPosition").click(function () {
-		            $('input[name="positions"]').prop('checked', this.checked);
 		            showDivs();
 		        });
 		    });
