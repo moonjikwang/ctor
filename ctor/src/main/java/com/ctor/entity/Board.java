@@ -46,7 +46,7 @@ public class Board extends BaseEntity{
 	private String position;	//직군
 	private String techStack;	//기술스택
 	
-	private boolean hasTutor;	//멘토링 있는지 여부
+	private String mentor;	//멘토 이메일
 	private boolean closed;		//마감여부
 	
 	

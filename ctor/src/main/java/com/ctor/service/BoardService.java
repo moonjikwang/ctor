@@ -39,7 +39,7 @@ public interface BoardService {
 				.viewCount(dto.getViewCount())
 				.position(dto.getPosition())
 				.techStack(dto.getTechStack())
-				.hasTutor(dto.isHasTutor())
+				.mentor(dto.getMentorEmail())
 				.closed(dto.isClosed())
 				.member(Member.builder().email(dto.getMemEmail()).build())
 				.build();
@@ -64,7 +64,7 @@ public interface BoardService {
 				.chatLink(board.getChatLink())
 				.position(board.getPosition())
 				.techStack(board.getTechStack())
-				.hasTutor(board.isHasTutor())
+				.mentorEmail(board.getMentor())
 				.closed(board.isClosed())
 				.replyCount(replyCount)
 				.memberCount(memberCount)

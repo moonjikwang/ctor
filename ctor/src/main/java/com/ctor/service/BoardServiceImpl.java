@@ -35,7 +35,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Long modify(BoardDTO dto) {
 
-		Board board = Board.builder()
+		Board board = 
+				Board.builder()
 				.boardno(dto.getBoardno())
 				.title(dto.getTitle())
 				.text(dto.getText())
@@ -45,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
 				.groupMember(dto.getGroupMember())
 				.position(dto.getPosition())
 				.techStack(dto.getTechStack())
-				.hasTutor(dto.isHasTutor())
+				.mentor(dto.getMentorEmail())
 				.closed(dto.isClosed())
 				.member(new Member().builder().email(dto.getMemEmail()).build())
 				.build();

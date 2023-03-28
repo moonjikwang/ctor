@@ -18,7 +18,9 @@ import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
 import com.ctor.dto.ParticipationDTO;
 import com.ctor.dto.SkillDTO;
+import com.ctor.entity.Member;
 import com.ctor.service.JobGroupService;
+import com.ctor.service.KakaoLoginService;
 import com.ctor.service.ParticipationService;
 import com.ctor.service.SkillService;
 import com.ctor.service.BoardCommentsService;
@@ -40,6 +42,8 @@ public class BoardController {
 	BoardCommentsService boardCommentsService;
 	@Autowired
 	ParticipationService participationService;
+	@Autowired
+	KakaoLoginService kakaoLoginService;
   
 	@GetMapping("boardWrite")
 	public void boardWrite(Model model) {
@@ -66,6 +70,12 @@ public class BoardController {
 		List<ParticipationDTO> partiList = participationService.findByBno(boardno);
 		List<String> partEmailList = new ArrayList<String>();
 		partiList.forEach(parti -> partEmailList.add(parti.getPMemEmail()));
+		
+		//멘토 여부 확인 후 있으면 멘토 이름을 dto에 세팅
+		if(dto.getMentorEmail()!=null) {
+			dto.setMentorName( kakaoLoginService.findByEmail(dto.getMentorEmail()).getName() );
+		}
+		
 		model.addAttribute("partyList",partEmailList);
 		model.addAttribute("skill",list);
 		model.addAttribute("job",jobList);

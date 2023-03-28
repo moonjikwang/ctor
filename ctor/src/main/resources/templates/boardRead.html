@@ -81,6 +81,10 @@
 								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
 								<td style="padding-left: 20px;">[[${dto.duration}]]</td>
 							</tr>
+							<tr th:if="${dto.mentorName}!=null">
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">멘 토</td>
+								<td style="padding-left: 20px;">[[${dto.mentorName}]] 멘토 </td>
+							</tr>
 							<tr>
 								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
 								<td style="padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
@@ -198,6 +202,10 @@
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
 								<td style="width: 75%; padding-left: 20px;">[[${dto.duration}]]</td>
+							</tr>
+							<tr th:if="${dto.mentorName}!=null">
+								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">멘 토</td>
+								<td style="padding-left: 20px;">[[${dto.mentorName}]] 멘토 </td>
 							</tr>
 							<tr>
 								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
