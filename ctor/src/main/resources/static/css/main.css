@@ -291,7 +291,7 @@ top: calc(60% - 50px);
 
 
 input {
-  display: none;
+  /* display: none; */
 }
 
 label {

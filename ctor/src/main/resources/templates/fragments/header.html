@@ -35,7 +35,7 @@
 
 					<a th:if="${session.userInfo != null}"
 						class="me-3 py-2 text-white text-decoration-none" href="#"
-						th:text='${session.userInfo.getNickName()}' data-bs-toggle="dropdown" aria-expanded="false"></a>
+						th:text='${session.userInfo.getName()}' data-bs-toggle="dropdown" aria-expanded="false"></a>
 					<div style="margin-top: auto; margin-bottom: auto;" data-bs-toggle="dropdown" aria-expanded="false">
 						<img th:if="${session.userInfo != null}"
 							th:src='${session.userInfo.getProfileImg()}' width="45"

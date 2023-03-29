@@ -8,17 +8,24 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 import org.springframework.stereotype.Service;
 
 import com.ctor.dto.MemberDTO;
+import com.ctor.entity.Adjectives;
+import com.ctor.entity.Jobs;
 import com.ctor.entity.Member;
+import com.ctor.repository.JobsRepository;
 import com.ctor.repository.KakaoRepository;
+import com.ctor.repository.PositiveAdjectivesRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,7 +34,10 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 
 	@Autowired
 	public KakaoRepository kakaoRepository;
-
+    @Autowired
+    private PositiveAdjectivesRepository positiveAdjectivesRepository;
+    @Autowired
+    private JobsRepository jobsRepository;
 	@Override
 	public String getAccessToken(String authorize_code) throws Exception {
 		String access_Token = "";
@@ -160,12 +170,28 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 			return null;
 		}
 	}
-
+	@Transactional
 	@Override
 	public String register(MemberDTO dto) {
+		String nickname = generateNickname();
+	    while (kakaoRepository.findByNickName(nickname).size() != 0) {
+            nickname = generateNickname();
+        }
+	    dto.setNickName(nickname);
+	    System.out.println(dto.getNickName());
 		Member member = dtoToEntity(dto);
 		kakaoRepository.save(member);
 		return member.getEmail();
+	}
+
+	private String generateNickname() {
+		 Random rand = new Random();
+	        List<Adjectives> adjectives = positiveAdjectivesRepository.findAll();
+	        List<Jobs> jobs = jobsRepository.findAll();
+	        Adjectives adjective = adjectives.get(rand.nextInt(adjectives.size()));
+	        Jobs job = jobs.get(rand.nextInt(jobs.size()));
+
+	        return adjective.getAdjective() + " " + job.getJob();
 	}
 
 	@Override
