@@ -22,9 +22,12 @@
 <link rel="stylesheet" as="style" crossorigin
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
-    <style>
-        td {word-break:break-all;word-wrap:break-word;}
-    </style>
+<style>
+td {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+</style>
 
 </head>
 <body>
@@ -41,267 +44,367 @@
 	</div>
 	<div class="py-3" style="padding-left: 0px; padding-right: 0px;">
 		<th:block th:replace="fragments/header :: headerFragment"></th:block>
-		
+
 		<main class="container">
 			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
 				<h1 class="display-4 fw-normal">프로젝트&스터디 모집</h1>
 				<p class="fs-5 text-muted">프로젝트멤버, 스터디멤버를 구해보세요🙋‍♂️</p>
-<hr>
+				<hr>
 			</div>
-			
-			<fieldset class="pconly" style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
-			<div class="container my-1">
-	<div class="row">
-		<table class="table">
-			<thead>
-				<tr class="table-active">
-				<th  class="text-right">
-				<h3>[[${dto.title}]]</h3>
-				<small style="float: right;">[[${dto.name}]] [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small></th>
-				<tr>
-					<th>
-						<table style="width: 100%;">
-							<tr>
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; margin-bottom: 20px;  line-height: 2rem;">모집 구분</td>
-								<td style="padding-left: 20px;">[[${dto.category}]]</td>
-							</tr>
-							<tr>
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 포지션</td>
-								<td style="padding-left: 20px;">[[${dto.position}]]</td>
-							</tr>
-							<tr>
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 인원</td>
-								<td style="padding-left: 20px;">[[${dto.groupMember}]]명</td>
-							</tr>
-							<tr>
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용 언어</td>
-								<td style="padding-left: 20px;">[[${dto.techStack}]]</td>
-							</tr>
-							<tr>
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
-								<td style="padding-left: 20px;">[[${dto.duration}]]</td>
-							</tr>
-							<tr th:if="${dto.mentorName}!=null">
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">멘 토</td>
-								<td style="padding-left: 20px;">[[${dto.mentorName}]] 멘토 </td>
-							</tr>
-							<tr>
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
-								<td style="padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
-							</tr>
-						</table>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr style="height: 400px;">
-					<td id="content" style="border: none;"></td>
-				</tr>
-				<tr>
-					<td colspan="4" class="text-center">
-					<th:block th:if="${session.userInfo != null}">
-					<form action="participate" method="post" th:if="${!#lists.contains(partyList,session.userInfo.getEmail())}">
-					<input type="hidden" name="pMemEmail" th:value="${session.userInfo.getEmail()}">
-					<input type="hidden" name="pBno" th:value="${dto.boardno}">
-					<button type="submit" class="btn btn-outline-success" style="border: solid 2px darkgreen; line-height: 3rem;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-</svg><b>참가신청</b>
-</button>
-</form>
-<form action="cancel" method="post" th:if="${#lists.contains(partyList,session.userInfo.getEmail())}">
-					<input type="hidden" name="email" th:value="${session.userInfo.getEmail()}">
-					<input type="hidden" name="bno" th:value="${dto.boardno}">
-					<button type="submit" class="btn btn-outline-danger" style="border: solid 2px darkred; line-height: 3rem;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-</svg><b>참가취소</b>
-</button>
-</form>
-</th:block>
-</td>
-				</tr>
-			</tbody>
-			<tfoot>
-			
-			</tfoot>
-		</table>
-				<div th:if="${session.userInfo != null}">
-		<div style="float: right;" th:if="${session.userInfo.getEmail() == dto.memEmail}">
-		<a class="btn btn-primary mb-3" th:href="@{/boardModify(boardno=${dto.boardno})}">수정하기</a>
-		<a class="btn btn-primary mb-3" th:href="@{/boardDelete(boardno=${dto.boardno})}">삭제하기</a>
-		</div>
-</div>
-		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
-		<form action="boardCommentWrite" method="POST">
-				<input type="hidden" name="bCommentBno" th:value="${dto.boardno}">
-				<input th:if="${session.userInfo != null}" type="hidden" name="bCommentWriterEmail" th:value="${session.userInfo.email}">
-		<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
-  <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
-  <textarea th:if="${session.userInfo != null}" name="bCommentText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-  <div>
-    <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
-    <button th:if="${session.userInfo != null}"  type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
-  </div>
-		</form>
-		<table class="table" style="margin-bottom: 50px;">
-			<th:block  th:each="comment : ${comments}">
-			<tr>
-				<td width="45px" class="text-center" style="border: none;"><img th:src="${comment.bCommentProfileImg}" width="45px" height="45px" class="rounded-circle me-2">
-				</td><td style="border: none;"><small><strong>[[${comment.bCommentNickName}]]</strong></small>
-				<br><small>[[${#temporals.format(comment.bCommentRegDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
-				</tr>
-				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
-				<td colspan="2" style="border: none; height: 4rem;">[[${comment.bCommentText}]]</td>
-				</tr>
-				</th:block>
-		</table>
-				
-		
-	</div>
-</div>
-			
-</fieldset>
 
+			<fieldset class="pconly"
+				style="min-height: 500px; max-width: 80%; margin-left: auto; margin-right: auto;">
+				<div class="container my-1">
+					<div class="row">
+						<table class="table">
+							<thead>
+								<tr class="table-active">
+									<th class="text-right">
+										<h3>[[${dto.title}]]</h3> <small style="float: right;">[[${dto.name}]]
+											[[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small>
+									</th>
+								<tr>
+									<th>
+										<table style="width: 100%;">
+											<tr>
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; margin-bottom: 20px; line-height: 2rem;">모집
+													구분</td>
+												<td style="padding-left: 20px;">[[${dto.category}]]</td>
+											</tr>
+											<tr>
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집
+													포지션</td>
+												<td style="padding-left: 20px;">[[${dto.position}]]</td>
+											</tr>
+											<tr>
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집
+													인원</td>
+												<td style="padding-left: 20px;">[[${dto.groupMember}]]명</td>
+											</tr>
+											<tr>
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용
+													언어</td>
+												<td style="padding-left: 20px;">[[${dto.techStack}]]</td>
+											</tr>
+											<tr>
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행
+													기간</td>
+												<td style="padding-left: 20px;">[[${dto.duration}]]</td>
+											</tr>
+											<tr th:if="${dto.mentorName}!=null">
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">멘
+													토</td>
+												<td style="padding-left: 20px;">[[${dto.mentorName}]]
+													멘토</td>
+											</tr>
+											<tr>
+												<td
+													style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락
+													방법</td>
+												<td style="padding-left: 20px;"><a target="_blank"
+													class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡
+														오픈채팅</a></td>
+											</tr>
+										</table>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr style="height: 400px;">
+									<td id="content" style="border: none;"></td>
+								</tr>
+								<tr>
+									<td colspan="4" class="text-center"><th:block
+											th:if="${session.userInfo != null}">
+											<form action="participate" method="post"
+												th:if="${!#lists.contains(partyList,session.userInfo.getEmail())}">
+												<input type="hidden" name="pMemEmail"
+													th:value="${session.userInfo.getEmail()}"> <input
+													type="hidden" name="pBno" th:value="${dto.boardno}">
+												<button type="submit" class="btn btn-outline-success"
+													style="border: solid 2px darkgreen; line-height: 3rem;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16"
+														height="16" fill="currentColor"
+														class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+															d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+  <path fill-rule="evenodd"
+															d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+</svg>
+													<b>참가신청</b>
+												</button>
+											</form>
+											<form action="cancel" method="post"
+												th:if="${#lists.contains(partyList,session.userInfo.getEmail())}">
+												<input type="hidden" name="email"
+													th:value="${session.userInfo.getEmail()}"> <input
+													type="hidden" name="bno" th:value="${dto.boardno}">
+												<button type="submit" class="btn btn-outline-danger"
+													style="border: solid 2px darkred; line-height: 3rem;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16"
+														height="16" fill="currentColor"
+														class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+															d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+  <path fill-rule="evenodd"
+															d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+</svg>
+													<b>참가취소</b>
+												</button>
+											</form>
+										</th:block></td>
+								</tr>
+							</tbody>
+							<tfoot>
 
-<fieldset class="mobileonly" style="min-height: 500px; max-width: 100%; margin-left: auto; margin-right: auto;">
-			<div class="container my-1">
-	<div class="row">
-	
-		<table class="table" style="max-width: 100%;">
-			<thead>
-				<tr class="table-active">
-				<th  class="text-right">
-				<h4>[[${dto.title}]]</h4>
-				<small style="float: right;">[[${dto.nickName}]] [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small></th>
-				</tr>
-				<tr>
-					<th>
-					<div class="table-responsive">
-						<table class="table" style="width: 100%;">
-							<tr>
-								<td style="width: 25%; border-right: solid 1px #5D5D5D; margin-bottom: 20px;  line-height: 2rem;">모집 구분</td>
-								<td style="width: 75%; padding-left: 20px;">[[${dto.category}]]</td>
-							</tr>
-							<tr>
-								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 포지션</td>
-								<td style="width: 75%; padding-left: 20px;">[[${dto.position}]]</td>
-							</tr>
-							<tr>
-								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집 인원</td>
-								<td style="width: 75%; padding-left: 20px;">[[${dto.groupMember}]]명</td>
-							</tr>
-							<tr>
-								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용 언어</td>
-								<td style="width: 75%; padding-left: 20px;">[[${dto.techStack}]]</td>
-							</tr>
-							<tr>
-								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행 기간</td>
-								<td style="width: 75%; padding-left: 20px;">[[${dto.duration}]]</td>
-							</tr>
-							<tr th:if="${dto.mentorName}!=null">
-								<td style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">멘 토</td>
-								<td style="padding-left: 20px;">[[${dto.mentorName}]] 멘토 </td>
-							</tr>
-							<tr>
-								<td style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락 방법</td>
-								<td style="width: 75%; padding-left: 20px;"><a target="_blank" class="badge text-bg-warning" th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
-							</tr>
+							</tfoot>
 						</table>
+						<div th:if="${session.userInfo != null}">
+							<div style="float: right;"
+								th:if="${session.userInfo.getEmail() == dto.memEmail}">
+								<a class="btn btn-primary mb-3"
+									th:href="@{/boardModify(boardno=${dto.boardno})}">수정하기</a> <a
+									class="btn btn-primary mb-3"
+									th:href="@{/boardDelete(boardno=${dto.boardno})}">삭제하기</a>
+							</div>
 						</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr style="height: 300px;">
-					<td id="content2" style="border: none;"></td>
-				</tr>
-				<tr>
-					<td colspan="4" class="text-center">
-					<th:block th:if="${session.userInfo != null}">
-					<form action="participate" method="post" th:if="${!#lists.contains(partyList,session.userInfo.getEmail())}">
-					<input type="hidden" name="pMemEmail" th:value="${session.userInfo.getEmail()}">
-					<input type="hidden" name="pBno" th:value="${dto.boardno}">
-					<button type="submit" class="btn btn-outline-success" style="border: solid 2px darkgreen; line-height: 3rem;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-</svg><b>참가신청</b>
-</button>
-</form>
-<form action="cancel" method="post" th:if="${#lists.contains(partyList,session.userInfo.getEmail())}">
-					<input type="hidden" name="email" th:value="${session.userInfo.getEmail()}">
-					<input type="hidden" name="bno" th:value="${dto.boardno}">
-					<button type="submit" class="btn btn-outline-danger" style="border: solid 2px darkred; line-height: 3rem;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-</svg><b>참가취소</b>
-</button>
-</form>
-</th:block>
-</td>
-				</tr>
-			</tbody>
-			
-		</table>
-		<div th:if="${session.userInfo != null}">
-		<div style="float: right;" th:if="${session.userInfo.getEmail() == dto.memEmail}">
-		<a class="btn btn-primary mb-3" th:href="@{/boardModify(boardno=${dto.boardno})}">수정하기</a>
-		<a class="btn btn-primary mb-3" th:href="@{/boardDelete(boardno=${dto.boardno})}">삭제하기</a>
-		</div>
-</div>
-		<span>댓글 <b>[[${dto.replyCount}]]</b></span>
-				<form action="boardCommentWrite" method="POST">
-				<input type="hidden" name="bCommentBno" th:value="${dto.boardno}">
-				<input th:if="${session.userInfo != null}" type="hidden" name="bCommentWriterEmail" th:value="${session.userInfo.email}">
-		<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">댓글 쓰기</label>
-  <textarea th:if="${session.userInfo == null}" class="form-control" id="exampleFormControlTextarea1" disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
-  <textarea th:if="${session.userInfo != null}" name="bCommentText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-  <div>
-    <button th:if="${session.userInfo == null}" disabled="disabled" type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
-    <button th:if="${session.userInfo != null}"  type="submit" class="btn btn-primary mb-3" style="float: right;">등록</button>
-  </div>
-		</form>
-		<table class="table" style="margin-bottom: 50px;">
-			<th:block  th:each="comment : ${comments}">
-			<tr>
-				<td width="45px" class="text-center" style="border: none;"><img th:src="${comment.bCommentProfileImg}" width="45px" height="45px" class="rounded-circle me-2">
-				</td><td style="border: none;"><small><strong>[[${comment.bCommentNickName}]]</strong></small>
-				<br><small>[[${#temporals.format(comment.bCommentRegDate, 'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
-				</tr>
-				<tr  style="border-bottom: solid 1px rgb(73, 80, 87);">
-				<td colspan="2" style="border: none; height: 4rem;">[[${comment.bCommentText}]]</td>
-				</tr>
-				</th:block>
-		</table>
-				
-		
-	</div>
-</div>
-			
-			<table class="table table-hover" >
-	<thead>
-	</thead>
-	<tbody>
-			
-		
-	</tbody>
-</table>
+						<span>댓글 <b>[[${dto.replyCount}]]</b></span>
+						<form action="boardCommentWrite" method="POST">
+							<input type="hidden" name="bCommentBno" th:value="${dto.boardno}">
+							<input th:if="${session.userInfo != null}" type="hidden"
+								name="bCommentWriterEmail" th:value="${session.userInfo.email}">
+							<div class="mb-3">
+								<label for="exampleFormControlTextarea1" class="form-label">댓글
+									쓰기</label>
+								<textarea th:if="${session.userInfo == null}"
+									class="form-control" id="exampleFormControlTextarea1"
+									disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
+								<textarea th:if="${session.userInfo != null}"
+									name="bCommentText" class="form-control"
+									id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
+							<div>
+								<button th:if="${session.userInfo == null}" disabled="disabled"
+									type="submit" class="btn btn-primary mb-3"
+									style="float: right;">등록</button>
+								<button th:if="${session.userInfo != null}" type="submit"
+									class="btn btn-primary mb-3" style="float: right;">등록</button>
+							</div>
+						</form>
+						<table class="table" style="margin-bottom: 50px;">
+							<th:block th:each="comment : ${comments}">
+								<tr>
+									<td width="45px" class="text-center" style="border: none;"><img
+										th:src="${comment.bCommentProfileImg}" width="45px"
+										height="45px" class="rounded-circle me-2"></td>
+									<td style="border: none;"><small><strong>[[${comment.bCommentNickName}]]</strong></small>
+										<br>
+									<small>[[${#temporals.format(comment.bCommentRegDate,
+											'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
+								</tr>
+								<tr style="border-bottom: solid 1px rgb(73, 80, 87);">
+									<td colspan="2" style="border: none; height: 4rem;">[[${comment.bCommentText}]]</td>
+								</tr>
+							</th:block>
+						</table>
 
-</fieldset>
-			
+
+					</div>
+				</div>
+
+			</fieldset>
+
+
+			<fieldset class="mobileonly"
+				style="min-height: 500px; max-width: 100%; margin-left: auto; margin-right: auto;">
+				<div class="container my-1">
+					<div class="row">
+
+						<table class="table" style="max-width: 100%;">
+							<thead>
+								<tr class="table-active">
+									<th class="text-right">
+										<h4>[[${dto.title}]]</h4> <small style="float: right;">[[${dto.nickName}]]
+											[[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small>
+									</th>
+								</tr>
+								<tr>
+									<th>
+										<div class="table-responsive">
+											<table class="table" style="width: 100%;">
+												<tr>
+													<td
+														style="width: 25%; border-right: solid 1px #5D5D5D; margin-bottom: 20px; line-height: 2rem;">모집
+														구분</td>
+													<td style="width: 75%; padding-left: 20px;">[[${dto.category}]]</td>
+												</tr>
+												<tr>
+													<td
+														style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집
+														포지션</td>
+													<td style="width: 75%; padding-left: 20px;">[[${dto.position}]]</td>
+												</tr>
+												<tr>
+													<td
+														style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">모집
+														인원</td>
+													<td style="width: 75%; padding-left: 20px;">[[${dto.groupMember}]]명</td>
+												</tr>
+												<tr>
+													<td
+														style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">사용
+														언어</td>
+													<td style="width: 75%; padding-left: 20px;">[[${dto.techStack}]]</td>
+												</tr>
+												<tr>
+													<td
+														style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">진행
+														기간</td>
+													<td style="width: 75%; padding-left: 20px;">[[${dto.duration}]]</td>
+												</tr>
+												<tr th:if="${dto.mentorName}!=null">
+													<td
+														style="width: 10%; border-right: solid 1px #5D5D5D; line-height: 2rem;">멘
+														토</td>
+													<td style="padding-left: 20px;">[[${dto.mentorName}]]
+														멘토</td>
+												</tr>
+												<tr>
+													<td
+														style="width: 25%; border-right: solid 1px #5D5D5D; line-height: 2rem;">연락
+														방법</td>
+													<td style="width: 75%; padding-left: 20px;"><a
+														target="_blank" class="badge text-bg-warning"
+														th:href="${dto.chatLink}">카카오톡 오픈채팅</a></td>
+												</tr>
+											</table>
+										</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr style="height: 300px;">
+									<td id="content2" style="border: none;"></td>
+								</tr>
+								<tr>
+									<td colspan="4" class="text-center"><th:block
+											th:if="${session.userInfo != null}">
+											<form action="participate" method="post"
+												th:if="${!#lists.contains(partyList,session.userInfo.getEmail())}">
+												<input type="hidden" name="pMemEmail"
+													th:value="${session.userInfo.getEmail()}"> <input
+													type="hidden" name="pBno" th:value="${dto.boardno}">
+												<button type="submit" class="btn btn-outline-success"
+													style="border: solid 2px darkgreen; line-height: 3rem;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16"
+														height="16" fill="currentColor"
+														class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+															d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+  <path fill-rule="evenodd"
+															d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+</svg>
+													<b>참가신청</b>
+												</button>
+											</form>
+											<form action="cancel" method="post"
+												th:if="${#lists.contains(partyList,session.userInfo.getEmail())}">
+												<input type="hidden" name="email"
+													th:value="${session.userInfo.getEmail()}"> <input
+													type="hidden" name="bno" th:value="${dto.boardno}">
+												<button type="submit" class="btn btn-outline-danger"
+													style="border: solid 2px darkred; line-height: 3rem;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16"
+														height="16" fill="currentColor"
+														class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+															d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+  <path fill-rule="evenodd"
+															d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+</svg>
+													<b>참가취소</b>
+												</button>
+											</form>
+										</th:block></td>
+								</tr>
+							</tbody>
+
+						</table>
+						<div th:if="${session.userInfo != null}">
+							<div style="float: right;"
+								th:if="${session.userInfo.getEmail() == dto.memEmail}">
+								<a class="btn btn-primary mb-3"
+									th:href="@{/boardModify(boardno=${dto.boardno})}">수정하기</a> <a
+									class="btn btn-primary mb-3"
+									th:href="@{/boardDelete(boardno=${dto.boardno})}">삭제하기</a>
+							</div>
+						</div>
+						<span>댓글 <b>[[${dto.replyCount}]]</b></span>
+						<form action="boardCommentWrite" method="POST">
+							<input type="hidden" name="bCommentBno" th:value="${dto.boardno}">
+							<input th:if="${session.userInfo != null}" type="hidden"
+								name="bCommentWriterEmail" th:value="${session.userInfo.email}">
+							<div class="mb-3">
+								<label for="exampleFormControlTextarea1" class="form-label">댓글
+									쓰기</label>
+								<textarea th:if="${session.userInfo == null}"
+									class="form-control" id="exampleFormControlTextarea1"
+									disabled="disabled" placeholder="로그인 후 댓글작성 가능합니다." rows="3"></textarea>
+								<textarea th:if="${session.userInfo != null}"
+									name="bCommentText" class="form-control"
+									id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
+							<div>
+								<button th:if="${session.userInfo == null}" disabled="disabled"
+									type="submit" class="btn btn-primary mb-3"
+									style="float: right;">등록</button>
+								<button th:if="${session.userInfo != null}" type="submit"
+									class="btn btn-primary mb-3" style="float: right;">등록</button>
+							</div>
+						</form>
+						<table class="table" style="margin-bottom: 50px;">
+							<th:block th:each="comment : ${comments}">
+								<tr>
+									<td width="45px" class="text-center" style="border: none;"><img
+										th:src="${comment.bCommentProfileImg}" width="45px"
+										height="45px" class="rounded-circle me-2"></td>
+									<td style="border: none;"><small><strong>[[${comment.bCommentNickName}]]</strong></small>
+										<br>
+									<small>[[${#temporals.format(comment.bCommentRegDate,
+											'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
+								</tr>
+								<tr style="border-bottom: solid 1px rgb(73, 80, 87);">
+									<td colspan="2" style="border: none; height: 4rem;">[[${comment.bCommentText}]]</td>
+								</tr>
+							</th:block>
+						</table>
+
+
+					</div>
+				</div>
+
+				<table class="table table-hover">
+					<thead>
+					</thead>
+					<tbody>
+
+
+					</tbody>
+				</table>
+
+			</fieldset>
+
 			<th:block th:replace="fragments/modal :: modalFragment"></th:block>
 
 		</main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
-		
+		<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
 		<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top"
 			role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16"
 				height="16" fill="currentColor" class="bi bi-arrow-up"
@@ -310,7 +413,7 @@
 					d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
 </svg></a>
 	</div>
-			
+
 	<script>
 		var type;
 		var subject;
@@ -332,28 +435,30 @@
 		}
 	</script>
 	<script th:inline="javascript">
-		$(document).ready(function() {
-			document.getElementById("content").innerHTML = /*[[${dto.text}]]*/"";
-			document.getElementById("content2").innerHTML = /*[[${dto.text}]]*/"";
-			var emailval = /*[[${regiInfo}]]*/"";
-			if (emailval != null) {
-				$('#test').modal('show');
-			}
-			$(window).scroll(function() {
-				if ($(this).scrollTop() > 50) {
-					$('#back-to-top').fadeIn();
-				} else {
-					$('#back-to-top').fadeOut();
-				}
-			});
-			// scroll body to 0px on click
-			$('#back-to-top').click(function() {
-				$('body,html').animate({
-					scrollTop : 0
-				}, 400);
-				return false;
-			});
-		});
+		$(document)
+				.ready(
+						function() {
+							document.getElementById("content").innerHTML = /*[[${dto.text}]]*/"";
+							document.getElementById("content2").innerHTML = /*[[${dto.text}]]*/"";
+							var emailval = /*[[${regiInfo}]]*/"";
+							if (emailval != null) {
+								$('#test').modal('show');
+							}
+							$(window).scroll(function() {
+								if ($(this).scrollTop() > 50) {
+									$('#back-to-top').fadeIn();
+								} else {
+									$('#back-to-top').fadeOut();
+								}
+							});
+							// scroll body to 0px on click
+							$('#back-to-top').click(function() {
+								$('body,html').animate({
+									scrollTop : 0
+								}, 400);
+								return false;
+							});
+						});
 	</script>
 	<script>
 		setTimeout(function() {

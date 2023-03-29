@@ -23,18 +23,16 @@
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
 <style>
-
 .table-scrollable {
-    display: block;
-    width: 100%;
-  overflow-x: hidden;
-  max-height: 500px; /* 스크롤이 생길 최대 높이 */
+	display: block;
+	width: 100%;
+	overflow-x: hidden;
+	max-height: 500px; /* 스크롤이 생길 최대 높이 */
 }
+
 .table-scrollable::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+	display: none; /* Chrome, Safari, Opera*/
 }
-
-
 </style>
 </head>
 <body>
@@ -51,259 +49,253 @@
 	</div>
 	<div class="py-3" style="padding-left: 0px; padding-right: 0px;">
 		<th:block th:replace="fragments/header :: headerFragment"></th:block>
-	
 
 
-<main class="container">
-<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+
+		<main class="container">
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
 				<h1 class="display-4 fw-normal">Documentation</h1>
 				<p class="fs-5 text-muted">API Get Started</p>
-<hr>
+				<hr>
 			</div>
-    <h1>Project & Study List API</h1><span class="badge text-bg-secondary">1.01</span>
-    <span class="badge text-bg-success">JSON</span>
-    <p class="fs-5 col-md-8">이 API는 new Project();에 등록된 프로젝트와 스터디 모집글의 정보를 조회하는 기능을 제공합니다. 다양한 검색 조건을 이용하여 원하는 게시글을 조회할 수 있습니다.</p>
+			<h1>Project & Study List API</h1>
+			<span class="badge text-bg-secondary">1.01</span> <span
+				class="badge text-bg-success">JSON</span>
+			<p class="fs-5 col-md-8">이 API는 new Project();에 등록된 프로젝트와 스터디
+				모집글의 정보를 조회하는 기능을 제공합니다. 다양한 검색 조건을 이용하여 원하는 게시글을 조회할 수 있습니다.</p>
 
-   <h4>Endpoint</h4>
-   <div class="alert alert-light" role="alert">
-  <span class="badge text-bg-primary">GET</span> https://tomcat.jikwang.net/ctor/api/data
-</div>
+			<h4>Endpoint</h4>
+			<div class="alert alert-light" role="alert">
+				<span class="badge text-bg-primary">GET</span>
+				https://tomcat.jikwang.net/ctor/api/data
+			</div>
 
-    <hr class="col-3 col-md-2 mb-5">
+			<hr class="col-3 col-md-2 mb-5">
 
-    <div class="row g-5">
-      <div class="col-md-6">
-        <h2>Request Parameters</h2>
-        <table class="table">
-        	<thead>
-        		<tr>
-        			<th>Parameter</th>
-        			<th>Type</th>
-        			<th>Required</th>
-        			<th>Description</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<tr>
-        			<td>memEmail</td>
-        			<td>string</td>
-        			<td>Optional</td>
-        			<td>작성자의 이메일 주소로 게시글 필터링을 원할 경우 사용</td>
-        		</tr>
-        		<tr>
-        			<td>closed</td>
-        			<td>boolean</td>
-        			<td>Optional</td>
-        			<td>게시글 마감 여부로 필터링을 원할 경우 사용</td>
-        		</tr>
-        		<tr>
-        			<td>techStack</td>
-        			<td>string</td>
-        			<td>Optional</td>
-        			<td>기술 스택으로 필터링을 원할 경우 사용</td>
-        		</tr>
-        		<tr>
-        			<td>position</td>
-        			<td>string</td>
-        			<td>Optional</td>
-        			<td>직군으로 필터링을 원할 경우 사용</td>
-        		</tr>
-        	</tbody>
-        </table>
-        <h2>Response Codes</h2>
-        <table class="table">
-        	<thead>
-        		<tr>
-        			<th>Code</th>
-        			<th>Description</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<tr>
-        			<td><span class="badge text-bg-success">200</span></td>
-        			<td>성공</td>
-        		</tr>
-        		<tr>
-        			<td><span class="badge text-bg-danger">500</span></td>
-        			<td>서버 오류</td>
-        		</tr>
-        	</tbody>
-        </table>
-      </div>
+			<div class="row g-5">
+				<div class="col-md-6">
+					<h2>Request Parameters</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Type</th>
+								<th>Required</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>memEmail</td>
+								<td>string</td>
+								<td>Optional</td>
+								<td>작성자의 이메일 주소로 게시글 필터링을 원할 경우 사용</td>
+							</tr>
+							<tr>
+								<td>closed</td>
+								<td>boolean</td>
+								<td>Optional</td>
+								<td>게시글 마감 여부로 필터링을 원할 경우 사용</td>
+							</tr>
+							<tr>
+								<td>techStack</td>
+								<td>string</td>
+								<td>Optional</td>
+								<td>기술 스택으로 필터링을 원할 경우 사용</td>
+							</tr>
+							<tr>
+								<td>position</td>
+								<td>string</td>
+								<td>Optional</td>
+								<td>직군으로 필터링을 원할 경우 사용</td>
+							</tr>
+						</tbody>
+					</table>
+					<h2>Response Codes</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span class="badge text-bg-success">200</span></td>
+								<td>성공</td>
+							</tr>
+							<tr>
+								<td><span class="badge text-bg-danger">500</span></td>
+								<td>서버 오류</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-      <div class="col-md-6">
-        <h2>Response Body</h2>
-        <div class="table-responsive">
-        <table class="table  table-scrollable table-striped">
-        	<thead>
-        		<tr>
-        			<th>Property</th>
-        			<th>Type</th>
-        			<th>Description</th>
-        		</tr>
-        	</thead>
-        	
-        	<tbody>
-        		<tr>
-        			<td>boardno</td>
-        			<td>long</td>
-        			<td>글 번호</td>
-        		</tr>
-        		<tr>
-        			<td>regDate</td>
-        			<td>LocalDateTime</td>
-        			<td>작성일</td>
-        		</tr>
-        		<tr>
-        			<td>modDate</td>
-        			<td>LocalDateTime</td>
-        			<td>수정일</td>
-        		</tr>
-        		<tr>
-        			<td>title</td>
-        			<td>string</td>
-        			<td>글 제목</td>
-        		</tr>
-        		<tr>
-        			<td>text</td>
-        			<td>string</td>
-        			<td>글 내용</td>
-        		</tr>
-        		<tr>
-        			<td>category</td>
-        			<td>string</td>
-        			<td>글 카테고리</td>
-        		</tr>
-        		<tr>
-        			<td>closingDate</td>
-        			<td>string</td>
-        			<td>모집 마감일</td>
-        		</tr>
-        		<tr>
-        			<td>duration</td>
-        			<td>string</td>
-        			<td>프로젝트 기간</td>
-        		</tr>
-        		<tr>
-        			<td>chatLink</td>
-        			<td>string</td>
-        			<td>채팅 링크</td>
-        		</tr>
-        		<tr>
-        			<td>groupMember</td>
-        			<td>int</td>
-        			<td>모집 인원 수</td>
-        		</tr>
-        		<tr>
-        			<td>viewCount</td>
-        			<td>int</td>
-        			<td>조회수</td>
-        		</tr>
-        		<tr>
-        			<td>position</td>
-        			<td>string</td>
-        			<td>모집하는 직군</td>
-        		</tr>
-        		<tr>
-        			<td>techStack</td>
-        			<td>string</td>
-        			<td>게시글의 기술 스택</td>
-        		</tr>
-        		<tr>
-        			<td>hasTutor</td>
-        			<td>boolean</td>
-        			<td>멘토링 여부</td>
-        		</tr>
-        		<tr>
-        			<td>closed</td>
-        			<td>boolean</td>
-        			<td>모집 마감 여부</td>
-        		</tr>
-        		<tr>
-        			<td>replyCount</td>
-        			<td>int</td>
-        			<td>댓글 수</td>
-        		</tr>
-        		<tr>
-        			<td>memberCount</td>
-        			<td>int</td>
-        			<td>모집된 참여자 수</td>
-        		</tr>
-        		<tr>
-        			<td>closed</td>
-        			<td>boolean</td>
-        			<td>모집 마감 여부</td>
-        		</tr>
-        		<tr>
-        			<td>memEmail</td>
-        			<td>string</td>
-        			<td>게시글 작성자의 이메일</td>
-        		</tr>
-        		<tr>
-        			<td>nickName</td>
-        			<td>string</td>
-        			<td>게시글 작성자의 닉네임</td>
-        		</tr>
-        		<tr>
-        			<td>name</td>
-        			<td>string</td>
-        			<td>게시글 작성자의 이름</td>
-        		</tr>
-        		<tr>
-        			<td>profileImg</td>
-        			<td>string</td>
-        			<td>게시글 작성자의 프로필 사진 경로</td>
-        		</tr>
-        		<tr>
-        			<td>nickName</td>
-        			<td>string</td>
-        			<td>게시글 작성자의 닉네임</td>
-        		</tr>
-        	</tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-    <h2>Example</h2>
-    <br>
-    <h3>Request</h3>
-    <div class="alert alert-dark" role="alert">
-  GET /api/data?<span style="color: #ca9ed1;">techStack</span>=JAVA&<span style="color: #ca9ed1;">position</span>=백엔드&<span style="color: #ca9ed1;">closed</span>=false
-</div>
-    <br>
-    <h3>Response</h3>
-    <div class="alert alert-dark" role="alert">
-  [<br>
-	{<br>
-	  "boardno":1,<br>
-		"regDate":"2023-03-21T05:12:36.672",<br>
-		"modDate":"2023-03-28T11:40:02.464492",<br>
-		"title":"안녕하세요. 스터디 모집합니다.",<br>
-		"text":"<p>기간은 2주이며...</p>",<br>
-		"category":"스터디",<br>
-		"closingDate":"2023-03-23",<br>
-		"duration":"2주",<br>
-		"chatLink":"https://open.kakao.com/o/abcd",<br>
-		"groupMember":0,<br>
-		"viewCount":131,<br>
-		"position":"백엔드",<br>
-		"techStack":"Bootstrap,JAVA,MySQL",<br>
-		"hasTutor":false,<br>
-		"closed":true,<br>
-		"replyCount":4,<br>
-		"memberCount":0,<br>
-		"memEmail":"abcd@gmail.com",<br>
-		"nickName":"동그라미",<br>
-		"name":"홍길동",<br>
-		"profileImg":"https://tomcat.jikwang.net/ctor/img/green.png"<br>
-	}
-	...<br>
-]<br>
-</div>
-  </main>
-  <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-</div>
-			
+				<div class="col-md-6">
+					<h2>Response Body</h2>
+					<div class="table-responsive">
+						<table class="table  table-scrollable table-striped">
+							<thead>
+								<tr>
+									<th>Property</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>boardno</td>
+									<td>long</td>
+									<td>글 번호</td>
+								</tr>
+								<tr>
+									<td>regDate</td>
+									<td>LocalDateTime</td>
+									<td>작성일</td>
+								</tr>
+								<tr>
+									<td>modDate</td>
+									<td>LocalDateTime</td>
+									<td>수정일</td>
+								</tr>
+								<tr>
+									<td>title</td>
+									<td>string</td>
+									<td>글 제목</td>
+								</tr>
+								<tr>
+									<td>text</td>
+									<td>string</td>
+									<td>글 내용</td>
+								</tr>
+								<tr>
+									<td>category</td>
+									<td>string</td>
+									<td>글 카테고리</td>
+								</tr>
+								<tr>
+									<td>closingDate</td>
+									<td>string</td>
+									<td>모집 마감일</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>string</td>
+									<td>프로젝트 기간</td>
+								</tr>
+								<tr>
+									<td>chatLink</td>
+									<td>string</td>
+									<td>채팅 링크</td>
+								</tr>
+								<tr>
+									<td>groupMember</td>
+									<td>int</td>
+									<td>모집 인원 수</td>
+								</tr>
+								<tr>
+									<td>viewCount</td>
+									<td>int</td>
+									<td>조회수</td>
+								</tr>
+								<tr>
+									<td>position</td>
+									<td>string</td>
+									<td>모집하는 직군</td>
+								</tr>
+								<tr>
+									<td>techStack</td>
+									<td>string</td>
+									<td>게시글의 기술 스택</td>
+								</tr>
+								<tr>
+									<td>hasTutor</td>
+									<td>boolean</td>
+									<td>멘토링 여부</td>
+								</tr>
+								<tr>
+									<td>closed</td>
+									<td>boolean</td>
+									<td>모집 마감 여부</td>
+								</tr>
+								<tr>
+									<td>replyCount</td>
+									<td>int</td>
+									<td>댓글 수</td>
+								</tr>
+								<tr>
+									<td>memberCount</td>
+									<td>int</td>
+									<td>모집된 참여자 수</td>
+								</tr>
+								<tr>
+									<td>closed</td>
+									<td>boolean</td>
+									<td>모집 마감 여부</td>
+								</tr>
+								<tr>
+									<td>memEmail</td>
+									<td>string</td>
+									<td>게시글 작성자의 이메일</td>
+								</tr>
+								<tr>
+									<td>nickName</td>
+									<td>string</td>
+									<td>게시글 작성자의 닉네임</td>
+								</tr>
+								<tr>
+									<td>name</td>
+									<td>string</td>
+									<td>게시글 작성자의 이름</td>
+								</tr>
+								<tr>
+									<td>profileImg</td>
+									<td>string</td>
+									<td>게시글 작성자의 프로필 사진 경로</td>
+								</tr>
+								<tr>
+									<td>nickName</td>
+									<td>string</td>
+									<td>게시글 작성자의 닉네임</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<h2>Example</h2>
+			<br>
+			<h3>Request</h3>
+			<div class="alert alert-dark" role="alert">
+				GET /api/data?<span style="color: #ca9ed1;">techStack</span>=JAVA&<span
+					style="color: #ca9ed1;">position</span>=백엔드&<span
+					style="color: #ca9ed1;">closed</span>=false
+			</div>
+			<br>
+			<h3>Response</h3>
+			<div class="alert alert-dark" role="alert">
+				[<br> {<br> "boardno":1,<br>
+				"regDate":"2023-03-21T05:12:36.672",<br>
+				"modDate":"2023-03-28T11:40:02.464492",<br> "title":"안녕하세요. 스터디
+				모집합니다.",<br> "text":"
+				<p>기간은 2주이며...</p>
+				",<br> "category":"스터디",<br> "closingDate":"2023-03-23",<br>
+				"duration":"2주",<br>
+				"chatLink":"https://open.kakao.com/o/abcd",<br>
+				"groupMember":0,<br> "viewCount":131,<br>
+				"position":"백엔드",<br> "techStack":"Bootstrap,JAVA,MySQL",<br>
+				"hasTutor":false,<br> "closed":true,<br> "replyCount":4,<br>
+				"memberCount":0,<br> "memEmail":"abcd@gmail.com",<br>
+				"nickName":"동그라미",<br> "name":"홍길동",<br>
+				"profileImg":"https://tomcat.jikwang.net/ctor/img/green.png"<br>
+				} ...<br> ]<br>
+			</div>
+		</main>
+		<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	</div>
+
 	<script>
 		var type;
 		var subject;
@@ -315,7 +307,7 @@
 			document.getElementById("page2").style.display = 'block';
 			document.getElementById("page2title").innerHTML = (type == "student" ? "학생"
 					: "강사님")
-					+ '이시군요! <br> 지금 진행중인 or 관심있는 과정을 선택해주세요.';
+					+ '이시군요! _$ta 지금 진행중인 or 관심있는 과정을 선택해주세요.';
 		}
 		function checkpage2Value(subjectType) {
 			subject = subjectType;
@@ -324,7 +316,7 @@
 			document.getElementById("page3").style.display = 'block';
 		}
 	</script>
-	
+
 	<script>
 		setTimeout(function() {
 			$('#loading').hide();
