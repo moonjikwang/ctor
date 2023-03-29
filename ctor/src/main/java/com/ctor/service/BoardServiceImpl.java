@@ -92,7 +92,7 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardDTO> dtoList = new ArrayList<>();
 
 		for (int i = 0; i < result.size(); i++) {
-			dtoList.add(entityToDTO((Board) result.get(i)[0], 
+			dtoList.add(entityToDTO2((Board) result.get(i)[0], 
 					(Member) result.get(i)[1],
 					((Long) result.get(i)[2]).intValue(), 
 					((Long) result.get(i)[3]).intValue() ) );
