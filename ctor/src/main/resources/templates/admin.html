@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <link rel="manifest" href="manifest.json">
-    <link rel="icon" sizes="192x192" href="menu.png">
-    <link rel="icon" sizes="512x512" href="menu.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+<link rel="icon" sizes="192x192" href="menu.png">
+<link rel="icon" sizes="512x512" href="menu.png">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
 <title>new Project();</title>
 <link rel="icon" type="image/x-icon" href="img/menu.png">
 <link rel="shortcut icon" type="image/x-icon" href="img/menu.png">
@@ -26,9 +27,9 @@
 	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="css/main.css">
 
-  </head>
-  <body>
-    <div id="loading">
+</head>
+<body>
+	<div id="loading">
 		<div class="loader">
 			<div class="inner one"></div>
 			<div class="inner two"></div>
@@ -39,162 +40,182 @@
 				Project();</small>
 		</div>
 	</div>
- <div class="container" style="min-height: 500px;">
-    <div class="row">
-      <!-- 상단바 -->
-      <nav class="navbar navbar-expand-lg navbar">
-        <div class="container-fluid">
-          <a href="index"
-					class="d-flex align-items-center text-white text-decoration-none"
-					style="margin-bottom: 3rem; z-index: 1; display: inline-block; width: 250px;"> <svg
-						xmlns="http://www.w3.org/2000/svg" width="30" height="24"
-						fill="currentColor" class="bi bi-file-earmark-code"
-						viewBox="0 0 16 16">
+	<div class="container" style="min-height: 500px;">
+		<div class="row">
+			<!-- 상단바 -->
+			<nav class="navbar navbar-expand-lg navbar">
+				<div class="container-fluid">
+					<a href="index"
+						class="d-flex align-items-center text-white text-decoration-none"
+						style="margin-bottom: 3rem; z-index: 1; display: inline-block; width: 250px;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="24"
+							fill="currentColor" class="bi bi-file-earmark-code"
+							viewBox="0 0 16 16">
                     <path
-							d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+								d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
                     <path
-							d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
+								d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                   </svg> <span class="fs-4"
-					style="font-family: 'Ubuntu', sans-serif;">new Project<span style="color: #ca9ed1;">(</span><span style="color: #be73cb;">)</span><span style="color: #ae45c1;">;</span></span>
-				</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse">
+						style="font-family: 'Ubuntu', sans-serif;">new Project<span
+							style="color: #ca9ed1;">(</span><span style="color: #be73cb;">)</span><span
+							style="color: #ae45c1;">;</span></span>
+					</a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarNav"
+						aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse"></div>
+				</div>
+			</nav>
+			<!-- 사이드바 -->
+			<div class="col-md-2">
+				<ul class="list-group">
+					<li class="list-group-item active" id="dash" aria-current="true">대시보드</li>
+					<li class="list-group-item" id="members">회원관리</li>
+					<li class="list-group-item" id="contents">모집게시판 관리</li>
+					<li class="list-group-item" id="contents">익명게시판 관리</li>
+				</ul>
+			</div>
+			<!-- 내용 영역 -->
 
-          </div>
-        </div>
-      </nav>
-      <!-- 사이드바 -->
-      <div class="col-md-2">
-        <ul class="list-group">
-          <li class="list-group-item active" id="dash" aria-current="true">대시보드</li>
-          <li class="list-group-item" id="members">회원관리</li>
-          <li class="list-group-item" id="contents">모집게시판 관리</li>
-          <li class="list-group-item" id="contents">익명게시판 관리</li>
-        </ul>
-      </div>
-      <!-- 내용 영역 -->
-      
-      <div class="col-md-10">
-      <fieldset id="dashboard">
-        <h1>대시보드</h1>
-        <p>관리자 대시보드입니다. <br> 회원관리 및 게시글 관리가 가능합니다.</p>
-        </fieldset>
-        <fieldset id="member" style="display: none;">
-        <h1>회원 관리</h1>
-        <table class="table">
-        	<thead>
-        		<tr>
-        			<th>구분</th>
-        			<th>email</th>
-        			<th>이름</th>
-        			<th>닉네임</th>
-        			<th>가입일자</th>
-        			<th>관리</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<th:block th:each="member : ${memberList}">
-	        		<tr>
-	        			<td>[[${member.grade}]]</td>
-	        			<td>[[${member.email}]]</td>
-	        			<td>[[${member.name}]]</td>
-	        			<td>[[${member.nickName}]]</td>
-	        			<td>[[${member.regDate}]]</td>
-	        			<td>
-	        			<div class="dropdown">
-  <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+			<div class="col-md-10">
+				<fieldset id="dashboard">
+					<h1>대시보드</h1>
+					<p>
+						관리자 대시보드입니다. <br> 회원관리 및 게시글 관리가 가능합니다.
+					</p>
+				</fieldset>
+				<fieldset id="member" style="display: none;">
+					<h1>회원 관리</h1>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>구분</th>
+								<th>email</th>
+								<th>이름</th>
+								<th>닉네임</th>
+								<th>가입일자</th>
+								<th>관리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="member : ${memberList}">
+								<tr>
+									<td>[[${member.grade}]]</td>
+									<td>[[${member.email}]]</td>
+									<td>[[${member.name}]]</td>
+									<td>[[${member.nickName}]]</td>
+									<td>[[${member.regDate}]]</td>
+									<td>
+										<div class="dropdown">
+											<a class="dropdown-toggle" type="button"
+												data-bs-toggle="dropdown" aria-expanded="false"> <svg
+													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+													fill="currentColor" class="bi bi-pencil-square"
+													viewBox="0 0 16 16">
+  <path
+														d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+  <path fill-rule="evenodd"
+														d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 </svg>
-  </a>
-  <ul class="dropdown-menu">
-    <li th:if="${member.grade == '강사 승인대기중'}"><a class="dropdown-item" th:href="@{/addTeacher(email=${member.email})}">강사가입 승인</a></li>
-    <li><a class="dropdown-item" href="#">회원 삭제</a></li>
-  </ul>
-</div>
-	        			
+											</a>
+											<ul class="dropdown-menu">
+												<li th:if="${member.grade == '강사 승인대기중'}"><a
+													class="dropdown-item"
+													th:href="@{/addTeacher(email=${member.email})}">강사가입 승인</a></li>
+												<li><a class="dropdown-item" href="#">회원 삭제</a></li>
+											</ul>
+										</div>
 
-</td>
-	        		</tr>
-        		</th:block>
-        	</tbody>
-        </table>
-        </fieldset>
-        <fieldset style="display: none;">
-        <h1>모집게시판 관리</h1>
-        <table class="table">
-        	<thead>
-        		<tr>
-        			<th>글번호</th>
-        			<th>구분</th>
-        			<th>제목</th>
-        			<th>작성자</th>
-        			<th>작성일</th>
-        			<th>관리</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<th:block th:each="board : ${boardList}">
-	        		<tr>
-	        			<td>[[${board.boardno}]]</td>
-	        			<td>[[${board.category}]]</td>
-	        			<td>[[${board.title}]]</td>
-	        			<td>[[${board.memEmail}]]</td>
-	        			<td>[[${board.regDate}]]</td>
-	        			<td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+
+									</td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</fieldset>
+				<fieldset style="display: none;">
+					<h1>모집게시판 관리</h1>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>구분</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>관리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="board : ${boardList}">
+								<tr>
+									<td>[[${board.boardno}]]</td>
+									<td>[[${board.category}]]</td>
+									<td>[[${board.title}]]</td>
+									<td>[[${board.memEmail}]]</td>
+									<td>[[${board.regDate}]]</td>
+									<td><svg xmlns="http://www.w3.org/2000/svg" width="16"
+											height="16" fill="currentColor" class="bi bi-pencil-square"
+											viewBox="0 0 16 16">
+  <path
+												d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+  <path fill-rule="evenodd"
+												d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 </svg></td>
-	        		</tr>
-        		</th:block>
-        	</tbody>
-        </table>
-        </fieldset>
-        <fieldset style="display: none;">
-        <h1>익명게시판 관리</h1>
-        <table class="table">
-        	<thead>
-        		<tr>
-        			<th>글번호</th>
-        			<th>제목</th>
-        			<th>작성자 이메일</th>
-        			<th>작성자 닉네임</th>
-        			<th>작성일</th>
-        			<th>관리</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<th:block th:each="blind : ${blindList}">
-	        		<tr>
-	        			<td>[[${blind.bno}]]</td>
-	        			<td>[[${blind.title}]]</td>
-	        			<td>[[${blind.writer}]]</td>
-	        			<td>[[${blind.nickName}]]</td>
-	        			<td>[[${blind.regDate}]]</td>
-	        			<td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</fieldset>
+				<fieldset style="display: none;">
+					<h1>익명게시판 관리</h1>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>작성자 이메일</th>
+								<th>작성자 닉네임</th>
+								<th>작성일</th>
+								<th>관리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="blind : ${blindList}">
+								<tr>
+									<td>[[${blind.bno}]]</td>
+									<td>[[${blind.title}]]</td>
+									<td>[[${blind.writer}]]</td>
+									<td>[[${blind.nickName}]]</td>
+									<td>[[${blind.regDate}]]</td>
+									<td><svg xmlns="http://www.w3.org/2000/svg" width="16"
+											height="16" fill="currentColor" class="bi bi-pencil-square"
+											viewBox="0 0 16 16">
+  <path
+												d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+  <path fill-rule="evenodd"
+												d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 </svg></td>
-	        		</tr>
-        		</th:block>
-        	</tbody>
-        </table>
-        </fieldset>
-      </div>
-      
-      
-      
-      
-      
-      
-    </div>
-    
-  </div>
-  <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-  <script>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+
+
+
+
+
+
+		</div>
+
+	</div>
+	<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	<script>
   const menuItems = document.querySelectorAll('.list-group-item');
   const fieldsets = document.querySelectorAll('fieldset');
 
@@ -212,11 +233,19 @@
 			$('#loading').hide();
 		}, 1000);
 	</script>
-   	<script
+	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 		crossorigin="anonymous"></script>
 
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-  </body>
+	<script
+		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+		integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+		crossorigin="anonymous"></script>
+	<script src="dashboard.js"></script>
+</body>
 </html>
