@@ -87,6 +87,12 @@ public class MemberController {
 		return "redirect:index";
 		
 	}
+	
+	@GetMapping("/addTeacher")
+	public String addTeacher(String email) {
+		kakaoLoginService.addTeacher(email);
+		return "redirect:admin";
+	}
 	@PostMapping("/login")
 	public String memberLogin(String email,String password,HttpServletRequest req,HttpServletResponse res) {
 		HttpSession session = req.getSession();

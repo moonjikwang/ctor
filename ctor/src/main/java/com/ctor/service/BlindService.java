@@ -43,6 +43,7 @@ public interface BlindService {
 	List<Blind> searchBlinds(String keyword);
 	Page<Blind> searchBlindsList(String keyword, Pageable pageable);
 	List<Object[]> findMyBlindPost(String nickName); 
+	List<BlindDTO> findAll();
 	
 	default Blind dtoToEntity(BlindDTO dto) {
 		//실제 DB에 있는 email 사용

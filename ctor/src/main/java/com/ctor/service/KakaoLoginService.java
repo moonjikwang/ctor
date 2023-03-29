@@ -1,19 +1,21 @@
 package com.ctor.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.ctor.dto.MemberDTO;
 import com.ctor.entity.Member;
 
 public interface KakaoLoginService {
 
-	String getAccessToken(String authorize_code) throws Throwable;
+	public String getAccessToken(String authorize_code) throws Throwable;
 	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
-	MemberDTO login(String email,String password);
-	MemberDTO findByEmail(String email);
-	
-	String register(MemberDTO dto);
-	void modify(MemberDTO dto);
+	public MemberDTO login(String email,String password);
+	public MemberDTO findByEmail(String email);
+	public List<MemberDTO> findAll();
+	public String register(MemberDTO dto);
+	public void modify(MemberDTO dto);
+	public void addTeacher(String email);
 	
 	default MemberDTO entityToDto(Member member) {
 		MemberDTO dto = MemberDTO.builder()
