@@ -1,7 +1,14 @@
 package com.ctor.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,4 +35,17 @@ public class Member extends BaseEntity{
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	List<Board> boards = new ArrayList<>();
+	@OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
+	List<Blind> blinds = new ArrayList<>();
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	List<BoardComments> boardComments = new ArrayList<>();
+	@OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
+	List<BlindComments> blindsComments = new ArrayList<>();
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	List<Participation> participations = new ArrayList<>();
+	@OneToOne(mappedBy = "member", cascade = CascadeType.REMOVE)
+	SkillLevel skillLevel = new SkillLevel();
 }

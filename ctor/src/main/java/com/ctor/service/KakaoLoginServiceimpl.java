@@ -231,6 +231,12 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 		kakaoRepository.save(member);
 	}
 
+	@Override
+	public void deleteById(String email) {
+		kakaoRepository.deleteById(email);
+		
+	}
+
 	
 
 }
