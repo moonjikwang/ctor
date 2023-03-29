@@ -60,6 +60,12 @@ public class BoardController {
 		redirectAttributes.addAttribute("boardno",bno);
 		return "redirect:boardRead";
 	}
+	@PostMapping("boardModify")
+	public String boardModify(BoardDTO dto,RedirectAttributes redirectAttributes) {
+		Long bno = service.write(dto);
+		redirectAttributes.addAttribute("boardno",bno);
+		return "redirect:boardRead";
+	}
 	@GetMapping({"boardRead","boardModify"})
 	public void boardRead(long boardno, Model model) {
 		BoardDTO dto = service.findByBno(boardno);
