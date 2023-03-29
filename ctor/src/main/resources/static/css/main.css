@@ -1,10 +1,32 @@
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.autocomplete-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background-color: #e9e9e9;
+}
+
 @font-face {
     font-family: 'yg-jalnan';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
+  input::-webkit-calendar-picker-indicator {
+    background-color : gray;
+    border-radius: 5px;
+  }
 .scrollBar::-webkit-scrollbar {
     margin-top: 5px;
     height: 5px;

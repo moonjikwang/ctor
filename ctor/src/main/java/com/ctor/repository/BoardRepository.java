@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ctor.entity.Board;
+import com.ctor.entity.Member;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
@@ -92,4 +93,5 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 				+ "WHERE b.closed =:closed "
 				+ "GROUP BY b ORDER BY b.closed, b.modDate DESC")
 		List<Object[]> getBoardIsClosed(@Param("closed")Boolean closed);
+		
 }

@@ -77,7 +77,33 @@ public interface BoardService {
 		return dto;
 		
 	}
-	
+	default BoardDTO entityToDTO2(Board board, Member member, int replyCount, int memberCount) {
+		
+		BoardDTO dto = BoardDTO.builder()
+				.boardno(board.getBoardno())
+				.title(board.getTitle())
+				.text(board.getText())
+				.category(board.getCategory())
+				.closingDate(board.getClosingDate())
+				.duration(board.getDuration())
+				.groupMember(board.getGroupMember())
+				.viewCount(board.getViewCount())
+				.chatLink(board.getChatLink())
+				.position(board.getPosition())
+				.techStack(board.getTechStack())
+				.mentorEmail(board.getMentor())
+				.closed(board.isClosed())
+				.replyCount(replyCount)
+				.memberCount(memberCount)
+				.memEmail(member.getEmail())
+				.nickName(member.getNickName())
+				.profileImg(member.getProfileImg())
+				.name(member.getName())
+				.build();
+				
+		return dto;
+		
+	}
 	
 	
 	
