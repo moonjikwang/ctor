@@ -28,15 +28,25 @@
 
   </head>
   <body>
-    
- <div class="container">
+    <div id="loading">
+		<div class="loader">
+			<div class="inner one"></div>
+			<div class="inner two"></div>
+			<div class="inner three"></div>
+		</div>
+		<div class="loading-text ">
+			<small style="font-family: 'Righteous', cursive;">new
+				Project();</small>
+		</div>
+	</div>
+ <div class="container" style="min-height: 500px;">
     <div class="row">
       <!-- 상단바 -->
       <nav class="navbar navbar-expand-lg navbar">
         <div class="container-fluid">
           <a href="index"
 					class="d-flex align-items-center text-white text-decoration-none"
-					style="z-index: 1; display: inline-block; width: 250px;"> <svg
+					style="margin-bottom: 3rem; z-index: 1; display: inline-block; width: 250px;"> <svg
 						xmlns="http://www.w3.org/2000/svg" width="30" height="24"
 						fill="currentColor" class="bi bi-file-earmark-code"
 						viewBox="0 0 16 16">
@@ -58,19 +68,150 @@
       <!-- 사이드바 -->
       <div class="col-md-2">
         <ul class="list-group">
-          <li class="list-group-item active" aria-current="true">대시보드</li>
-          <li class="list-group-item">회원관리</li>
-          <li class="list-group-item">게시글관리</li>
+          <li class="list-group-item active" id="dash" aria-current="true">대시보드</li>
+          <li class="list-group-item" id="members">회원관리</li>
+          <li class="list-group-item" id="contents">모집게시판 관리</li>
+          <li class="list-group-item" id="contents">익명게시판 관리</li>
         </ul>
       </div>
       <!-- 내용 영역 -->
+      
       <div class="col-md-10">
+      <fieldset id="dashboard">
         <h1>대시보드</h1>
-        <p>대시보드 내용</p>
-      </div>
-    </div>
-  </div>
+        <p>관리자 대시보드입니다. <br> 회원관리 및 게시글 관리가 가능합니다.</p>
+        </fieldset>
+        <fieldset id="member" style="display: none;">
+        <h1>회원 관리</h1>
+        <table class="table">
+        	<thead>
+        		<tr>
+        			<th>구분</th>
+        			<th>email</th>
+        			<th>이름</th>
+        			<th>닉네임</th>
+        			<th>가입일자</th>
+        			<th>관리</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<th:block th:each="member : ${memberList}">
+	        		<tr>
+	        			<td>[[${member.grade}]]</td>
+	        			<td>[[${member.email}]]</td>
+	        			<td>[[${member.name}]]</td>
+	        			<td>[[${member.nickName}]]</td>
+	        			<td>[[${member.regDate}]]</td>
+	        			<td>
+	        			<div class="dropdown">
+  <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+</svg>
+  </a>
+  <ul class="dropdown-menu">
+    <li th:if="${member.grade == '강사 승인대기중'}"><a class="dropdown-item" th:href="@{/addTeacher(email=${member.email})}">강사가입 승인</a></li>
+    <li><a class="dropdown-item" href="#">회원 삭제</a></li>
+  </ul>
+</div>
+	        			
 
+</td>
+	        		</tr>
+        		</th:block>
+        	</tbody>
+        </table>
+        </fieldset>
+        <fieldset style="display: none;">
+        <h1>모집게시판 관리</h1>
+        <table class="table">
+        	<thead>
+        		<tr>
+        			<th>글번호</th>
+        			<th>구분</th>
+        			<th>제목</th>
+        			<th>작성자</th>
+        			<th>작성일</th>
+        			<th>관리</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<th:block th:each="board : ${boardList}">
+	        		<tr>
+	        			<td>[[${board.boardno}]]</td>
+	        			<td>[[${board.category}]]</td>
+	        			<td>[[${board.title}]]</td>
+	        			<td>[[${board.memEmail}]]</td>
+	        			<td>[[${board.regDate}]]</td>
+	        			<td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+</svg></td>
+	        		</tr>
+        		</th:block>
+        	</tbody>
+        </table>
+        </fieldset>
+        <fieldset style="display: none;">
+        <h1>익명게시판 관리</h1>
+        <table class="table">
+        	<thead>
+        		<tr>
+        			<th>글번호</th>
+        			<th>제목</th>
+        			<th>작성자 이메일</th>
+        			<th>작성자 닉네임</th>
+        			<th>작성일</th>
+        			<th>관리</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<th:block th:each="blind : ${blindList}">
+	        		<tr>
+	        			<td>[[${blind.bno}]]</td>
+	        			<td>[[${blind.title}]]</td>
+	        			<td>[[${blind.writer}]]</td>
+	        			<td>[[${blind.nickName}]]</td>
+	        			<td>[[${blind.regDate}]]</td>
+	        			<td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+</svg></td>
+	        		</tr>
+        		</th:block>
+        	</tbody>
+        </table>
+        </fieldset>
+      </div>
+      
+      
+      
+      
+      
+      
+    </div>
+    
+  </div>
+  <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+  <script>
+  const menuItems = document.querySelectorAll('.list-group-item');
+  const fieldsets = document.querySelectorAll('fieldset');
+
+  menuItems.forEach((item, index) => {
+    item.addEventListener('click', function() {
+      menuItems.forEach(item => item.classList.remove('active'));
+      this.classList.add('active');
+      fieldsets.forEach(fieldset => fieldset.style.display = 'none');
+      fieldsets[index].style.display = 'block';
+    });
+  });
+  </script>
+	<script>
+		setTimeout(function() {
+			$('#loading').hide();
+		}, 1000);
+	</script>
    	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

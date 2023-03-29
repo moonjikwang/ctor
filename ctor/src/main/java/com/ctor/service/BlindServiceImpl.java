@@ -1,5 +1,6 @@
 package com.ctor.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -135,6 +136,13 @@ public class BlindServiceImpl implements BlindService{
 	public List<Object[]> findMyBlindPost(String nickName) {
 		List<Object[]> postList = blindRepository.findBlindByMemberNickname(nickName);
 		return postList;
+	}
+
+	@Override
+	public List<BlindDTO> findAll() {
+		List<BlindDTO> blindList = new ArrayList<>();
+		blindRepository.findAll().forEach(entity -> blindList.add(entityToDTO(entity, Member.builder().email(entity.getWriter().getEmail()).build(), Long.valueOf(commentsRepository.getCommentsByBlind(entity).size()))));
+		return blindList;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,6 +213,21 @@ public class KakaoLoginServiceimpl implements KakaoLoginService {
 	public void modify(MemberDTO dto) {
 		Member member = dtoToEntity(findByEmail(dto.getEmail()));
 		member.setIntroduce(dto.getIntroduce());
+		kakaoRepository.save(member);
+	}
+
+	@Override
+	public List<MemberDTO> findAll() {
+		List<MemberDTO> result = new ArrayList<>();
+		kakaoRepository.findAll().forEach(entity -> result.add(entityToDto(entity)));
+		return result;
+	}
+
+	@Override
+	public void addTeacher(String email) {
+		MemberDTO dto = findByEmail(email);
+		dto.setGrade("teacher");
+		Member member = dtoToEntity(dto);
 		kakaoRepository.save(member);
 	}
 

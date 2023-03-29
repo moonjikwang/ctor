@@ -54,7 +54,7 @@
 				<tr class="table-active">
 				<th  class="text-right">
 				<h4>[[${dto.title}]]</h4>
-				<small style="float: right;">익명의 개발자 [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small></th>
+				<small style="float: right;">[[${dto.nickName}]] [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</small></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -90,7 +90,7 @@
 			<th:block  th:each="comment : ${comments}">
 			<tr>
 				<td width="45px" class="text-center" style="border: none;"><img src="img/green.png" width="45px" height="45px" class="rounded-circle me-2">
-				</td><td style="border: none;"><small><strong>익명의 개발자</strong></small>
+				</td><td style="border: none;"><small><strong>[[${comment.replyer}]]</strong></small>
 				<th:block th:if="${session.userInfo != null}">
 				<small style="float: right;" th:if="${session.userInfo.getEmail() == comment.email}"> 
 				<a th:href="@{/blindCommentRemove(cno=${comment.cno}, bno=${dto.bno})}">삭제</a>

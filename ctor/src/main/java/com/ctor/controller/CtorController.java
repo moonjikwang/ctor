@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
+import com.ctor.dto.MemberDTO;
 import com.ctor.dto.SkillDTO;
 import com.ctor.service.ApiService;
+import com.ctor.service.BlindService;
 import com.ctor.service.BoardService;
 import com.ctor.service.JobGroupService;
 import com.ctor.service.KakaoLoginService;
@@ -34,6 +37,7 @@ public class CtorController {
 	private final ApiService apiService;
 	private final JobGroupService jobGroupService;
 	private final KakaoLoginService kakaoLoginService;
+	private final BlindService blindService;
 	
 	@GetMapping("/")
 	public String home() {
@@ -85,8 +89,14 @@ public class CtorController {
 		return "redirect:index";
 	}
 	@GetMapping("admin")
-	public void admin() {
+	public void admin(Model model) {
+		List<MemberDTO> memberList = kakaoLoginService.findAll();
+		List<BoardDTO> boardList =  boardService.findAllBoards();
+		List<BlindDTO> blindList = blindService.findAll();
 		
+		model.addAttribute("memberList",memberList);
+		model.addAttribute("boardList",boardList);
+		model.addAttribute("blindList",blindList);
 	}
 	
 	@GetMapping("/changelog")
