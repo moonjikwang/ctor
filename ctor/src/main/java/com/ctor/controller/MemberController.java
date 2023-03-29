@@ -93,6 +93,15 @@ public class MemberController {
 		kakaoLoginService.addTeacher(email);
 		return "redirect:admin";
 	}
+	@GetMapping("/removeAccount")
+	public String removeAccount(String email,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		kakaoLoginService.deleteById(email);
+		session.invalidate();
+		return "redirect:index";
+		
+	}
+	
 	@PostMapping("/login")
 	public String memberLogin(String email,String password,HttpServletRequest req,HttpServletResponse res) {
 		HttpSession session = req.getSession();

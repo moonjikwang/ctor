@@ -16,6 +16,7 @@ public interface KakaoLoginService {
 	public String register(MemberDTO dto);
 	public void modify(MemberDTO dto);
 	public void addTeacher(String email);
+	public void deleteById(String email);
 	
 	default MemberDTO entityToDto(Member member) {
 		MemberDTO dto = MemberDTO.builder()
