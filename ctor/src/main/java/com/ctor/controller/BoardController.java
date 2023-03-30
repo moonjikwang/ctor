@@ -101,7 +101,12 @@ public class BoardController {
 		redirectAttributes.addAttribute("boardno",bno);
 		return "redirect:boardRead";
 	}
-	
+	@GetMapping("boardCommentRemove")
+	public String blindCommentRemove(Long bCommentNo,Long boardno,RedirectAttributes redirectAttributes) {
+		boardCommentsService.delete(bCommentNo);
+		redirectAttributes.addAttribute("boardno",boardno);
+		return "redirect:boardRead";
+	}
     
 
 	
