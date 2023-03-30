@@ -32,6 +32,7 @@ public interface BoardCommentsService {
 				.bCommentRegDate(boardComments.getRegDate())
 				.bCommentModDate(boardComments.getModDate())
 				.bCommentText(boardComments.getBCommentText())
+				.teacher(boardComments.getMember().getGrade().equals("teacher"))
 				.bCommentWriterEmail(boardComments.getMember().getEmail())
 				.bCommentNickName(boardComments.getMember().getNickName())
 				.bCommentProfileImg(boardComments.getMember().getProfileImg())
