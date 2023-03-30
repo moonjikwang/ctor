@@ -268,7 +268,7 @@
 								<div class="card-body">
 									<small class="text-muted fw-light"
 										style="color: #f9f7fa !important;">마감일 |
-										[[${dto.closingDate}]]</small>
+										<th:block th:text='${(dto.closingDate=="")? "상시모집" : dto.closingDate}'></th:block></small>
 									<ul class="list-unstyled mt-3 mb-4">
 										<span class="textLine"><b style="color: #cccccc;">[[${dto.title}]]</b></span>
 										<br>

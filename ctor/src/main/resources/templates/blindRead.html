@@ -147,7 +147,7 @@
 									th:if="${dto.replyCount != 0}"
 									th:text="'('+${dto.replyCount}+')'"></span></a></td>
 							<!-- 작성자, 작성일, 조회수 -->
-							<td style="width: 20%" class="text-center">익명의 개발자</td>
+							<td style="width: 20%" class="text-center">[[${dto.nickName}]]</td>
 							<td style="width: 20%" class="text-center"
 								th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm')}"></td>
 						</tr>
@@ -182,8 +182,7 @@
 							<thead>
 								<tr class="table-active">
 									<th class="text-right">
-										<h4>[[${dto.title}]]</h4> <small style="float: right;">익명의
-											개발자 [[${#temporals.format(dto.regDate, 'yyyy-MM-dd
+										<h4>[[${dto.title}]]</h4> <small style="float: right;">[[${dto.nickName}]] [[${#temporals.format(dto.regDate, 'yyyy-MM-dd
 											HH:mm:ss')}]]</small>
 									</th>
 								</tr>
@@ -271,7 +270,7 @@
   <path
 													d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
 </svg>[[${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm')}]]</span><span
-										style="float: right; margin-right: 10px;">익명의 개발자</span> </a>
+										style="float: right; margin-right: 10px;">[[${dto.nickName}]]</span> </a>
 								</div>
 							</td>
 						</tr>
