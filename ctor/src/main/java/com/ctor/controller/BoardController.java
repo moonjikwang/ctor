@@ -79,7 +79,7 @@ public class BoardController {
 		
 		//멘토 여부 확인 후 있으면 멘토 이름을 dto에 세팅
 		if(dto.getMentorEmail()!=null) {
-			dto.setMentorName( kakaoLoginService.findByEmail(dto.getMentorEmail()).getName() );
+			dto.setMentorName(kakaoLoginService.findByEmail(dto.getMentorEmail()).getName() );
 		}
 		
 		model.addAttribute("partyList",partEmailList);
