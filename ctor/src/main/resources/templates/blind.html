@@ -84,7 +84,7 @@
 			<li class="page-item"
 				th:class="${pageResObj.page==page?'page-item active':''}"
 				th:each="page : ${pageResObj.pageList}"><a class="page-link"
-				th:href="@{blind(page=${page})}" style="border: none;">[[${page}]]</a></li>
+				th:href="@{blind(page=${page})}" style="border: none; border-radius: 50%;">[[${page}]]</a></li>
 			<li class="page-item" th:if="${pageResObj.next}"><a class="page-link"
 				th:href="@{blind(page=${pageResObj.end +1})}" style="border: none; text-decoration: none;">···</a></li>
 		</ul>
@@ -124,7 +124,7 @@
 			<li class="page-item"
 				th:class="${pageResObj.page==page?'page-item active':''}"
 				th:each="page : ${pageResObj.pageList}"><a class="page-link"
-				th:href="@{blind(page=${page})}" style="border: none;">[[${page}]]</a></li>
+				th:href="@{blind(page=${page})}" style="border: none; border-radius: 50%;">[[${page}]]</a></li>
 			<li class="page-item" th:if="${pageResObj.next}"><a class="page-link"
 				th:href="@{blind(page=${pageResObj.end +1})}" style="border: none; text-decoration: none;">···</a></li>
 		</ul>
