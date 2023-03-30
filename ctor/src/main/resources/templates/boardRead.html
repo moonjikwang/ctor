@@ -119,7 +119,7 @@ td {
 								<tr style="height: 400px;">
 									<td id="content" style="border: none;"></td>
 								</tr>
-								<tr>
+								<tr >
 									<td colspan="4" class="text-center"><th:block
 											th:if="${session.userInfo != null}">
 											
@@ -159,12 +159,11 @@ td {
 													<b>참가취소</b>
 												</button>
 											</form>
-										</th:block></td>
+										</th:block><br></td>
+										
 								</tr>
+								
 							</tbody>
-							<tfoot>
-
-							</tfoot>
 						</table>
 						<div th:if="${session.userInfo != null}">
 							<div style="float: right;"
