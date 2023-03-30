@@ -36,7 +36,7 @@
 							<div class="container">
 								<div class="row justify-content-start">
 									<div class="col-lg-8">
-										<h5 class="display-2 mb-4 animated slideInDown"
+										<h5 class="display-3 mb-4 animated slideInDown"
 											style="text-align: left; font-family: 'Noto Sans KR', sans-serif; white-space: nowrap;">
 											프로젝트와 스터디를<br>함께할 팀원을 쉽게<br>찾으세요.🖐
 										</h5>
@@ -75,7 +75,7 @@
 
 			<!-- 기술 선택 탭 -->
 			<div style="text-align: center; display: block;">
-				<h1 class="display-6 fw-normal" style="margin-top: 15px">새로운
+				<h1 class="display-6 fw-normal" style="margin-top: 2rem; margin-bottom: 2rem;">새로운
 					경험을 쌓아보세요.</h1>
 
 				<form id="skillTab">
@@ -270,7 +270,7 @@
 										style="color: #f9f7fa !important;">마감일 |
 										<th:block th:text='${(dto.closingDate=="")? "상시모집" : dto.closingDate}'></th:block></small>
 									<ul class="list-unstyled mt-3 mb-4">
-										<span class="textLine"><b style="color: #cccccc;">[[${dto.title}]]</b></span>
+										<span class="textLine h6"><b style="color: #cccccc;">[[${dto.title}]]</b></span>
 										<br>
 										<th:block
 											th:each="position : ${#strings.arraySplit(dto.position,',')}">
