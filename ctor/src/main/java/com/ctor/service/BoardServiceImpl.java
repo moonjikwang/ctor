@@ -193,6 +193,21 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 
+	@Override
+	public void Mentor(Long boardno, String email) {
+		BoardDTO dto = findByBno(boardno);
+		dto.setMentorEmail(email);
+		boardRepository.save(boardDTOtoEntity(dto));
+	}
+
+	@Override
+	public void deleteMentor(Long boardno) {
+		BoardDTO dto = findByBno(boardno);
+		dto.setMentorEmail(null);
+		boardRepository.save(boardDTOtoEntity(dto));
+		
+	}
+
 	
 
 }

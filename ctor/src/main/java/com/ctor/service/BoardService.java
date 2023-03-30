@@ -11,7 +11,8 @@ public interface BoardService {
 	Long write(BoardDTO dto);
 	Long modify(BoardDTO dto);
 	Long delete(Long boardno);
-	
+	void Mentor(Long boardno, String email);
+	void deleteMentor(Long boardno);
 	List<BoardDTO> findAllBoards();
 	BoardDTO findByBno(Long boardno);
 	List<BoardDTO> findByEmail(String email);	//작성자 기준으로 조회
