@@ -203,7 +203,9 @@ td {
 									<td width="45px" class="text-center" style="border: none;"><img
 										th:src="${comment.bCommentProfileImg}" width="45px"
 										height="45px" class="rounded-circle me-2"></td>
-									<td style="border: none;"><small><strong>[[${comment.name}]]</strong></small>
+									<td style="border: none;"><small>
+									<span th:if="${comment.teacher}" class="badge text-bg-success">강사</span>
+									<strong>[[${comment.name}]]</strong></small>
 									<th:block th:if="${session.userInfo != null}">
 											<small style="float: right;"
 												th:if="${session.userInfo.getEmail() == comment.bCommentWriterEmail}">
@@ -381,7 +383,9 @@ td {
 									<td width="45px" class="text-center" style="border: none;"><img
 										th:src="${comment.bCommentProfileImg}" width="45px"
 										height="45px" class="rounded-circle me-2"></td>
-									<td style="border: none;"><small><strong>[[${comment.name}]]</strong></small>
+									<td style="border: none;"><small>
+									<span th:if="${comment.teacher}" class="badge text-bg-success">강사</span>
+									<strong> [[${comment.name}]]</strong></small>
 										<br>
 									<small>[[${#temporals.format(comment.bCommentRegDate,
 											'yyyy-MM-dd HH:mm:ss')}]]</small><br></td>
