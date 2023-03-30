@@ -248,7 +248,7 @@
 			<!-- 보드 목록 -->
 			<div
 				class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 mb-3 text-center"
-				style="padding: 0px;">
+				style="padding: 0px;" >
 				<div th:each="dto : ${dto}" class="col skillDiv"
 					th:attr="data-tech-stack=${dto.techStack}, data-position=${dto.position}">
 					<th:block th:if="${dto.techStack}"
