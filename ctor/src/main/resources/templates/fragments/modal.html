@@ -252,7 +252,7 @@
 </div>
 
 <div class="modal fade" id="alarm" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				 aria-hidden="true">
 				<div class="modal-dialog " style="margin-top: 15%;">
 					<div class="modal-content">
 						<div class="modal-body">
@@ -279,7 +279,9 @@
     <p class="mb-1">[[${dto.text}]]</p>
   </a>
   </th:block>
-  <h6 th:if="${message.size() == 0}" style="text-align: center; margin-top: 15px; margin-bottom: 15px;">새로운 알림이 없습니다.</h6>
+    <div class="h6" th:if="${#lists.isEmpty(message)}" style="text-align: center; margin-top: 15px; margin-bottom: 15px;">
+    No messages
+</div>
 </div>
 </div>
 					</div>
