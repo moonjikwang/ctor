@@ -35,32 +35,32 @@ public class ApiController {
 		Set<BoardDTO> dtoSet = new HashSet<>(dtoList);
 
 		if (memEmail != null) {
+			Set<BoardDTO> tempSet = new HashSet<>();
 			boardService.findByEmail(memEmail).forEach(tempDTO -> {
-				Set<BoardDTO> tempSet = new HashSet<>();
 				tempSet.add(tempDTO);
-				dtoSet.retainAll(tempSet);
 			});
+			dtoSet.retainAll(tempSet);
 		}
 		if (closed != null) {
+			Set<BoardDTO> tempSet = new HashSet<>();
 			boardService.findByClosed(closed).forEach(tempDTO -> {
-				Set<BoardDTO> tempSet = new HashSet<>();
 				tempSet.add(tempDTO);
-				dtoSet.retainAll(tempSet);
 			});
+			dtoSet.retainAll(tempSet);
 		}
 		if (techStack != null) {
+			Set<BoardDTO> tempSet = new HashSet<>();
 			boardService.findByTech(techStack).forEach(tempDTO -> {
-				Set<BoardDTO> tempSet = new HashSet<>();
 				tempSet.add(tempDTO);
-				dtoSet.retainAll(tempSet);
 			});
+			dtoSet.retainAll(tempSet);
 		}
 		if (position != null) {
+			Set<BoardDTO> tempSet = new HashSet<>();
 			boardService.findByPosition(position).forEach(tempDTO -> {
-				Set<BoardDTO> tempSet = new HashSet<>();
 				tempSet.add(tempDTO);
-				dtoSet.retainAll(tempSet);
 			});
+			dtoSet.retainAll(tempSet);
 		}
 
 		List<BoardDTO> result = new ArrayList<>(dtoSet);
