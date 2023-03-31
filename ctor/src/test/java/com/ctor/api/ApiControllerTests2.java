@@ -28,8 +28,9 @@ public class ApiControllerTests2 {
 		mockMvc.perform(
 				 get("/api/data")
 	                // param -> api테스트할때 사용될 요청 파라미터를 설정한다. (단 값은 string만 허용되므로 숫자나 날짜는 문자열로 변경후 사용)
-//	                .param("position", "프론트엔드")
-	                .param("closed", "true")
+	                .param("position", "프론트엔드")
+	                .param("techStack", "JAVA")
+//	                .param("memEmail", "yh999886@gmail.com")
 				 )
 				.andDo(print());
 		
