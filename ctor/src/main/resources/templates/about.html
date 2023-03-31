@@ -191,7 +191,7 @@
 							<h3 class="pt-5">프로젝트 & 스터디 매니저</h3>
 							<p class="text-secondary">
 								프로젝트 또는 스터디의 주제를 선정하여 소개해주세요. 함께할 파트너들과 멋진 프로젝트에 몰두해볼까요?🔥<br>
-								<a href="/boardWrite" class="link-fancy link-fancy-light me-2">Tell
+								<a href="ctor/boardWrite" class="link-fancy link-fancy-light me-2">Tell
 									me more</a>
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 									fill="currentColor" class="bi bi-arrow-right-circle"
@@ -204,7 +204,7 @@
 								파트너</h3>
 							<p class="text-secondary">
 								부족한 부분을 채워줄 스터디, 나의 포트폴리오를 채워줄 프로젝트가 준비되어 있습니다. <br> <a
-									href="/index" class="link-fancy link-fancy-light me-2">Tell
+									href="ctor/index" class="link-fancy link-fancy-light me-2">Tell
 									me more</a>
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 									fill="currentColor" class="bi bi-arrow-right-circle"
@@ -232,7 +232,7 @@
 										<h2 class="fw-lighter">다양한 주제의 프로젝트를 제안</h2>
 										<p class="pb-4 text-secondary">프로젝트와 스터디를 함께할 팀원을 쉽게 찾으세요.
 											실명제로 운영되는 투명하고 편리한 서비스, new Project(); 에서 만나보세요.</p>
-										<a href="/index" class="link-fancy link-fancy-light">Read
+										<a href="ctor/index" class="link-fancy link-fancy-light">Read
 											more</a>
 									</div>
 								</div>
@@ -248,7 +248,7 @@
 										<p class="pb-4 text-secondary">다양한 프로젝트와 스터디에 참여하여 지식을
 											공유하고 성장할 수 있어요. 익명페이지를 통해 질문을 공유하고 커뮤니티 이용자들의 다양한 답변을 얻을 수
 											있어요.</p>
-										<a href="/blind" class="link-fancy link-fancy-light">Read
+										<a href="ctor/blind" class="link-fancy link-fancy-light">Read
 											more</a>
 									</div>
 								</div>
@@ -272,7 +272,7 @@
 											프로젝트</h2>
 										<p class="pb-4 text-secondary">디자이너, 백엔드 개발자, 프론트엔드 개발자 등
 											다양한 포지션의 팀원을 모집할 수 있어요. 강사님들은 프로젝트 제안을 보고 멘토로 참여할 수 있습니다.</p>
-										<a href="/index" class="link-fancy link-fancy-light">Read
+										<a href="ctor/index" class="link-fancy link-fancy-light">Read
 											more</a>
 									</div>
 								</div>
@@ -288,10 +288,10 @@
 										<p class="pb-4 text-secondary">new Project(); 에서 프로젝트에
 											참여해보세요. 프로젝트 참여 목록은 물론 스킬과 자기소개까지 한 번에 보고 출력할 수 있어요.</p>
 										<span th:if="${session.userInfo != null}"><a
-											th:href="@{/myPage(email=${session.userInfo.getEmail()})}"
+											th:href="@{ctor/myPage(email=${session.userInfo.getEmail()})}"
 											class="link-fancy link-fancy-light">Read more </a></span> <span
 											th:if="${session.userInfo == null}"><a
-											th:href="@{/index}" class="link-fancy link-fancy-light">Read
+											th:href="@{ctor/index}" class="link-fancy link-fancy-light">Read
 												more </a></span>
 									</div>
 								</div>
