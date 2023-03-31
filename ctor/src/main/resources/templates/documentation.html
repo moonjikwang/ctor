@@ -211,9 +211,9 @@
 									<td>게시글의 기술 스택</td>
 								</tr>
 								<tr>
-									<td>hasTutor</td>
-									<td>boolean</td>
-									<td>멘토링 여부</td>
+									<td>mentorEmail</td>
+									<td>string</td>
+									<td>멘토의 이메일</td>
 								</tr>
 								<tr>
 									<td>closed</td>
@@ -255,11 +255,7 @@
 									<td>string</td>
 									<td>게시글 작성자의 프로필 사진 경로</td>
 								</tr>
-								<tr>
-									<td>nickName</td>
-									<td>string</td>
-									<td>게시글 작성자의 닉네임</td>
-								</tr>
+					
 							</tbody>
 						</table>
 					</div>
@@ -292,9 +288,74 @@
 				"profileImg":"https://tomcat.jikwang.net/ctor/img/green.png"<br>
 				} ...<br> ]<br>
 			</div>
+			<br>
+			<h2>Test</h2>
+			<br>
+			<h3>Request</h3>
+			<div class="alert alert-dark" role="alert">
+			
+			/api/data?
+					<span style="color: #ca9ed1;">techStack</span>=
+					<select class="form-select" id="techStack" aria-label="Default select example" style="margin-bottom: 8px !important; margin-top: 5px; display: inline !important; width: 10%;">
+						<option value="">선택안함</option>
+					        <option th:each="skill : ${skillList}" th:value="${skill.skill}" 
+					                th:utext="${skill.skill}" >
+					        </option>
+					</select>
+					&<span style="color: #ca9ed1;">position</span>=
+					<select class="form-select position" aria-label="Default select example" style="margin-bottom: 8px !important; margin-top: 5px; display: inline !important; width: 10%;">
+						<option value="">선택안함</option>
+					        <option th:each="job : ${jobs}" th:value="${job.name}" 
+					                th:utext="${job.name}" >
+					        </option>
+					</select>
+					&<span style="color: #ca9ed1;">closed</span>=
+					<select class="form-select closed" aria-label="Default select example" style="margin-bottom: 8px !important; margin-top: 5px; display: inline !important; width: 10%;">
+						<option value="">선택안함</option>
+					        <option th:value="true">true</option>
+					        <option th:value="false">false</option>
+					</select>
+					&<span style="color: #ca9ed1;">memEmail</span>=
+					<input type="text" class="form-control memEmail" style="display: inline !important; width: 10%;">
+			
+					<input type="submit" value="Test" class="btn btn-primary mb-3" style="margin-bottom: 8px !important; margin-top: 5px; margin-left: 10px; display: inline !important;">
+			
+			</div>
+			<h3>Response</h3>
+			<div class="alert alert-dark" id="response" role="alert">
+			
+			</div>
 		</main>
 		<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 	</div>
+	<script type="text/javascript">
+	
+	var response = $("#response");
+	var techStack = $("#techStack");
+	var qTechStack =$("#techStack option:selected").val();
+	var qPosition = $(".position");
+	var qClosed = $(".closed");
+	var qMemEmail = $(".memEmail");
+	
+	function loadJSONData(){
+		$.getJSON('/api/data'+'?techStack='+qTechStack+'&position='+qPosition+'&closed='+qClosed+'&memEmail='+qMemEmail, function(arr){
+			console.log(arr)
+			console.log(arr.length)
+			var str ="";
+			$.each(arr, function(idx, json){
+				str += '    <div>';
+				str += json;
+                str += '    </div>';
+			})//end of each
+			response.html(str);
+		})//end of getJSON
+	alert('/api/data'+'?techStack='+qTechStack+'&position='+qPosition+'&closed='+qClosed+'&memEmail='+qMemEmail);
+	}
+	//클릭시 댓글을 출력하도록 이벤트 걸기
+	$(".btn-primary").click(function(){
+		 loadJSONData();
+	})//end of click
+	</script>
 
 	<script>
 		var type;
