@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ctor.dto.AlarmDTO;
+import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BoardCommentsDTO;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
@@ -22,7 +25,9 @@ import com.ctor.entity.Member;
 import com.ctor.service.JobGroupService;
 import com.ctor.service.KakaoLoginService;
 import com.ctor.service.ParticipationService;
+import com.ctor.service.PushService;
 import com.ctor.service.SkillService;
+import com.ctor.service.AlarmService;
 import com.ctor.service.BoardCommentsService;
 import com.ctor.service.BoardService;
 
@@ -44,6 +49,10 @@ public class BoardController {
 	ParticipationService participationService;
 	@Autowired
 	KakaoLoginService kakaoLoginService;
+	@Autowired
+	PushService pushService;
+	@Autowired
+	AlarmService alarmService;
   
 	@GetMapping("boardWrite")
 	public void boardWrite(Model model) {
@@ -98,6 +107,18 @@ public class BoardController {
 	public String boardCommentWrite(BoardCommentsDTO dto,RedirectAttributes redirectAttributes) {
 		boardCommentsService.write(dto);
 		Long bno = dto.getBCommentBno();
+		
+		/*========== 알림 전송========================================================== */
+		BoardDTO boarddto = service.findByBno(bno);
+		String email = boarddto.getMemEmail();
+		String[] target = {email}; 
+		String title = "새 댓글 알림";
+		String content = boarddto.getName()+"님 프로젝트/스터디 모집 게시글에 새로운 댓글이 작성되었습니다.";
+		String url = "https://tomcat.jikwang.net/ctor/boardRead?boardno="+bno;
+		pushService.push(target, title, content,url);
+		alarmService.addAlarm(AlarmDTO.builder().email(boarddto.getMemEmail()).isChecked(false).title(title).text(content).url(url).build());
+		/*========== 알림 전송=========================================================== */
+		
 		redirectAttributes.addAttribute("boardno",bno);
 		return "redirect:boardRead";
 	}
