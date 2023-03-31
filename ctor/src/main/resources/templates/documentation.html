@@ -293,7 +293,7 @@
 			<br>
 			<h3>Request</h3>
 			<div class="alert alert-dark" role="alert">
-			
+			<form>
 			/api/data?
 					<span style="color: #ca9ed1;">techStack</span>=
 					<select class="form-select" id="techStack" aria-label="Default select example" style="margin-bottom: 8px !important; margin-top: 5px; display: inline !important; width: 10%;">
@@ -319,7 +319,7 @@
 					<input type="text" class="form-control memEmail" style="display: inline !important; width: 10%;">
 			
 					<input type="submit" value="Test" class="btn btn-primary mb-3" style="margin-bottom: 8px !important; margin-top: 5px; margin-left: 10px; display: inline !important;">
-			
+			</form>
 			</div>
 			<h3>Response</h3>
 			<div class="alert alert-dark" id="response" role="alert">
@@ -329,16 +329,14 @@
 		<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 	</div>
 	<script type="text/javascript">
-	
 	var response = $("#response");
-	var techStack = $("#techStack");
-	var qTechStack =$("#techStack option:selected").val();
-	var qPosition = $(".position");
-	var qClosed = $(".closed");
-	var qMemEmail = $(".memEmail");
+	var techStackVal;
+	var positionVal;
+	var closedVal;
+	var memEmailVal;
 	
 	function loadJSONData(){
-		$.getJSON('/api/data'+'?techStack='+qTechStack+'&position='+qPosition+'&closed='+qClosed+'&memEmail='+qMemEmail, function(arr){
+		$.getJSON('/api/data'+'?techStack='+techStackVal+'&position='+positionVal+'&closed='+closedVal+'&memEmail='+memEmailVal, function(arr){
 			console.log(arr)
 			console.log(arr.length)
 			var str ="";
@@ -349,13 +347,21 @@
 			})//end of each
 			response.html(str);
 		})//end of getJSON
-	alert('/api/data'+'?techStack='+qTechStack+'&position='+qPosition+'&closed='+qClosed+'&memEmail='+qMemEmail);
+		alert('/api/data'+'?techStack='+techStackVal+'&position='+positionVal+'&closed='+closedVal+'&memEmail='+memEmailVal);
 	}
-	//클릭시 댓글을 출력하도록 이벤트 걸기
-	$(".btn-primary").click(function(){
-		 loadJSONData();
-	})//end of click
-	</script>
+
+	$('form').on('submit', function(e) {
+		e.preventDefault(); // 기본 동작을 막습니다.
+
+		// 선택한 값들을 변수에 할당합니다.
+		techStackVal = $('#techStack').val();
+		positionVal = $('.position').val();
+		closedVal = $('.closed').val();
+		memEmailVal = $('.memEmail').val();
+
+		loadJSONData();
+	});
+</script>
 
 	<script>
 		var type;
