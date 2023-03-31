@@ -53,8 +53,11 @@ public class CtorController {
 		model.addAttribute("dto",dtoSize);
 	}
 	@GetMapping("documentation")
-	public void documentation() {
-		
+	public void documentation(Model model) {
+		List<JobGroupDTO> jobList = jobGroupService.getList();
+		List<SkillDTO> skillList = skillService.getList();
+		model.addAttribute("jobs",jobList);
+		model.addAttribute("skillList",skillList);
 	}
 	@GetMapping("checkedAlarm")
 	public String checkedAlarm(AlarmDTO dto) {
