@@ -313,7 +313,24 @@
 
 			</div>
 			<th:block th:replace="fragments/modal :: modalFragment"></th:block>
-
+		<script src="https://cdn.flarelane.com/WebSDK.js" charset="UTF-8"></script>
+<script>
+    FlareLane.initialize({ projectId: "3c2aa96a-ebf9-4def-85e3-5e7cc9af70d2" });
+    
+</script>
+		<script th:inline="javascript" th:if="${session.userInfo != null}">
+  let flag = false;
+  const callback = (isSubscribed) => {
+    flag = isSubscribed;
+    if (!flag) {
+      FlareLane.setIsSubscribed(true, () => {
+        // D0 something...
+      });
+    }
+  };
+  FlareLane.getIsSubscribed(callback);
+  FlareLane.setUserId(/*[[${session.userInfo.getEmail()}]]*/);
+</script>
 		</main>
 
 		<!-- footer fragment 사용 -->
@@ -378,5 +395,8 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 		crossorigin="anonymous"></script>
+
+	
+ 
 </body>
 </html>

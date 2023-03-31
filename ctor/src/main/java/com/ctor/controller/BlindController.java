@@ -35,12 +35,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ctor.dto.AlarmDTO;
 import com.ctor.dto.BlindCommentsDTO;
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.entity.Blind;
+import com.ctor.service.AlarmService;
 import com.ctor.service.BlindCommentsService;
 import com.ctor.service.BlindService;
+import com.ctor.service.PushService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -54,6 +57,11 @@ public class BlindController {
 	BlindService blindService;
 	@Autowired
 	BlindCommentsService blindCommentsService;
+	@Autowired
+	PushService pushService;
+	@Autowired
+	AlarmService alarmService;
+	
 	
 	@GetMapping("blind")
 	public void blind(BlindPageRequestDTO pageRequestDTO,Model model) {
@@ -89,6 +97,17 @@ public class BlindController {
 	public String commentWrite(BlindCommentsDTO dto,RedirectAttributes redirectAttributes) {
 		blindCommentsService.register(dto);
 		Long bno = dto.getBno();
+		
+		/*========== 알림 전송========================================================== */
+		BlindDTO blinddto = blindService.findById(bno);
+		String email = blinddto.getWriter();
+		String[] target = {email}; 
+		String title = "새 댓글 알림";
+		String content = blinddto.getNickName()+"님 게시글에 새로운 댓글이 작성되었습니다.";
+		pushService.push(target, title, content);
+		alarmService.addAlarm(AlarmDTO.builder().email(blinddto.getWriter()).isChecked(false).title(title).text(content).build());
+		/*========== 알림 전송=========================================================== */
+		
 		redirectAttributes.addAttribute("bno",bno);
 		return "redirect:blindRead";
 	}
