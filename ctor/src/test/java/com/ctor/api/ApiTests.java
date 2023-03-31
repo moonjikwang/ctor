@@ -17,7 +17,7 @@ public class ApiTests {
 	public void ApiTests() {
 
 		String[] ids = {"moonjikwang@naver.com"};
-		pushService.push(ids, "웹푸시 예제입니다.", "웹푸시 예제입니다.");
+		pushService.push(ids, "웹푸시 예제입니다.", "웹푸시 예제입니다.","https://www.naver.com");
 		
 	}
 }

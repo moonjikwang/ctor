@@ -103,9 +103,10 @@ public class BlindController {
 		String email = blinddto.getWriter();
 		String[] target = {email}; 
 		String title = "새 댓글 알림";
-		String content = blinddto.getNickName()+"님 게시글에 새로운 댓글이 작성되었습니다.";
-		pushService.push(target, title, content);
-		alarmService.addAlarm(AlarmDTO.builder().email(blinddto.getWriter()).isChecked(false).title(title).text(content).build());
+		String content = blinddto.getNickName()+"님 익명게시판 게시글에 새로운 댓글이 작성되었습니다.";
+		String url = "https://tomcat.jikwang.net/ctor/blindRead?bno="+bno;
+		pushService.push(target, title, content,url);
+		alarmService.addAlarm(AlarmDTO.builder().email(blinddto.getWriter()).isChecked(false).url(url).title(title).text(content).build());
 		/*========== 알림 전송=========================================================== */
 		
 		redirectAttributes.addAttribute("bno",bno);

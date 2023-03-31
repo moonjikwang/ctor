@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ctor.dto.AlarmDTO;
 import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BoardDTO;
 import com.ctor.dto.JobGroupDTO;
 import com.ctor.dto.MemberDTO;
 import com.ctor.dto.SkillDTO;
+import com.ctor.service.AlarmService;
 import com.ctor.service.ApiService;
 import com.ctor.service.BlindService;
 import com.ctor.service.BoardService;
@@ -38,6 +40,7 @@ public class CtorController {
 	private final JobGroupService jobGroupService;
 	private final KakaoLoginService kakaoLoginService;
 	private final BlindService blindService;
+	private final AlarmService alarmService;
 	
 	@GetMapping("/")
 	public String home() {
@@ -52,6 +55,12 @@ public class CtorController {
 	@GetMapping("documentation")
 	public void documentation() {
 		
+	}
+	@GetMapping("checkedAlarm")
+	public String checkedAlarm(AlarmDTO dto) {
+		
+		alarmService.checkedAlarm(dto.getNum());
+		return "redirect:"+dto.getUrl();
 	}
 	@GetMapping("index")
 	public void index(Model model) {

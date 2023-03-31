@@ -250,5 +250,40 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="alarm" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog " style="margin-top: 15%;">
+					<div class="modal-content">
+						<div class="modal-body">
+						<div style="margin-bottom: 3rem;">
+						<button style="float: right;" type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+								</div>  
+						<div style="text-align: center; margin-left: auto; margin-right: auto;" class="col-sm-7 col-10">
+						<h3 style="margin-bottom: 1.5rem;"><span class="fs-4"
+					style="font-family: 'Ubuntu', sans-serif;">new Project<span style="color: #ca9ed1;">(</span><span style="color: #be73cb;">)</span><span style="color: #ae45c1;">;</span></span></h3>
+						
+
+</div>
+<div class="col-sm-7 col-10" style="text-align: center; margin-left: auto; margin-right: auto;">
+							<h5>새로운 알림</h5>
+							</div>
+							<div class="list-group col-12">
+							<th:block th:each="dto : ${message}">
+  <a th:href="@{/checkedAlarm(num=${dto.num}, url=${dto.url})}" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">[[${dto.title}]]</h5>
+      <small th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm','KST')}"></small>
+    </div>
+    <p class="mb-1">[[${dto.text}]]</p>
+  </a>
+  </th:block>
+</div>
+</div>
+					</div>
+				</div>
+			</div>
+
 </div>
 </html>

@@ -26,8 +26,12 @@ public class Alarm extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long num;	//알람번호
 	private String title;	//알람제목
+	private String url;
 	private String text;	//알람내용
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;	//알람대상
 	private boolean isChecked; //확인여부
+	public void setIsChecked(boolean value) {
+		this.isChecked = value;
+	}
 }

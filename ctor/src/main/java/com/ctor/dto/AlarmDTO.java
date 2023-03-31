@@ -17,6 +17,7 @@ public class AlarmDTO {
 	private String name;
 	private String title;
 	private String text;
+	private String url;
 	private boolean isChecked;
 	private LocalDateTime regDate,modDate;
 	
