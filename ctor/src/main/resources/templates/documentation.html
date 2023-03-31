@@ -316,7 +316,7 @@
 					        <option th:value="false">false</option>
 					</select>
 					&<span style="color: #ca9ed1;">memEmail</span>=
-					<input type="text" class="form-control memEmail" style="display: inline !important; width: 10%;">
+					<input type="text" class="form-control memEmail" style="display: inline !important; width: 10%;" value="">
 			
 					<input type="submit" value="Test" class="btn btn-primary mb-3" style="margin-bottom: 8px !important; margin-top: 5px; margin-left: 10px; display: inline !important;">
 			</form>
@@ -335,19 +335,61 @@
 	var closedVal;
 	var memEmailVal;
 	
+	var query = "";
+	
+	
+	
 	function loadJSONData(){
-		$.getJSON('/api/data'+'?techStack='+techStackVal+'&position='+positionVal+'&closed='+closedVal+'&memEmail='+memEmailVal, function(arr){
-			console.log(arr)
-			console.log(arr.length)
+		
+		if(techStackVal != "" || positionVal != "" || closedVal != "" ||  memEmailVal != "" ){ 
+			query += '?';
+			if(techStackVal != ""){
+				query += 'techStack='+techStackVal;
+			}
+			if(positionVal != ""){
+				if(techStackVal != ""){
+					query += '&';
+				}
+				query += 'position='+positionVal;
+			}
+			if(closedVal != ""){
+				if(techStackVal != "" || positionVal != ""){
+					query += '&';
+				}
+				query += 'closed='+closedVal;
+			}
+			if(memEmailVal != ""){
+				if(techStackVal != "" || positionVal != "" || closedVal != ""){
+					query += '&';
+				}
+				query += 'memEmail='+memEmailVal;
+			}
+			
+		}
+		
+		$.getJSON('/api/data'+query, function(data){
+			//console.log(arr)
+			//console.log(arr.length)
+			
 			var str ="";
-			$.each(arr, function(idx, json){
-				str += '    <div>';
-				str += json;
-                str += '    </div>';
+			str += '[';
+			$.each(data, function(index, element) {
+				str += '<br>{';
+				$.each(element, function(key, value) {
+					str += '    <div>';
+					str += '    <p style="text-indent:20px">    '+ key +' : ' +value + '</p>';
+					
+					//console.log(idx);
+					//console.log(json);
+	                str += '    </div>';
+				})
+				str += '},';
 			})//end of each
+			str += '...]';
 			response.html(str);
 		})//end of getJSON
-		alert('/api/data'+'?techStack='+techStackVal+'&position='+positionVal+'&closed='+closedVal+'&memEmail='+memEmailVal);
+		//alert('/api/data'+query);
+		query = "";
 	}
 
 	$('form').on('submit', function(e) {
