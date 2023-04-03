@@ -28,9 +28,15 @@ public class PushServiceimpl implements PushService{
 	        HttpEntity<MessageRequest> entity = new HttpEntity<>(request, headers);
 
 	        RestTemplate restTemplate = new RestTemplate();
-	        ResponseEntity<String> response = restTemplate.exchange(POSTurl, HttpMethod.POST, entity, String.class);
+	        ResponseEntity<String> response = null;
+	        try {
+	        	response = restTemplate.exchange(POSTurl, HttpMethod.POST, entity, String.class);	
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+	        
 
-	        System.out.println(response.getBody());
+	       
 	    }
 
 	    private static class MessageRequest {
