@@ -28,8 +28,6 @@ public interface KakaoLoginService {
 		.nickName(member.getNickName())
 		.introduce(member.getIntroduce())
 		.profileImg(member.getProfileImg())
-		.modDate(member.getModDate())
-		.regDate(member.getRegDate())
 		.build();
 		return dto;
 	}
