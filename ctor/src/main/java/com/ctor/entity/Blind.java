@@ -35,14 +35,14 @@ public class Blind extends BaseEntity{
 	private String blindContent; //게시글 내용
 	
 	@Column(columnDefinition = "integer default 0", nullable = false)
-	private Long viewCount;		 //조회수
+	private int viewCount;		 //조회수
 	
 	//Member 클래스와 M:1 관계설정
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;
 	
 	//조회수 카운트 변경
-	public void setViewCount(Long viewCount) {
+	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
 	

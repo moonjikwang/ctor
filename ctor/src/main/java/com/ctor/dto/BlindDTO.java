@@ -33,6 +33,6 @@ public class BlindDTO {
 	
 	private String nickName;				//작성자 닉네임
 	private int replyCount; 				//해당 게시글 댓글 수
-	private Long viewCount;					//해당 게시글 조회 수
+	private int viewCount;					//해당 게시글 조회 수
 	
 }

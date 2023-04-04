@@ -69,9 +69,9 @@
 							</a>
 							</td>
 			<!-- 작성자, 작성일, 조회수 -->
-			<td style="width: 20%" class="text-center">[[${dto.nickName}]]</td>
+			<td style="width: 17%" class="text-center">[[${dto.nickName}]]</td>
 			<td style="width: 20%" class="text-center" th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm','KST')}"></td>
-			<td style="width: 20%" class="text-center">[[${dto.viewCount}]]</td>
+			<td style="width: 8%" class="text-center">[[${dto.viewCount}]]</td>
 		</tr>
 	</tbody>
 </table>

@@ -129,30 +129,33 @@
 					</div>
 				</div>
 				<h5>익명게시판</h5>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col" class="text-center">번호</th>
-							<th scope="col" class="text-center">제목</th>
-							<th scope="col" class="text-center">글쓴이</th>
-							<th scope="col" class="text-center">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="dto : ${pageResObj.dtoList}">
-							<td style="width: 5%" class="text-center">[[${dto.bno}]]</td>
-							<td style="width: 50%"><a class="text-reset"
-								style="text-decoration: none;"
-								th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]<span
-									th:if="${dto.replyCount != 0}"
-									th:text="'('+${dto.replyCount}+')'"></span></a></td>
-							<!-- 작성자, 작성일, 조회수 -->
-							<td style="width: 20%" class="text-center">[[${dto.nickName}]]</td>
-							<td style="width: 20%" class="text-center"
-								th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm')}"></td>
-						</tr>
-					</tbody>
-				</table>
+				<table class="table table-hover" >
+	<thead>
+		<tr>
+		<th scope="col" class="text-center">번호</th>
+			<th scope="col" class="text-center">제목</th>
+			<th scope="col" class="text-center">글쓴이</th>
+			<th scope="col" class="text-center">작성일</th>
+			<th scope="col" class="text-center">조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr th:each="dto : ${pageResObj.dtoList}">
+			<td style="width: 5%" class="text-center">[[${dto.bno}]]</td>
+			<td style="width: 50%">
+				<a class="text-reset" style="text-decoration: none;"
+								th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]
+									<span th:if="${dto.replyCount != 0}"
+									th:text="'('+${dto.replyCount}+')'"></span>
+							</a>
+							</td>
+			<!-- 작성자, 작성일, 조회수 -->
+			<td style="width: 17%" class="text-center">[[${dto.nickName}]]</td>
+			<td style="width: 20%" class="text-center" th:text="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm','KST')}"></td>
+			<td style="width: 8%" class="text-center">[[${dto.viewCount}]]</td>
+		</tr>
+	</tbody>
+</table>
 
 				<form action="blindWrite" method="get" style="float: right;">
 					<button type="submit" class="btn btn-primary mb-3">새글쓰기</button>
