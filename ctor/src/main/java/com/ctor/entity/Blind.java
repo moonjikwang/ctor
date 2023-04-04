@@ -1,5 +1,6 @@
  package com.ctor.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,16 +30,21 @@ public class Blind extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bno;		  	 //익명게시글넘버
-	
+	private Long bno;		  	 //글번호
 	private String blindTitle;   //게시글 제목
-	
 	private String blindContent; //게시글 내용
-
+	
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private Long viewCount;		 //조회수
 	
 	//Member 클래스와 M:1 관계설정
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;
+	
+	//조회수 카운트 변경
+	public void setViewCount(Long viewCount) {
+		this.viewCount = viewCount;
+	}
 	
 	public void changeTitle(String blindTitle) {
 		this.blindTitle = blindTitle;

@@ -43,6 +43,7 @@ import com.ctor.entity.Blind;
 import com.ctor.service.AlarmService;
 import com.ctor.service.BlindCommentsService;
 import com.ctor.service.BlindService;
+import com.ctor.service.BoardService;
 import com.ctor.service.PushService;
 
 import lombok.RequiredArgsConstructor;
@@ -53,6 +54,8 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class BlindController {
 
+//	private final BlindService service;
+	
 	@Autowired
 	BlindService blindService;
 	@Autowired
@@ -65,6 +68,7 @@ public class BlindController {
 	
 	@GetMapping("blind")
 	public void blind(BlindPageRequestDTO pageRequestDTO,Model model) {
+		
 		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
 	}
 	
@@ -75,11 +79,13 @@ public class BlindController {
 	public void read(long bno, @ModelAttribute("requestDTO") BlindPageRequestDTO pageRequestDTO, Model model) {
 		BlindDTO dto = blindService.findById(bno);
 		List<BlindCommentsDTO> commentsDTOs = blindCommentsService.getList(bno);
+		blindService.viewCount(bno); //views ++
 		model.addAttribute("dto",dto);
 		model.addAttribute("comments",commentsDTOs);
 		model.addAttribute("requestDTO",pageRequestDTO);
 		model.addAttribute("pageResObj",blindService.getList(pageRequestDTO));
 	}
+	
 	@GetMapping("blindDelete")
 	public String blindDelete(long bno) {
 		blindService.removeWithComments(bno);

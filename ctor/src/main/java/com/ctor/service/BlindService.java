@@ -44,6 +44,7 @@ public interface BlindService {
 	Page<Blind> searchBlindsList(String keyword, Pageable pageable);
 	List<Object[]> findMyBlindPost(String nickName); 
 	List<BlindDTO> findAll();
+	Long viewCount(Long bno);
 	
 	default Blind dtoToEntity(BlindDTO dto) {
 		//실제 DB에 있는 email 사용
@@ -54,6 +55,7 @@ public interface BlindService {
 				.blindTitle(dto.getTitle())
 				.blindContent(dto.getContent())
 				.writer(memberEmail)
+				.viewCount(dto.getViewCount())
 				.build();
 		
 		return blind;
@@ -69,9 +71,11 @@ public interface BlindService {
 				.nickName(member.getNickName())
 				.writer(member.getEmail())
 				.replyCount(replyCount.intValue())	//long으로 나오므로 int처리
+				.viewCount(blind.getViewCount())
 				.build();
 		
 		return blindDTO;
 	}
+	
 	
 }

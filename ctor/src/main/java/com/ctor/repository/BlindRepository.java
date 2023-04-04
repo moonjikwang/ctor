@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -79,4 +80,9 @@ public interface BlindRepository extends JpaRepository<Blind, Long>{
 			+ " WHERE w.nickName =:nickName "
 			+ " GROUP BY b ORDER BY b.regDate DESC")
 	List<Object[]> findBlindByMemberNickname(@Param("nickName") String nickName);
+	
+	//조회수 증가
+//	@Modifying
+//	@Query("UPDATE Blind b SET b.viewCount = b.viewCount + 1 WHERE b.bno =:bno")
+//	Long updateViewCount(@Param("bno") Long bno);
 }

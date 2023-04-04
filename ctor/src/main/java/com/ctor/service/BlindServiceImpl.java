@@ -15,6 +15,7 @@ import com.ctor.dto.BlindDTO;
 import com.ctor.dto.BlindPageRequestDTO;
 import com.ctor.dto.BlindPageResultDTO;
 import com.ctor.entity.Blind;
+import com.ctor.entity.Board;
 import com.ctor.entity.Member;
 import com.ctor.repository.BlindCommentsRepository;
 import com.ctor.repository.BlindRepository;
@@ -145,4 +146,21 @@ public class BlindServiceImpl implements BlindService{
 		return blindList;
 	}
 
+	//조회수 세팅
+	@Transactional
+	@Override
+	public Long viewCount(Long bno) {
+		Blind blind = blindRepository.findById(bno).get();
+		blind.setViewCount(blind.getViewCount()+1);
+		blindRepository.save(blind);
+		return null;
+	}
+	
+	//조회수 세팅2
+//	@Transactional
+//	@Override
+//	public Long viewCount(Long bno) {
+//		return blindRepository.updateViewCount(bno);
+//	}
+	
 }
