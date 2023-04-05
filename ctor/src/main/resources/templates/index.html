@@ -260,6 +260,9 @@
 							<div class="card mb-4 rounded-4 shadow-sm"
 								style="margin-left: 5px; margin-right: 5px; border: solid 2px #353535;">
 								<div class="card-header py-3">
+									<span th:if="${dto.closingDate!='' and #temporals.format(#temporals.createNow(),'yyyy-MM-dd') &gt; dto.closingDate or dto.closed }"
+										class="badge text-bg-danger"
+										style=" float: left; margin-left: 10px; margin-top: 10px;">⛔ 마감</span>
 									<span class="badge text-bg-light"
 										style="color: dimgrey !important; float: left; margin-left: 10px; margin-top: 10px;"
 										th:text="${dto.category=='스터디'?'✏️스터디':'🗂️프로젝트'}">🗂️프로젝트</span>

@@ -81,7 +81,7 @@
 						<div class="col-4"
 							style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
 							<h4 style="padding: 1rem;">Skill</h4>
-							<th:block th:if="${skills==null}">하단 Edit 을 눌러서 기술역량을 체크해주세요.
+							<th:block th:if="${skills==null}"><span th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}">하단 Edit 을 눌러서 기술역량을 체크해주세요.</span>
 		<div class="progress" role="progressbar" aria-label="Basic example"
 									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
 									style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
@@ -168,7 +168,7 @@
 										th:style="'width:' + ${skills.mysql}+'%;text-align: left;'">MySQL</div>
 								</div>
 							</th:block>
-							<h6
+							<h6 th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}"
 								style="text-align: right; padding-right: 15px; padding-bottom: 15px;"
 								data-bs-toggle="modal" data-bs-target="#skillModal">Edit</h6>
 						</div>
@@ -176,10 +176,10 @@
 							style="margin-left: 2rem; margin-top: 2rem; border-radius: 15px; background-color: #232323;">
 							<h4 style="padding: 1rem;">자기 소개</h4>
 							<h6 th:text="${dto.grade+' | ' +dto.subject}"></h6>
-							<h5 th:if="${dto.introduce==null}">소개글이 없습니다. 아래 Edit 을 눌러
-								수정해주세요.</h5>
+							<h5 th:if="${dto.introduce==null}">소개글이 없습니다.<span th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}"> 아래 Edit 을 눌러
+								수정해주세요.</span></h5>
 							<h5 th:if="${dto.introduce!=null}" th:text="${dto.introduce}"></h5>
-							<h6
+							<h6 th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}"
 								style="text-align: right; padding-right: 15px; padding-bottom: 15px;"
 								data-bs-toggle="modal" data-bs-target="#introModal">Edit</h6>
 						</div>
@@ -207,6 +207,7 @@
 						<br>
 					</div>
 				</div>
+				<th:block th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}">
 				<div style="float: right; margin-top: 25px;">
 					<a th:href="@{/removeAccount(email=${dto.email})}"><button
 							type="button" class="btn btn-danger">회원탈퇴</button></a>
@@ -227,6 +228,7 @@
 						출력
 					</button>
 				</div>
+				</th:block>
 
 			</fieldset>
 
@@ -266,10 +268,11 @@
 					style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
 					<h4 style="padding: 1rem;">자기 소개</h4>
 					<h6 th:text="${dto.grade+' | ' +dto.subject}"></h6>
-					<h5 th:if="${dto.introduce==null}">소개글이 없습니다. 아래 Edit 을 눌러
-						수정해주세요.</h5>
+					<h5 th:if="${dto.introduce==null}">소개글이 없습니다. 
+					<span th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}">아래 Edit 을 눌러
+						수정해주세요.</span></h5>
 					<h5 th:if="${dto.introduce!=null}" th:text="${dto.introduce}"></h5>
-					<h6
+					<h6 th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}"
 						style="text-align: right; padding-right: 15px; padding-bottom: 15px;"
 						data-bs-toggle="modal" data-bs-target="#introModal">Edit</h6>
 				</div>
@@ -277,7 +280,7 @@
 				<div class="col-12"
 					style="margin-top: 2rem; border-radius: 15px; background-color: #232323;">
 					<h4 style="padding: 1rem;">Skill</h4>
-					<th:block th:if="${skills==null}">하단 Edit 을 눌러서 기술역량을 체크해주세요.
+					<th:block th:if="${skills==null}"><span th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}"> 하단 Edit 을 눌러서 기술역량을 체크해주세요.</span>
 		<div class="progress" role="progressbar" aria-label="Basic example"
 							aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
 							style="height: 1.5rem; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;">
@@ -364,7 +367,7 @@
 								th:style="'width:' + ${skills.mysql}+'%;text-align: left;'">MySQL</div>
 						</div>
 					</th:block>
-					<h6
+					<h6 th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}"
 						style="text-align: right; padding-right: 15px; padding-bottom: 15px;"
 						data-bs-toggle="modal" data-bs-target="#skillModal">Edit</h6>
 				</div>
@@ -389,7 +392,7 @@
 					</table>
 					<br>
 				</div>
-				<div style="float: right; margin-top: 25px;">
+				<div style="float: right; margin-top: 25px;" th:if="${session.userInfo != null && session.userInfo.getEmail() == dto.memEmail}">
 					<a th:href="@{/removeAccount(email=${dto.email})}"><button
 							type="button" class="btn btn-danger">회원탈퇴</button></a>
 					<button type="button" class="btn btn-primary">비밀번호 변경</button>
