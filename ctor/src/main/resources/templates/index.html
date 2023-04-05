@@ -401,7 +401,24 @@
 		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 		crossorigin="anonymous"></script>
 
+	<script>
+	let deferredPrompt
+
+	window.addEventListener('beforeinstallprompt', event => {
+	    event.preventDefault()
+	    deferredPrompt = event
+	})
+
+	const installApp = () => {
+	    if (!deferredPrompt) {
+	        alert('이미 앱이 설치되어 있거나 앱을 설치할 수 없는 환경입니다')
+	        return
+	    }
+
+	    deferredPrompt.prompt()
+	}
 	
+	</script>
  
 </body>
 </html>

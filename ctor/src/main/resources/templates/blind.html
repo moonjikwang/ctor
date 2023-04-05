@@ -63,7 +63,8 @@
 			<td style="width: 5%" class="text-center">[[${dto.bno}]]</td>
 			<td style="width: 50%">
 				<a class="text-reset" style="text-decoration: none;"
-								th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">[[${dto.title}]]
+								th:href="@{/blindRead(bno=${dto.bno}, page=${pageResObj.page})}">
+									<span th:if="${dto.viewCount >= 10}" class="badge text-bg-danger" style="color: red;">🔥인기글</span> [[${dto.title}]]
 									<span th:if="${dto.replyCount != 0}"
 									th:text="'('+${dto.replyCount}+')'"></span>
 							</a>
