@@ -30,8 +30,8 @@ public class ParticipationServiceImpl implements ParticipationService{
 		Participation p = dtoToEntity(dto);
 		pRepository.save(p);
 		
-		int groupMem = p.getBoard().getGroupMember();
-		int memberCnt = pRepository.getMemberCount(dto.getPBno());
+		int groupMem = p.getBoard().getGroupMember();	//해당 글의 모집 정원
+		int memberCnt = pRepository.getMemberCount(dto.getPBno());	//현재 해당글의 신청자수
 		boolean closing = false;	//기본적으로 마감 전
 	
 		if (memberCnt >= groupMem) {

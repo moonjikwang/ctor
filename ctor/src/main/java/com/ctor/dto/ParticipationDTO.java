@@ -24,4 +24,5 @@ public class ParticipationDTO {
 	private String pMemEmail;	//멤버 PK(이하 멤버테이블에서 조회)
 	private String pNickName;	//멤버 닉네임
 	private String pProfileImg;	//멤버 프로필사진
+	private String pName;	//멤버 이름
 }

@@ -91,6 +91,7 @@ public class BoardController {
 			dto.setMentorName(kakaoLoginService.findByEmail(dto.getMentorEmail()).getName() );
 		}
 		
+		model.addAttribute("partyMember",partiList);
 		model.addAttribute("partyList",partEmailList);
 		model.addAttribute("skill",list);
 		model.addAttribute("job",jobList);

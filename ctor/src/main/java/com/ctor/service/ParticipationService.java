@@ -26,6 +26,7 @@ public interface ParticipationService {
 				.pMemEmail(p.getMember().getEmail())
 				.pNickName(p.getMember().getNickName())
 				.pProfileImg(p.getMember().getProfileImg())
+				.pName(p.getMember().getName())
 				.build();
 		return dto;
 		
