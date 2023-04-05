@@ -5,9 +5,9 @@
   "display": "standalone",
   "name": "new Project();",
   "orientation": "any",
-  "scope": "https://tomcat.jikwang.net/ctor/",
+  "scope": "https://tomcat.jikwang.net/ctor",
   "short_name": "new Project();",
-  "start_url": "https://tomcat.jikwang.net/ctor/",
+  "start_url": "https://tomcat.jikwang.net/ctor/index",
   "theme_color": "#060b12",
   "categories": [
     "education"
@@ -17,7 +17,28 @@
     {
       "src": "https://tomcat.jikwang.net/ctor/img/menu.png",
       "type": "image/x-icon"
-    }
+    },
+      {
+            "src": "https://tomcat.jikwang.net/ctor/img/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://tomcat.jikwang.net/ctor/img/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "https://tomcat.jikwang.net/ctor/img/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "https://tomcat.jikwang.net/ctor/img/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    
   ],
   "shortcuts": [],
   "lang": "ko"
