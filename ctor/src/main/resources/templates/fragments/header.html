@@ -117,7 +117,7 @@
 							height="45" class="rounded-circle me-2" data-bs-toggle="dropdown" aria-expanded="false">
 							<a th:if="${session.userInfo != null}"
 						class="py-2 text-white text-decoration-none" href="#" data-bs-toggle="dropdown" aria-expanded="false"
-						>[[${session.userInfo.getNickName}]]</a>
+						>[[${session.userInfo.getName}]]</a>
 						<ul class="dropdown-menu">
     <li th:if="${session.userInfo != null}"><a class="dropdown-item" th:href="@{/myPage(email=${session.userInfo.getEmail()})}">마이페이지</a></li>
     <hr>
