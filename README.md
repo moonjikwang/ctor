@@ -5,4 +5,4 @@
 
 인원 : 4명
 
-주소 : https://tomcat.jikwang.net/ctor
+주소 : https://jikwang.net
