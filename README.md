@@ -4,7 +4,7 @@
 인원 : 4명
 주소 : https://jikwang.net
 
-## 기술 스택
+### 기술 스택
 
 FRONT - HTML/CSS/JS AJAX Bootstrap Thymeleaf
 BACK - java8 SpringBoot
