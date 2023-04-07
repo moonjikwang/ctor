@@ -6,7 +6,7 @@
 
 ### 기술 스택
 
-FRONT - HTML/CSS/JS AJAX Bootstrap Thymeleaf
-BACK - java8 SpringBoot
-API - kakao Login API, Github Commit list API, flarelane Web Push API
-TOOL - Eclipse
+FRONT - HTML/CSS/JS AJAX Bootstrap Thymeleaf  
+BACK - java8 SpringBoot  
+API - kakao Login API, Github Commit list API, flarelane Web Push API  
+TOOL - Eclipse  
