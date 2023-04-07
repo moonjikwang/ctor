@@ -28,6 +28,6 @@
 - PWA 적용하여 PC & 모바일에 앱으로 설치가능
 - 내 게시글에 댓글 작성시 푸시알림 구현
 
-**API **
+**API**
 - 카카오 REST API 소셜로그인 구현
 - 프로젝트에서 API 제공. [소개페이지](https://tomcat.jikwang.net/ctor/documentation).
